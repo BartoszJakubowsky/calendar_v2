@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+  * {
+    box-sizing: border-box;
+  }
+/* removes blue shit on mobile after button click */
+  * { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+/* for light - dark theme transition */
+  body * {
+    @apply transition-colors duration-200;
+}
