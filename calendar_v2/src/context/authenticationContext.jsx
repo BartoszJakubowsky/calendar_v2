@@ -1,21 +1,28 @@
 import { createContext, useState } from 'react';
-import axios from 'axios'
-import jwt_decode from 'jwt-decode';
+import {axiosInterceptor} from '../api/interceptors/axiosInterceptor';
+import { getExistingToken} from '../api/authentication/tokenApi';
 
 const AuthContext = createContext();
 
     // eslint-disable-next-line react/prop-types
     function AuthProvider({children}) 
     {
-
-      
-        const [isAuthenticated, setAuthenticate] = useState(null);
-        const [user, setUser] = useState(false);
-
         
+        axiosInterceptor();
 
+        const [user, setUser] = useState(false);
+        const localToken = getExistingToken();
 
-        const toProvide = {};
+        if (localToken)
+            setUser(localToken.user);
+        
+        const isAdmin = user?.permissions?.includes('Admin');
+
+        const toProvide = {
+            user,
+            isAdmin
+        };
+
         return (
             <AuthContext.Provider value={toProvide}>
                 {children}

@@ -1,35 +1,28 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './assets/index.css'
 import {BrowserRouter} from 'react-router-dom'
+import {SlotsProvider} from './context/slotsContext';
+
+import './assets/index.css'
+
+import App from './App.jsx'
+import { AuthProvider } from './context/authenticationContext'
 
 //language
 import { I18nextProvider } from 'react-i18next';
-import i18n from 'i18next';
-import translationPL from './locales/pl/translation.json';
-import translationEN from './locales/en/translation.json';
+import { initTranslation } from './locales/_initTranslation'
 
-
-i18n.init({
-  interpolation: { escapeValue: false },
-  lng: 'pl',
-  resources: {
-    en: {
-      translation: translationEN
-    },
-    pl: {
-      translation: translationPL
-    }
-  }
-});
-
+const translations = initTranslation();
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-      <BrowserRouter>
-      <I18nextProvider i18n={i18n}>
-        <App />
-      </I18nextProvider>
-    </BrowserRouter>
+      <AuthProvider>
+        <SlotsProvider>
+          <BrowserRouter>
+            <I18nextProvider i18n={translations}>
+              <App />
+            </I18nextProvider>
+         </BrowserRouter>
+      </SlotsProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )

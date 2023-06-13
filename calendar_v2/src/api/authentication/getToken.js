@@ -1,6 +1,0 @@
-function getToken() 
-{
-    
-}
-
-export {getToken};

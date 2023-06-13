@@ -3,15 +3,15 @@ function axiosInterceptor()
 {
     // axios.defaults.baseURL = 'http://localhost:3002';
     //axios.defaults.baseURL = window.location.origin;
-    const setBaseUrl = () => {
+    
+    //default axios
+    (function () {
       const baseUrl = import.meta.env.BASE_URL;
 
       if (!baseUrl)
         axios.defaults.baseURL = window.location.origin;
-      else
-        axios.defaults.baseURL = 'http://localhost:3002';
-    }
-    setBaseUrl();
+    })();
+
     axios.interceptors.request.use(
         config => {
           const token = localStorage.getItem('token');
@@ -32,7 +32,6 @@ function axiosInterceptor()
           {
             console.log('authorization error', error);
             localStorage.removeItem('token');
-            navigate('/logowanie');
             return Promise.reject(error)
           }
           return Promise.reject(error)
