@@ -1,3 +1,10 @@
 {
-    "start":"Dobry"
+    "LoginPage":
+    {
+        "LoginForm":
+        {
+            "header" : "Zaloguj się",
+            "mailLabel" : "Wproawdź swój email lub imię i nazwisko"
+        }
+    }
 }

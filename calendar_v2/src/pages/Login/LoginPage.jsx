@@ -1,29 +1,27 @@
-/* eslint-disable react/jsx-key */
 
 import { useState } from "react";
-import Carousel from "../../components/components/Carousel";
-import Page from "../../components/components/Page";
+import Carousel from "../../components/containers/Carousel";
+import AnimatedContainer from "../../components/containers/AnimatedContainer";
+import LoginForm from "./LoginForm";
 
 export default function LoginPage() 
 {
     const [swipe, setSwipe] = useState(0);
-    const toShow = [<div>siema</div>, <div>hej</div>, <div>elo</div>]
-    const handleClick = () => 
-    {
-      setSwipe(1)
-    }
+    const [mail, setMail] = useState('');
 
 
+    const forms = [
+      <LoginForm key='login' mail={mail} setMail={setMail} setSwipe={setSwipe}/>
+    ]
 
     return (
-      <Page animation={'opacityVariant'}>
+      <AnimatedContainer animation={'opacityVariant'}>
         <Carousel 
-          className='absolute inset-0 bg-blue-300'
+          className='w-full h-full bg-indigo-100 dark:bg-slate-400'
           startPosition={0}
-          const pages = {toShow}
+          pages = {forms}
           swipeToIndex={swipe}
         />
-      <button onClick={handleClick}>click</button>
-      </Page>
+      </AnimatedContainer>
     );
 }

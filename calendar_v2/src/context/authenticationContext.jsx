@@ -20,6 +20,7 @@ const AuthContext = createContext();
 
         const toProvide = {
             user,
+            setUser,
             isAdmin
         };
 

@@ -21,7 +21,7 @@ import useAnimation from '../../hooks/useAnimation';
  *  </Page>
  * )
  */
-export default function Page({animation, basicClassName, children, ...rest}) 
+export default function AnimatedContainer({animation, basicClassName, children, ...rest}) 
 {
     const allAnimations = useAnimation();
 
@@ -31,7 +31,7 @@ export default function Page({animation, basicClassName, children, ...rest})
     }
 
     return (
-        <m.div className={`${basicClassName? basicClassName : 'absolute inset-0'} ${rest.className}`}
+        <m.div className={`${basicClassName? basicClassName : 'absolute inset-0'} ${rest.className? rest.className : ''}`}
         variants={animateVariants()} 
         initial='initial' 
         animate='animate' 
