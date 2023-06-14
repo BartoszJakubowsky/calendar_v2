@@ -1,43 +1,29 @@
+/* eslint-disable react/jsx-key */
 
-import { MotionConfig, motion as m } from "framer-motion";
 import { useState } from "react";
+import Carousel from "../../components/components/Carousel";
+import Page from "../../components/components/Page";
 
 export default function LoginPage() 
 {
-
-    const [index, setIndex] = useState(1);
-
-
-    const toShow = ["siema", "cześć", 'elo'];
+    const [swipe, setSwipe] = useState(0);
+    const toShow = [<div>siema</div>, <div>hej</div>, <div>elo</div>]
     const handleClick = () => 
     {
-        if (index === 1) 
-        setIndex(0);
-        else
-        setIndex(1);
+      setSwipe(1)
     }
-    return (
 
-        <div className=" flex absolute inset-0  items-center flex-col overflow-hidden">
-        <MotionConfig
-        transition={{
-          duration: 0.7,
-          ease: [0.32, 0.72, 0, 1],
-        }}
-      >
-        <div className="h-52 w-52 bg-blue-300 flex flex-col flex-wrap overflow-hidden">
-            {toShow.map(page => 
-                {
-                    return (
-                    <m.div key={page} animate={{ x: `-${index * 100}%` }} className="w-full h-full">
-                        {page}
-                    </m.div>
-                    )
-                })}
-        </div>
-        <button onClick={handleClick}>tu</button>
-        
-      </MotionConfig>
-      </div>
+
+
+    return (
+      <Page animation={'opacityVariant'}>
+        <Carousel 
+          className='absolute inset-0 bg-blue-300'
+          startPosition={0}
+          const pages = {toShow}
+          swipeToIndex={swipe}
+        />
+      <button onClick={handleClick}>click</button>
+      </Page>
     );
 }
