@@ -4,7 +4,8 @@
         "LoginForm":
         {
             "header" : "Zaloguj się",
-            "mailLabel" : "Wproawdź swój email lub imię i nazwisko"
+            "mailLabel" : "Wprowadź swój email lub imię i nazwisko",
+            "passwordLabel" : "Wprowadź swoje hasło"
         }
     }
 }

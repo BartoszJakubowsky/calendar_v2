@@ -16,6 +16,15 @@ function useAnimation() {
           exit: { opacity: 0, x: 0, y: -100 },
     }
 
+    const buttonMessageVariant = 
+    {
+        animatedButton:{
+            hidden: { opacity: 1},
+            enter: { opacity: 1, x: 0, y: 0 },
+            exit: { opacity: 0, x: 0, y: -100 },
+        }
+    }
+
     return ([opacityVariant, swipeVariant]);
 
 
