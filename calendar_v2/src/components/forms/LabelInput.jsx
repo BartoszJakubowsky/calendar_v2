@@ -1,33 +1,24 @@
 /* eslint-disable react/prop-types */
 
-import { useState } from 'react';
-
-export default function LabelInput({inputType, inputClassName, value, setValue, valueErrorLogic , autoComplete, labelColor, labelClassName, labelText, inputContainerClassName}) 
+export default function LabelInput({inputType, value, setValue, error, setError, errorCondition , autoComplete, labelColor, labelText, inputContainerClassName}) 
 {
-
-    const [valueError, setValueError] = useState(false);
-
-    const checkValueError = () => {
-        if (valueErrorLogic())
-            setValueError(true);
-    }
 
     const handleValueChange = (event) => 
     {   
-        if (valueError && valueError)
-            setValueError(false);
+        if (error && error)
+            setError(false);
         
         setValue(event.target.value);
     }
 
     return (
         <div className={`${inputContainerClassName}`}>
-        <label className={`${labelClassName} ${valueError? 'valid text-red-300 duration-75' : labelColor? labelColor: 'text-gray-800 dark:text-slate-100 duration-300'} `}>
+        <label className={`block text-sm font-semibold ${error? 'valid text-red-300 duration-75' : labelColor? labelColor: 'text-gray-800 dark:text-slate-100 duration-300'} `}>
             {labelText}
         </label>
         <input
             type={inputType}
-            className={inputClassName}
+            className={`peer block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40`}
             onChange={handleValueChange}
             onBlur={handleValueChange}
             value={value}

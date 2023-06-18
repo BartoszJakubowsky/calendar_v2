@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Carousel from "../../components/containers/Carousel";
 import AnimatedContainer from "../../components/containers/AnimatedContainer";
 import LoginForm from "./LoginForm";
@@ -12,20 +12,70 @@ export default function LoginPage()
     const [password, setPassword] = useState('');
     const [secondPassword, setSecondPassword] = useState('');
 
+    const [mailError, setMailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+    const [secondPasswordError, setSecondPasswordError] = useState(false);
+
+    const [messageText, setMessageText] = useState(false);
+
+    useEffect(()=>
+    {
+        if (password !== '')
+          setPassword('');
+
+        if (secondPassword !== '')
+          setSecondPassword('');
+
+        if (mailError)
+          setMail(false);
+        
+        if(passwordError)
+          setPasswordError(false);
+        
+        if (secondPasswordError)
+          setSecondPassword(false);
+
+    }, [swipe])
+
     const translateText = (text) =>
     {
         const path = 'LoginPage';
         const finalPath = path + '.' + text;
         return t(finalPath);
-
     }
 
-    const mailErrorLogic = () => mail.length < 3;
-    const passwordErrorLogic = () => passwordErrorLogic.length < 3;
+    const mailCondition = () => 
+    {
+      if (mail.length < 3)
+      {
+        setMailError(true);
+        return true;
+      }
+
+      setMailError(false);
+      return false;
+    }
+    const passwordCondition = () =>
+    {
+      if (password.length < 3)
+      {
+        setPasswordError(true);
+        return true;
+      }
+
+      setPasswordError(false);
+      return false;
+    }
 
     const userFormData = 
     {
-      mail, setMail, password, setPassword, secondPassword, setSecondPassword, mailErrorLogic, passwordErrorLogic
+      mail, setMail, 
+      password, setPassword, 
+      secondPassword, setSecondPassword, 
+      mailError, setMailError,  mailCondition, 
+      passwordError, setPasswordError, passwordCondition,
+      secondPasswordError, setSecondPasswordError, 
+      messageText, setMessageText
     }
 
     const forms = [

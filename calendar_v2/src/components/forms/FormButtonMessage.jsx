@@ -3,37 +3,41 @@ import { useEffect, useState } from "react";
 import FormButton from "./FormButton";
 import {motion as m} from 'framer-motion';
 
-export default function FormButtonMessage({checkErrors, handleButtonClick, message}) {
+export default function FormButtonMessage({messageText, setMessageText, checkError}) {
 
     const [index, setIndex] = useState(0);
     const [messageVisibility, setMessageVisibility] = useState(false);
-
+    
     useEffect(()=>
     {
+        if (!messageText)
+            return;
+
         setTimeout(() => {
             setMessageVisibility(true)
             setIndex(1.5)
-        }, 1000);
+        }, 1500);
 
         setTimeout(() => {
             setIndex(0)
         }, 4000);
 
         setTimeout(() => {
+            setMessageText(false);
             setMessageVisibility(false)
-        }, 6000);
-    }, [message])
+        }, 5300);
+    }, [messageText])
 
 
     const handleClick = () => 
     {
-        if (checkErrors())
+        if (messageVisibility || checkError())
             return;
+
         setIndex(2.5);
     }   
     
 
-    const messageText = 'message';
     return (
         <div className={`overflow-hidden h-20 dark:bg-slate-200 `}>
 
