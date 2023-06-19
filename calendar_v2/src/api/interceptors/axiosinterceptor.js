@@ -6,10 +6,9 @@ function axiosInterceptor()
     
     //default axios
     (function () {
-      const baseUrl = import.meta.env.BASE_URL;
+      const baseUrl = import.meta.env.VITE_BASE_URL;
 
-      if (!baseUrl)
-        axios.defaults.baseURL = window.location.origin;
+      axios.defaults.baseURL = baseUrl?  baseUrl : window.location.origin;
     })();
 
     axios.interceptors.request.use(

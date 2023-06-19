@@ -1,8 +1,10 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
+
 import { useEffect, useState } from "react";
 import FormButton from "./FormButton";
 import {motion as m} from 'framer-motion';
-
+import LoadingIcon from "../ui/LoadingIcon";
 export default function FormButtonMessage({messageText, setMessageText, checkError}) {
 
     const [index, setIndex] = useState(0);
@@ -44,7 +46,7 @@ export default function FormButtonMessage({messageText, setMessageText, checkErr
             <m.div animate={{y: `-${index * 25}%`}} transition={ messageVisibility? {duration: 0.7, ease: 'easeOut'} :{duration: 0.7, ease: 'easeOut'}}>
                 <FormButton onClick={handleClick} text='click'/>
                 <div className={`w-full px-4 pt-2 tracking-wide text-center rounded-md ${messageVisibility? 'visible' : 'invisible'}`}>{messageText}</div>
-                <div className={'w-full px-4 py-2 my-10 tracking-wide text-center flex justify-center flex-col'}>Jakaś ikona</div>
+                <div className={'w-full px-4 py-2 my-10 tracking-wide text-center flex justify-center flex-col'}><LoadingIcon/></div>
             </m.div>
 
         </div>

@@ -21,11 +21,12 @@ return(
             {user? 
             <>
             {/* <Route path='/' element={<MainPage/>}/>     */}
+            <Route path='/innecos'element={<LoginPage replace/>}/>
             </>
             : 
             <>
-            <Route path='/'element={<LoginPage replace/>}/>
-            <Route path='*'element={<Navigate to='/' replace/>}/>
+            <Route path='/logowanie'element={<LoginPage replace/>}/>
+            <Route path='*'element={<Navigate to='/logowanie' replace/>}/>
             </>
 
             }

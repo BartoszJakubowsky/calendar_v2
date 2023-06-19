@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import Carousel from "../../components/containers/Carousel";
 import AnimatedContainer from "../../components/containers/AnimatedContainer";
 import LoginForm from "./LoginForm";
-import {t} from 'i18next';
-
+import SwitchTheme from "../../components/ui/SwitchTheme";
 export default function LoginPage() 
 {
     const [swipe, setSwipe] = useState(0);
@@ -18,6 +17,7 @@ export default function LoginPage()
 
     const [messageText, setMessageText] = useState(false);
 
+    //reset states each swipe
     useEffect(()=>
     {
         if (password !== '')
@@ -37,14 +37,8 @@ export default function LoginPage()
 
     }, [swipe])
 
-    const translateText = (text) =>
-    {
-        const path = 'LoginPage';
-        const finalPath = path + '.' + text;
-        return t(finalPath);
-    }
 
-    const mailCondition = () => 
+     const mailCondition = () => 
     {
       if (mail.length < 3)
       {
@@ -83,11 +77,12 @@ export default function LoginPage()
         key='login' 
         userFormData={userFormData}
         setSwipe={setSwipe} 
-        translateText={translateText}/>
+        />
     ]
 
     return (
       <AnimatedContainer animation={'opacityVariant'} className='flex justify-center items-center'>
+        <SwitchTheme className='absolute right-10 top-10 z-10'/>
         <Carousel 
           className='w-full h-full bg-indigo-100 dark:bg-slate-400'
           containerClassName={'w-full h-full flex justify-center items-center'}

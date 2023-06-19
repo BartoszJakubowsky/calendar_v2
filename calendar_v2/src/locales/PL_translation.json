@@ -1,11 +1,25 @@
 {
     "LoginPage":
     {
+
         "LoginForm":
         {
             "header" : "Zaloguj się",
             "mailLabel" : "Wprowadź swój email lub imię i nazwisko",
             "passwordLabel" : "Wprowadź swoje hasło"
+        },
+        "ButtonMessage" :
+        {
+            "loading" : "   "
         }
+    },
+    "Authentication":
+    {
+        "userNotFound" : "Nie znaleziono takiego użytkownika!",
+        "validData" : "Nazwa użytkownika lub hasło jest błędne!",
+        "loginSuccess" : "Zalogowano!",
+        "passwordSuccess" : "Prośba o zresetowanie hasła została wysłana",
+        "passwordError" : "Prośba z zresetowanie hasła została już wysłana",
+        "error" : "Wystąpił błąd, spróbuj ponownie później"
     }
 }

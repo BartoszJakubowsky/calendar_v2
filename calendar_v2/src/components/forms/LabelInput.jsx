@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 
-export default function LabelInput({inputType, value, setValue, error, setError, errorCondition , autoComplete, labelColor, labelText, inputContainerClassName}) 
+export default function LabelInput({inputType, value, setValue, error, setError , autoComplete = 'on', labelColor, labelText, inputContainerClassName}) 
 {
 
     const handleValueChange = (event) => 
     {   
-        if (error && error)
+        if (error)
             setError(false);
         
         setValue(event.target.value);
