@@ -4,6 +4,7 @@ import Carousel from "../../components/containers/Carousel";
 import AnimatedContainer from "../../components/containers/AnimatedContainer";
 import LoginForm from "./LoginForm";
 import SwitchTheme from "../../components/ui/SwitchTheme";
+import RegisterForm from "./RegisterForm";
 export default function LoginPage() 
 {
     const [swipe, setSwipe] = useState(0);
@@ -61,6 +62,17 @@ export default function LoginPage()
       return false;
     }
 
+    const secondPasswordCondition = () => {
+      if (password !== secondPassword || secondPassword === '')
+      {
+        console.log('alo');
+        setSecondPasswordError(true);
+        return true;
+      }
+
+      setSecondPasswordError(false);
+      return false;
+    }
     const userFormData = 
     {
       mail, setMail, 
@@ -69,7 +81,7 @@ export default function LoginPage()
       mailError, setMailError,  mailCondition, 
       passwordError, setPasswordError, passwordCondition,
       secondPasswordError, setSecondPasswordError, 
-      messageText, setMessageText
+      messageText, setMessageText, secondPasswordCondition
     }
 
     const forms = [
@@ -77,14 +89,19 @@ export default function LoginPage()
         key='login' 
         userFormData={userFormData}
         setSwipe={setSwipe} 
-        />
+        />,
+      <RegisterForm
+      key='register'
+      userFormData={userFormData}
+      setSwipe={setSwipe} 
+      />
     ]
 
     return (
       <AnimatedContainer animation={'opacityVariant'} className='flex justify-center items-center'>
         <SwitchTheme className='absolute right-10 top-10 z-10'/>
         <Carousel 
-          className='w-full h-full bg-indigo-100 dark:bg-slate-400'
+          className={`w-full h-full background-gradient`}
           containerClassName={'w-full h-full flex justify-center items-center'}
           startPosition={0}
           pages = {forms}

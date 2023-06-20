@@ -6,9 +6,9 @@ import LabelInput from "../../components/forms/LabelInput";
 import FormButtonMessage from "../../components/forms/FormButtonMessage";
 import {getLogin} from '../../api/authentication/authenticationApi';
 import { translateAuthentication, translateLoginForm } from "../../locales/translate";
-
-
-export default function LoginForm({userFormData}) 
+import FormHeader from '../../components/forms/FormHeader';
+import FormContainer from './FormContainer';
+export default function LoginForm({userFormData, setSwipe}) 
 {
     const {handleUser} = useAuthentication();
     const {
@@ -40,10 +40,8 @@ export default function LoginForm({userFormData})
     }
 
     return (
-        <div className="w-11/12 md:w-[30rem] p-6 m-auto bg-white rounded-md shadow-md">
-            <h1 className="text-3xl font-semibold text-center text-purple-700 underline">
-               {translateLoginForm('header')}
-            </h1>
+        <FormContainer>
+           <FormHeader text={translateLoginForm('header')}/>
             <LabelInput 
                 inputContainerClassName={"mb-2 mt-2"}
                 inputType='mail' 
@@ -63,10 +61,15 @@ export default function LoginForm({userFormData})
                 labelText={translateLoginForm('passwordLabel')}
                 />
                 <FormButtonMessage
+                    buttonText={translateLoginForm('button')}
                     checkError={checkError}
                     messageText={messageText}
                     setMessageText={setMessageText}
                 />
-        </div>
+                <div className="flex flex-col items-center">
+                    Nie masz konta?
+                    <button onClick={()=>setSwipe(1)}>Zarejestruj się</button>
+                </div>
+        </FormContainer>
     )
 }

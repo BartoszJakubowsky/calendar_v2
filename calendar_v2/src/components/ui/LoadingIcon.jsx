@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
-export default function LoadingIcon({theme = 'fill-purple-700 dark:fill-slate-700', ...rest}) 
+export default function LoadingIcon({theme = 'fill-purple-700 dark:fill-sky-700', ...rest}) 
 {
 
     return (

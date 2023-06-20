@@ -13,10 +13,10 @@ export default function Switch ({onClick, initial, ...rest})
     }
   
     return (
-      <div className={` ${rest.className} w-20 h-8 bg-white border-2 border-slate-300 flex ${isOn? 'justify-end' : 'justify-start'} items-center cursor-pointer rounded-3xl p-2 "`} 
+      <div className={` ${rest.className} w-20 h-8 background border-2 border-slate-300 flex ${isOn? 'justify-end' : 'justify-start'} items-center cursor-pointer rounded-3xl p-2 "`} 
       onClick={toggleSwitch}
       >
-        <m.div className={`w-6 h-6 ${isOn? 'bg-pink-300 hover:bg-pink-400' : 'bg-sky-400 hover:bg-sky-500'}  cursor-pointer rounded-3xl`} layout transition={spring} />
+        <m.div className={`w-6 h-6 ${isOn? 'bg-purple-700 dark:bg-blue-700' : 'dark:bg-blue-400 bg-purple-400 hover:bg-pink-400'} hover:bg-pink-400 dark:hover:bg-blue-300  cursor-pointer rounded-3xl`} layout transition={spring} />
       </div>
     );
 }

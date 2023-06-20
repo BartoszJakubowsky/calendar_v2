@@ -6,11 +6,16 @@
         {
             "header" : "Zaloguj się",
             "mailLabel" : "Wprowadź swój email lub imię i nazwisko",
-            "passwordLabel" : "Wprowadź swoje hasło"
+            "passwordLabel" : "Wprowadź swoje hasło",
+            "button" : "Zaloguj się"
         },
-        "ButtonMessage" :
+        "RegisterForm":
         {
-            "loading" : "   "
+            "header" : "Zarejestruj się",
+            "mailLabel" : "Wprowadź swój email lub imię i nazwisko",
+            "passwordLabel" : "Wprowadź swoje hasło",
+            "secondPasswordLabel" : "Wprowadź ponownie hasło",
+            "button" : "Zarejestruj się"
         }
     },
     "Authentication":
@@ -18,8 +23,11 @@
         "userNotFound" : "Nie znaleziono takiego użytkownika!",
         "validData" : "Nazwa użytkownika lub hasło jest błędne!",
         "loginSuccess" : "Zalogowano!",
+        "registerSucces" : "Prośba o rejestrację została wysłana!",
         "passwordSuccess" : "Prośba o zresetowanie hasła została wysłana",
         "passwordError" : "Prośba z zresetowanie hasła została już wysłana",
+        "registerErrorSend" : "Prośba o rejestrację została już wysłana",
+        "registerErrorUser" : "Użytkownik pod podaną nazwą już istnieje!",
         "error" : "Wystąpił błąd, spróbuj ponownie później"
     }
 }
