@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import AnimatedContainer from '../containers/AnimatedContainer';
+import AnimatedContainer from '@/components/containers/AnimatedContainer';
 
 export default function AnimatedText({animation, text,...rest}) {
     

@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react";
 import FormButton from "./FormButton";
 import {motion as m} from 'framer-motion';
-import LoadingIcon from "../ui/LoadingIcon";
+import LoadingIcon from "@/components/ui/LoadingIcon";
 export default function FormButtonMessage({messageText, setMessageText, checkError, buttonText}) {
 
     const [index, setIndex] = useState(0);

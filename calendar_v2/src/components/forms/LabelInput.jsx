@@ -13,12 +13,12 @@ export default function LabelInput({inputType, value, setValue, error, setError 
 
     return (
         <div className={`${inputContainerClassName}`}>
-        <label className={`block text-sm font-semibold ${error? 'valid text-red-300 duration-75' : labelColor? labelColor: 'text-gray-800 dark:text-slate-100 duration-300'} `}>
+        <label className={`block text-sm font-semibold ${error? 'valid text-red-300 duration-75' : labelColor? labelColor: ' text-form-input dark:text-slate-100 duration-300'} `}>
             {labelText}
         </label>
         <input
             type={inputType}
-            className={`peer block w-full px-4 py-2 mt-2 text-purple-700 dark:text-blue-900 bg-white dark:bg-slate-100 border rounded-md focus:border-purple-400 dark:focus:border-blue-400 focus:ring-purple-300 dark:focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40`}
+            className={`peer block w-full px-4 py-2 mt-2 bg-form-base border rounded-md focus:border-form-accent-focus focus:ring-form-accent-focus focus:outline-none focus:ring`}
             onChange={handleValueChange}
             onBlur={handleValueChange}
             value={value}

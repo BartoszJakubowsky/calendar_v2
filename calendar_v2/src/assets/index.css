@@ -54,3 +54,24 @@
 .button-form-cancel {
 
 }
+
+
+
+@layer base {
+  :root {
+    --color-background-accent: 126, 34, 206;
+    --color-background-base: 255, 255, 255;
+
+    --color-text-accent: var(--color-background-accent);
+    --color-text-base: 31, 41, 55;
+
+    --color-text-input: 30 ,58 ,138;
+
+    --color-border-focus: 192, 132, 252;
+    --color-ring-focus: 216, 180, 254, 0.4; 
+
+  }
+
+
+}
+

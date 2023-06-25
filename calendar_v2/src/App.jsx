@@ -1,5 +1,5 @@
 // import {t} from 'i18next';
-import useAuthentication from './hooks/useAuthentication';
+import useAuthentication from '@/hooks/useAuthentication';
 import {Routes, Route, useLocation, Navigate} from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 

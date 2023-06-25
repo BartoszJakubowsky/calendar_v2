@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import {motion as m} from 'framer-motion';
-import useAnimation from '../../hooks/useAnimation';
+import useAnimation from '@/hooks/useAnimation';
 
 
 /**

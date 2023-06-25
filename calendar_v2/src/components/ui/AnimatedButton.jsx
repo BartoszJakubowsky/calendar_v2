@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import Button from './Button';
-import AnimatedContainer from '../containers/AnimatedContainer';
+import AnimatedContainer from '@/components/containers/AnimatedContainer';
 export default function AnimatedButton({animation, buttonClassName, text,...rest}) {
 
     <AnimatedContainer className={animation}> 

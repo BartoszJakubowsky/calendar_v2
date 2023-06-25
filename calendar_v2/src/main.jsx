@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {BrowserRouter} from 'react-router-dom'
-import {SlotsProvider} from './context/slotsContext';
+import {SlotsProvider} from '@/context/slotsContext';
 
 import './assets/index.css'
 
 import App from './App.jsx'
-import { AuthProvider } from './context/authenticationContext'
+import { AuthProvider } from '@/context/authenticationContext'
 
 //language
 import { I18nextProvider } from 'react-i18next';
