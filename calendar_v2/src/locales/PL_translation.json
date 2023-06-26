@@ -7,15 +7,31 @@
             "header" : "Zaloguj się",
             "mailLabel" : "Wprowadź swój email lub imię i nazwisko",
             "passwordLabel" : "Wprowadź swoje hasło",
-            "button" : "Zaloguj się"
+            "button" : "Zaloguj się",
+            "navigationTextRegisterHeader" : "Nie masz jeszcze konta?",
+            "navigationTextRegister" : "Zarejestruj się",
+            "navigationTextPasswordHeader" : "Zapomniałeś hasła?",
+            "navigationTextPassword" : "Zresetuj hasło"
         },
         "RegisterForm":
         {
             "header" : "Zarejestruj się",
             "mailLabel" : "Wprowadź swój email lub imię i nazwisko",
             "passwordLabel" : "Wprowadź swoje hasło",
+            "nameLabel" : "Wprowadź swoje imię",
+            "surnameLabel" : "Wprowadź swoje nazwisko",
             "secondPasswordLabel" : "Wprowadź ponownie hasło",
-            "button" : "Zarejestruj się"
+            "button" : "Zarejestruj się",
+            "navigationText" : "lub wróć do logowania"
+        },
+        "PasswordForm":
+        {
+            "header" : "Zresetuj hasło",
+            "mailLabel" : "Wprowadź swój email lub imię i nazwisko",
+            "passwordLabel" : "Wprowadź nowe hasło",
+            "secondPasswordLabel" : "Wprowadź ponownie nowe hasło",
+            "button" : "Zresetuj hasło",
+            "navigationText" : "lub wróć do logowania"
         }
     },
     "Authentication":
@@ -23,7 +39,7 @@
         "userNotFound" : "Nie znaleziono takiego użytkownika!",
         "validData" : "Nazwa użytkownika lub hasło jest błędne!",
         "loginSuccess" : "Zalogowano!",
-        "registerSucces" : "Prośba o rejestrację została wysłana!",
+        "registerSuccess" : "Prośba o rejestrację została wysłana!",
         "passwordSuccess" : "Prośba o zresetowanie hasła została wysłana",
         "passwordError" : "Prośba z zresetowanie hasła została już wysłana",
         "registerErrorSend" : "Prośba o rejestrację została już wysłana",

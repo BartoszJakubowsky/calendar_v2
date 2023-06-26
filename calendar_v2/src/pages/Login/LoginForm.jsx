@@ -1,13 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useMemo} from "react";
-import useAuthentication from '../../hooks/useAuthentication';
-import LabelInput from "../../components/forms/LabelInput";
-import FormButtonMessage from "../../components/forms/FormButtonMessage";
-import {getLogin} from '../../api/authentication/authenticationApi';
-import { translateAuthentication, translateLoginForm } from "../../locales/translate";
-import FormHeader from '../../components/forms/FormHeader';
+import useAuthentication from '@/hooks/useAuthentication';
+import LabelInput from "@/components/forms/LabelInput";
+import FormButtonMessage from "@/components/forms/FormButtonMessage";
+import {getLogin} from '@/api/authentication/authenticationApi';
+import { translateAuthentication, translateLoginForm } from "@/locales/translate";
+import FormHeader from '@/components/forms/FormHeader';
 import FormContainer from './FormContainer';
+import NavigationText from '@/components/forms/NavigationText'
+
 export default function LoginForm({userFormData, setSwipe}) 
 {
     const {handleUser} = useAuthentication();
@@ -31,7 +33,7 @@ export default function LoginForm({userFormData, setSwipe})
     const checkError = () => 
     {
         //true == error
-        if (mailCondition() || passwordCondition())
+        if (mailCondition() | passwordCondition())
             return true;
 
         getLogin(mail, password).then(res => setMessageText(translateAuthentication(res)));
@@ -39,6 +41,12 @@ export default function LoginForm({userFormData, setSwipe})
 
     }
 
+    const swipeRegister = () => {
+        setSwipe(2);
+    }
+    const swipePassword = () => {
+        setSwipe(0);
+    }
     return (
         <FormContainer>
            <FormHeader text={translateLoginForm('header')}/>
@@ -52,7 +60,7 @@ export default function LoginForm({userFormData, setSwipe})
                 labelText={translateLoginForm('mailLabel')}
                 />
               <LabelInput 
-                inputContainerClassName={"mb-8"}
+                inputContainerClassName={"mb-1"}
                 inputType='password' 
                 value={password}
                 setValue={setPassword}
@@ -60,16 +68,15 @@ export default function LoginForm({userFormData, setSwipe})
                 error={passwordError}
                 labelText={translateLoginForm('passwordLabel')}
                 />
+                <NavigationText className='text-sm mb-4'  header={translateLoginForm('navigationTextPasswordHeader')} text={translateLoginForm('navigationTextPassword')} handleClick={swipePassword} />
                 <FormButtonMessage
                     buttonText={translateLoginForm('button')}
                     checkError={checkError}
                     messageText={messageText}
                     setMessageText={setMessageText}
                 />
-                <div className="flex flex-col items-center">
-                    Nie masz konta?
-                    <button onClick={()=>setSwipe(1)}>Zarejestruj się</button>
-                </div>
+                <NavigationText header={translateLoginForm('navigationTextRegisterHeader')} text={translateLoginForm('navigationTextRegister')} handleClick={swipeRegister} />
+
         </FormContainer>
     )
 }

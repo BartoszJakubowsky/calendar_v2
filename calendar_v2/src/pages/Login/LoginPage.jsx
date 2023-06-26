@@ -5,74 +5,81 @@ import AnimatedContainer from "../../components/containers/AnimatedContainer";
 import LoginForm from "./LoginForm";
 import SwitchTheme from "../../components/ui/SwitchTheme";
 import RegisterForm from "./RegisterForm";
+import PasswordForm from "./PasswordForm";
 export default function LoginPage() 
 {
-    const [swipe, setSwipe] = useState(0);
+    const [swipe, setSwipe] = useState(1);
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     const [secondPassword, setSecondPassword] = useState('');
 
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+
+
+
     const [mailError, setMailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [secondPasswordError, setSecondPasswordError] = useState(false);
+    const [nameError, setNameError] = useState(false);
+    const [surnameError, setSurnameError] = useState(false);
+
 
     const [messageText, setMessageText] = useState(false);
+
 
     //reset states each swipe
     useEffect(()=>
     {
-        if (password !== '')
-          setPassword('');
+          // !== ? , toSetWhat(?), array
+          const resetValue = (valueCondition, valuesToCheck ) => {
+            
+            valuesToCheck.forEach(element => {
+              const elementToCheck = element[0];
+              const setElement = element[1];
 
-        if (secondPassword !== '')
-          setSecondPassword('');
+              if (elementToCheck !== valueCondition)
+                setElement(valueCondition);
+            });
 
-        if (mailError)
-          setMail(false);
-        
-        if(passwordError)
-          setPasswordError(false);
-        
-        if (secondPasswordError)
-          setSecondPassword(false);
+          }
+
+          const stringCheck = [
+            [password, setPassword], 
+            [secondPassword, setSecondPassword], 
+            [name, setName], 
+            [surname, setSurname]
+          ];
+
+          const boolenCheck = [
+            [mailError, setMailError],
+            [passwordError, setPasswordError],
+            [secondPasswordError, setSecondPasswordError]
+          ]
+          resetValue('', stringCheck);
+          resetValue(false, boolenCheck)
 
     }, [swipe])
 
 
-     const mailCondition = () => 
-    {
-      if (mail.length < 3)
-      {
-        setMailError(true);
-        return true;
-      }
+    const checkCondition = (condition, setState) => {
+        
+        if (condition)
+        {
+          setState(true);
+          return true;
+        }
+        
+        setState(false);
+        return false;
+    }  
 
-      setMailError(false);
-      return false;
-    }
-    const passwordCondition = () =>
-    {
-      if (password.length < 3)
-      {
-        setPasswordError(true);
-        return true;
-      }
+    const mailCondition = () => checkCondition(mail.length < 3, setMailError);
+    const passwordCondition = () => checkCondition(password.length < 3, setPasswordError)
+    const secondPasswordCondition = () => checkCondition(password !== secondPassword || secondPassword === '', setPasswordError);
+    const nameCondition = () => checkCondition(name.length <= 2, setNameError);
+    const surnameCondition = () => checkCondition(surname.length <=2, setSurnameError);
 
-      setPasswordError(false);
-      return false;
-    }
-
-    const secondPasswordCondition = () => {
-      if (password !== secondPassword || secondPassword === '')
-      {
-        console.log('alo');
-        setSecondPasswordError(true);
-        return true;
-      }
-
-      setSecondPasswordError(false);
-      return false;
-    }
     const userFormData = 
     {
       mail, setMail, 
@@ -81,10 +88,17 @@ export default function LoginPage()
       mailError, setMailError,  mailCondition, 
       passwordError, setPasswordError, passwordCondition,
       secondPasswordError, setSecondPasswordError, 
-      messageText, setMessageText, secondPasswordCondition
+      messageText, setMessageText, secondPasswordCondition,
+      name, setName, nameError, setNameError, nameCondition,
+      surname, setSurname, surnameError, setSurnameError, surnameCondition
     }
 
     const forms = [
+      <PasswordForm 
+      key='password' 
+      userFormData={userFormData}
+      setSwipe={setSwipe} 
+      />,
       <LoginForm 
         key='login' 
         userFormData={userFormData}

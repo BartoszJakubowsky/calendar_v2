@@ -19,4 +19,10 @@ const translateRegisterForm = (text) =>
     return t(path + '.' + text);
 }
 
-export {translateLoginForm, translateAuthentication, translateRegisterForm};
+const translatePasswordForm = (text) => 
+{
+    const path = 'LoginPage.PasswordForm';
+    return t(path + '.' + text);
+}
+
+export {translateLoginForm, translateAuthentication, translateRegisterForm, translatePasswordForm};

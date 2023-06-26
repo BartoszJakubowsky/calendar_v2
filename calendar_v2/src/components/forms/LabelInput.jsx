@@ -18,7 +18,7 @@ export default function LabelInput({inputType, value, setValue, error, setError 
         </label>
         <input
             type={inputType}
-            className={`peer block w-full px-4 py-2 mt-2 bg-form-base border rounded-md focus:border-form-accent-focus focus:ring-form-accent-focus focus:outline-none focus:ring`}
+            className={`peer block rounded-md w-full px-4 py-2 mt-2 border inputText`}
             onChange={handleValueChange}
             onBlur={handleValueChange}
             value={value}

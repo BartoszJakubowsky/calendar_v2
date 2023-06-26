@@ -2,14 +2,13 @@
 /* eslint-disable react/prop-types */
 import LabelInput from "@/components/forms/LabelInput";
 import FormButtonMessage from "@/components/forms/FormButtonMessage";
-import {getRegister} from '@/api/authentication/authenticationApi';
-import { translateAuthentication, translateRegisterForm } from "@/locales/translate";
+import {getPassword} from '@/api/authentication/authenticationApi';
+import { translateAuthentication, translatePasswordForm } from "@/locales/translate";
 import FormHeader from '@/components/forms/FormHeader';
 import FormContainer from './FormContainer';
 import NavigationText from '@/components/forms/NavigationText'
 
-
-export default function RegisterForm({userFormData, setSwipe}) 
+export default function PasswordForm({userFormData, setSwipe}) 
 {
     const {
         mail, setMail, 
@@ -18,7 +17,7 @@ export default function RegisterForm({userFormData, setSwipe})
         mailCondition, passwordCondition,
         mailError, setMailError, 
         setPasswordError, passwordError, secondPasswordCondition, secondPasswordError, setSecondPasswordError,
-        name, setName, setNameError, nameError, surname, setSurname, setSurnameError, surnameError, nameCondition, surnameCondition,
+        name, surname, nameCondition, surnameCondition,
         messageText, setMessageText
     
     } = userFormData;
@@ -29,44 +28,27 @@ export default function RegisterForm({userFormData, setSwipe})
         if (mailCondition() | passwordCondition() | secondPasswordCondition() | nameCondition() | surnameCondition())
             return true;
 
-        getRegister(mail, password, name, surname).then(res => setMessageText(translateAuthentication(res)));
+            getPassword(mail, password).then(res => setMessageText(translateAuthentication(res)));
         return false;
 
     }
-    const handleSwipe = () => {
+    const swipeLogin = () => {
         setSwipe(1);
     }
-    
+
+  
     return (
         <FormContainer>
-           <FormHeader text={translateRegisterForm('header')}/>
-            <NavigationText text={translateRegisterForm('navigationText')} handleClick={handleSwipe}/>
+           <FormHeader text={translatePasswordForm('header')}/>
+           <NavigationText text={translatePasswordForm('navigationText')} handleClick={swipeLogin} />
             <LabelInput 
-                    inputContainerClassName={"mb-2 mt-2"}
-                    inputType='mail' 
-                    value={mail}
-                    setValue={setMail}
-                    setError={setMailError}
-                    error={mailError}
-                    labelText={translateRegisterForm('mailLabel')}
-                />
-                <LabelInput 
-                    inputContainerClassName={"mb-4"}
-                    inputType='text' 
-                    value={name}
-                    setValue={setName}
-                    setError={setNameError}
-                    error={nameError}
-                    labelText={translateRegisterForm('nameLabel')}
-                />
-                <LabelInput 
-                    inputContainerClassName={"mb-4"}
-                    inputType='text' 
-                    value={surname}
-                    setValue={setSurname}
-                    setError={setSurnameError}
-                    error={surnameError}
-                    labelText={translateRegisterForm('surnameLabel')}
+                inputContainerClassName={"mb-2 mt-2"}
+                inputType='mail' 
+                value={mail}
+                setValue={setMail}
+                setError={setMailError}
+                error={mailError}
+                labelText={translatePasswordForm('mailLabel')}
                 />
               <LabelInput 
                     inputContainerClassName={"mb-4"}
@@ -75,7 +57,7 @@ export default function RegisterForm({userFormData, setSwipe})
                     setValue={setPassword}
                     setError={setPasswordError}
                     error={passwordError}
-                    labelText={translateRegisterForm('passwordLabel')}
+                    labelText={translatePasswordForm('passwordLabel')}
                 />
                 <LabelInput 
                     inputContainerClassName={"mb-8"}
@@ -84,10 +66,10 @@ export default function RegisterForm({userFormData, setSwipe})
                     setValue={setSecondPassword}
                     setError={setSecondPasswordError}
                     error={secondPasswordError}
-                    labelText={translateRegisterForm('secondPasswordLabel')}
+                    labelText={translatePasswordForm('secondPasswordLabel')}
                 />
                 <FormButtonMessage
-                    buttonText={translateRegisterForm('button')}
+                    buttonText={translatePasswordForm('button')}
                     checkError={checkError}
                     messageText={messageText}
                     setMessageText={setMessageText}

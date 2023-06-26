@@ -16,33 +16,24 @@ export default {
   ],
   theme: {
     extend: {
-      textColor :{
-        form:{
-          'accent': color(`--color-text-accent`),
-          'base': color(`--color-text-base`),
-          'input': color(`--color-text-input`),
-        }
+      colors:{
+          'base' : '#ffffff',
+          //indigo-100
+          'accentLight' : '#f3e8ff',
+          //purple-300
+          'accentMedium' : '#d8b4fe',
+          //purple-400
+          'accentMediumStrong' : '#c084fc',
+          //purple-700
+          'accentStrong' : '#7e22ce',
+          //purple-600
+          'accentStrongHover' : '#9333ea'
       },
-      backgroundColor :{
-        form :{
-          'accent': color(`--color-background-accent`),
-          'base': color(`--color-background-base`),
-        }
-      },
-      borderColor: {
-        form: {
-          'accent-focus': color(`--color-border-focus`),
-          
-        }, 
-        ringColor : {
-          form:{
-            'accent-focus': color(`--color-ring-focus`)
-          }
-        }
-
+      dark :{
+        'accentMedium' : '#881337',
       }
     },
-  },
+    },
   plugins: [],
   darkMode: 'class',
 }
