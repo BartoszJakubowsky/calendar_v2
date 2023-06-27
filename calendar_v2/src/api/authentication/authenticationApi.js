@@ -26,7 +26,7 @@ const getRegister = async (mail, password, name, surname) => {
 }
 
 const getPassword = async (mail, password) => {
-    return postAxios('/password_submit', mail, password)
+    return postAxios('/password/submit', mail, password)
 }
 
 const postAxios = async (route, mail, password, name) => 
@@ -37,8 +37,8 @@ const postAxios = async (route, mail, password, name) =>
             const message =  response.data.message;
             const token = response.data.token;
 
-            // if (token)
-            //     handleUser(token);
+            if (token)
+                return ({message, token})
             return(message);
 
         }).catch(err => 

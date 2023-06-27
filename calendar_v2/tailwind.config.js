@@ -17,7 +17,10 @@ export default {
   theme: {
     extend: {
       colors:{
-          'base' : '#ffffff',
+          //white
+          'baseColor' : '#ffffff',
+
+          'dark-baseColor' : '#000000',
           //indigo-100
           'accentLight' : '#f3e8ff',
           //purple-300

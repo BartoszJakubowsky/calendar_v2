@@ -4,7 +4,7 @@ export default function FormButton({text, ...rest})
 
     return (
     <Button 
-        className={'w-full px-4 py-2 mb-10 tracking-wide button-form-ok'} 
+        className={'w-full px-4 py-2 mb-10 tracking-wide rounded-md button-form-ok'} 
         onClick={rest.onClick}
         text={text}
         />

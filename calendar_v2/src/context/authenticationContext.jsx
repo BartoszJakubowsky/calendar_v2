@@ -1,6 +1,6 @@
 import { createContext, useMemo, useState } from 'react';
 import {axiosInterceptor} from '@/api/interceptors/axiosInterceptor';
-import { getExistingToken} from '@/api/authentication/tokenApi';
+import {getExistingToken} from '@/api/authentication/tokenApi';
 
 const AuthContext = createContext();
 

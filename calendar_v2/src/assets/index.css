@@ -37,30 +37,48 @@
 
 .background-gradient {
   @apply bg-gradient-to-br from-accentLight via-accentMedium to-accentMedium
-  dark:bg-gradient-to-tl dark:from-blue-500 dark:via-blue-800 dark:to-blue-900
+  dark:bg-gradient-to-tl 
 }
 
 .background {
-  @apply bg-base bg-gradient-to-tl  via-base to-accentLight dark:bg-blue-100 dark:bg-gradient-to-br dark:via-blue-300 dark:to-blue-600
+  @apply bg-baseColor bg-gradient-to-tl from-accentLight  via-accentLight to-accentLight 
 }
 
+.background-border {
+  @apply background border-slate-300
+}
 
 .button-form-ok {
-@apply  text-white transition-colors duration-200 transform bg-accentStrong rounded-md hover:bg-accentStrongHover focus:outline-none focus:bg-accentStrongHover
-      dark:text-white transition-colors duration-200 transform dark:bg-blue-600 rounded-md dark:hover:bg-blue-600 focus:outline-none dark:focus:bg-blue-600
+@apply  text-baseColor transition-colors duration-200 transform bg-accentStrong active:bg-accentMedium  hover:bg-accentStrongHover focus:outline-none focus:bg-accentStrongHover
+     
 }
 
-.inputText {
+.text-form-input {
   @apply text-accentStrong bg-white focus:border-accentMediumStrong focus:ring-accentMedium focus:outline-none focus:ring focus:ring-opacity-40
 }
 
-.button-navigation-text {
-  @apply text-accentStrong focus:text-accentLight duration-200
-}
+
 
 .loadingIcon {
   @apply fill-accentStrong
 }
 
+.option-off {
+  @apply bg-accentMedium hover:bg-accentMediumStrong active:bg-accentLight
+}
 
+.option-on {
+  @apply bg-accentStrong hover:bg-accentStrongHover active:bg-accentMedium
+}
 
+.custom-text-accentLight {
+
+}
+
+.custom-text-accentStrong {
+  @apply text-accentStrong active:text-accentLight duration-200
+}
+
+.custom-text-baseColor {
+  @apply text-dark-baseColor
+}

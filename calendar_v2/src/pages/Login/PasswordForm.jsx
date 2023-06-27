@@ -17,7 +17,6 @@ export default function PasswordForm({userFormData, setSwipe})
         mailCondition, passwordCondition,
         mailError, setMailError, 
         setPasswordError, passwordError, secondPasswordCondition, secondPasswordError, setSecondPasswordError,
-        name, surname, nameCondition, surnameCondition,
         messageText, setMessageText
     
     } = userFormData;
@@ -25,7 +24,7 @@ export default function PasswordForm({userFormData, setSwipe})
     const checkError = () => 
     {
         //true == error
-        if (mailCondition() | passwordCondition() | secondPasswordCondition() | nameCondition() | surnameCondition())
+        if (mailCondition() | passwordCondition() | secondPasswordCondition())
             return true;
 
             getPassword(mail, password).then(res => setMessageText(translateAuthentication(res)));

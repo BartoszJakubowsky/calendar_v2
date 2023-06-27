@@ -1,9 +1,9 @@
 
 import { useEffect, useState } from "react";
-import Carousel from "../../components/containers/Carousel";
-import AnimatedContainer from "../../components/containers/AnimatedContainer";
+import Carousel from "@/components/containers/Carousel";
+import AnimatedContainer from "@/components/containers/AnimatedContainer";
 import LoginForm from "./LoginForm";
-import SwitchTheme from "../../components/ui/SwitchTheme";
+import SwitchTheme from "@/components/ui/SwitchTheme";
 import RegisterForm from "./RegisterForm";
 import PasswordForm from "./PasswordForm";
 export default function LoginPage() 
