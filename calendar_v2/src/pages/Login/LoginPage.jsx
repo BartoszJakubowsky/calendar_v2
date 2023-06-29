@@ -6,6 +6,9 @@ import LoginForm from "./LoginForm";
 import SwitchTheme from "@/components/ui/SwitchTheme";
 import RegisterForm from "./RegisterForm";
 import PasswordForm from "./PasswordForm";
+
+import Background from '@/components/ui/Background';
+
 export default function LoginPage() 
 {
     const [swipe, setSwipe] = useState(1);
@@ -112,15 +115,19 @@ export default function LoginPage()
     ]
 
     return (
+      <div className="absolute inset-0 background-gradient">
       <AnimatedContainer animation={'opacityVariant'} className='flex justify-center items-center'>
+      <Background bg="background-gradient">
         <SwitchTheme className='absolute right-10 top-10 z-10'/>
         <Carousel 
-          className={`w-full h-full background-gradient`}
+          className={`w-full h-full bg-transparent`}
           containerClassName={'w-full h-full flex justify-center items-center'}
           startPosition={0}
           pages = {forms}
           swipeToIndex={swipe}
         />
+        </Background>
       </AnimatedContainer>
+      </div>
     );
 }

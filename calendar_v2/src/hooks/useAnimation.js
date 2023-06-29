@@ -9,10 +9,22 @@ function useAnimation() {
         transition : {duration:0.5, ease: 'easeOut'},
         exit: { opacity: 0},
     }
-    const swipeVariant = 
+
+      
+    const xSwipeVariant = 
     {
-          hidden: { opacity: 0, x: -200, y: 0 },
-          enter: { opacity: 1, x: 0, y: 0 },
+          name: 'xSwipeVariant',
+          initial: { opacity: 0, x: -200, y: 0 },
+          animate: { opacity: 1, x: 0, y: 0 },
+          transition : {duration:0.5, ease: 'easeOut'},
+          exit: { opacity: 0, x: 0, y: -100 },
+    }
+    const ySwipeVariant = 
+    {
+          name: 'ySwipeVariant',
+          initial: { opacity: 0, x: 0, y: 200 },
+          animate: { opacity: 1, x: 0, y: 0 },
+          transition : {duration:0.5, ease: 'easeOut'},
           exit: { opacity: 0, x: 0, y: -100 },
     }
 
@@ -25,7 +37,8 @@ function useAnimation() {
         }
     }
 
-    return ([opacityVariant, swipeVariant]);
+   
+    return ([opacityVariant, xSwipeVariant, ySwipeVariant ]);
 
 
 }

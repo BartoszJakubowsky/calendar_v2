@@ -34,6 +34,9 @@ export default {
       },
       dark :{
         'accentMedium' : '#881337',
+      },
+      boxShadow: {
+        'bottom-right' : '10px 10px 0px 0px'
       }
     },
     },

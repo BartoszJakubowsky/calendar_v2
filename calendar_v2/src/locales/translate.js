@@ -1,28 +1,49 @@
 import {t} from 'i18next';
 
 
+
+const translate = (path, text) => {
+       return t(path + '.' + text);
+
+}
+
 const translateLoginForm = (text) => 
 {
     const path = 'LoginPage.LoginForm';
-    return t(path + '.' + text);
+    return translate(path, text);
 }
 
 const translateAuthentication = (text) => 
 {
     const path = 'Authentication';
-    return t(path + '.' + text);
+       return translate(path, text);
+
 }
 
 const translateRegisterForm = (text) => 
 {
     const path = 'LoginPage.RegisterForm';
-    return t(path + '.' + text);
+       return translate(path, text);
+
 }
 
 const translatePasswordForm = (text) => 
 {
     const path = 'LoginPage.PasswordForm';
-    return t(path + '.' + text);
+       return translate(path, text);
+
 }
 
-export {translateLoginForm, translateAuthentication, translateRegisterForm, translatePasswordForm};
+const translateMainPage = (text) =>
+{
+    const path = 'MainPage';
+    return translate(path, text);
+
+}
+export {
+    translateLoginForm, 
+    translateAuthentication, 
+    translateRegisterForm, 
+    translatePasswordForm, 
+    translateMainPage
+};

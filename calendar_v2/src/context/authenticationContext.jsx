@@ -1,4 +1,4 @@
-import { createContext, useMemo, useState } from 'react';
+import { createContext, useState } from 'react';
 import {axiosInterceptor} from '@/api/interceptors/axiosInterceptor';
 import {getExistingToken} from '@/api/authentication/tokenApi';
 
@@ -10,17 +10,16 @@ const AuthContext = createContext();
         
         axiosInterceptor();
 
-        const initialUser = useMemo(()=>
-        {
+        const getUserFromToken = () => {
             const localToken = getExistingToken();
             
             if (localToken)
                 return localToken.user;
             else
                 return false;
-        },[])
-        
-        const [user, setUser] = useState(initialUser);
+        }
+       
+        const [user, setUser] = useState(getUserFromToken());
         const isAdmin = user?.permissions?.includes('Admin');
 
 
@@ -33,8 +32,8 @@ const AuthContext = createContext();
             }
             else
             {
-                localStorage.addItem('token', token);
-                setUser(initialUser());
+                localStorage.setItem('token', token);
+                setUser(getUserFromToken());
             }
         }
 

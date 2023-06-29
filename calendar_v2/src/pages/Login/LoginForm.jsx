@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { useMemo} from "react";
+import { useEffect} from "react";
 import useAuthentication from '@/hooks/useAuthentication';
 import LabelInput from "@/components/forms/LabelInput";
 import FormButtonMessage from "@/components/forms/FormButtonMessage";
@@ -9,10 +9,12 @@ import { translateAuthentication, translateLoginForm } from "@/locales/translate
 import FormHeader from '@/components/forms/FormHeader';
 import FormContainer from './FormContainer';
 import NavigationText from '@/components/forms/NavigationText'
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm({userFormData, setSwipe}) 
 {
     const {handleUser} = useAuthentication();
+    const navigate = useNavigate();
     const {
         mail, setMail, 
         password, setPassword, 
@@ -22,7 +24,7 @@ export default function LoginForm({userFormData, setSwipe})
         messageText, setMessageText
     
     } = userFormData;
-    useMemo(()=>
+    useEffect(()=>
     {
         handleUser(false);
     }, [])
@@ -36,7 +38,21 @@ export default function LoginForm({userFormData, setSwipe})
         if (mailCondition() | passwordCondition())
             return true;
 
-        getLogin(mail, password).then(res => setMessageText(translateAuthentication(res)));
+        getLogin(mail, password).then(res => 
+            {
+                if (res.token)
+                {
+                    setMessageText(translateAuthentication(res.message));
+                    handleUser(res.token);
+                    
+                    setTimeout(() => {
+                        navigate('/');
+                    }, 2500);
+                    
+                }
+                else
+                    setMessageText(translateAuthentication(res));
+            });
         return false;
 
     }

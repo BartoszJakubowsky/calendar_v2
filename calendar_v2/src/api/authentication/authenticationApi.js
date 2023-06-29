@@ -49,4 +49,5 @@ const postAxios = async (route, mail, password, name) =>
 }
 
 
+
 export {getLogin, getRegister, getPassword};

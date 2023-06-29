@@ -3,8 +3,8 @@ import useAuthentication from '@/hooks/useAuthentication';
 import {Routes, Route, useLocation, Navigate} from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
-
 import LoginPage from './pages/Login/LoginPage'
+import MainPage from './pages/Main/MainPage'
 
 function App() {
 
@@ -12,7 +12,6 @@ function App() {
 
     const {isAdmin, user} = useAuthentication();
     const location = useLocation();
-
     
 
 return(
@@ -21,7 +20,8 @@ return(
             {user? 
             <>
             {/* <Route path='/' element={<MainPage/>}/>     */}
-            <Route path='/innecos'element={<LoginPage replace/>}/>
+            <Route path='/'element={<MainPage replace/>}/>
+            <Route path='/logowanie'element={<LoginPage replace/>}/>
             </>
             : 
             <>
