@@ -9,9 +9,9 @@ import PasswordForm from "./PasswordForm";
 
 import Background from '@/components/ui/Background';
 
-export default function LoginPage() 
+export default function LoginPage({page}) 
 {
-    const [swipe, setSwipe] = useState(1);
+    const [swipe, setSwipe] = useState(page || 1);
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     const [secondPassword, setSecondPassword] = useState('');

@@ -26,31 +26,18 @@ const calendarCards = useMemo(()=>
 {
    if (!calendars)
       return;
-   return calendars.map(calendar => 
+   return calendars.map((calendar, index) => 
       {
 
+         const delay = index-0.9*index;
          return (
-            <AnimatedContainer key={calendar.name} className={'relative'} animation={'ySwipeVariant'} >
+            <AnimatedContainer key={calendar.name} className={'relative'} animation={'ySwipeVariant'} transition={{duration:0.5, ease: 'easeOut', delay: delay}}>
                <CalendarCard  calendar={calendar}/>   
             </AnimatedContainer>
          )
          
       })
 }, [calendars])
-
-
-const showCalendarCards = () => {
-   
-
-   setTimeout(() => {
-   }, 3000);
-
-   return 'siema';
-
-}
-
-
-console.log(showCalendarCards());
 
 
  return(

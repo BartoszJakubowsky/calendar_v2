@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion as m } from "framer-motion";
 
-export default function Switch ({onClick, initial, ...rest})
+export default function Switch ({onClick, initial,children, ...rest})
 {
     const [isOn, setIsOn] = useState(initial);
 
@@ -13,10 +13,11 @@ export default function Switch ({onClick, initial, ...rest})
     }
   
     return (
-      <div className={` ${rest.className} w-20 h-8 border-2 background-border flex ${isOn? 'justify-end' : 'justify-start'} items-center cursor-pointer rounded-3xl p-2 "`} 
+      <div className={` ${rest.className}  w-20 h-8 border-2 background-border flex ${isOn? 'justify-end' : 'justify-start'} items-center cursor-pointer rounded-3xl p-2 "`} 
       onClick={toggleSwitch}
       >
-        <m.div className={`w-6 h-6 ${isOn? 'option-on' : 'option-off'} cursor-pointer rounded-3xl`} layout transition={spring} />
+        <m.div className={`w-6 h-6 ${isOn? 'option-on' : 'option-off'} cursor-pointer rounded-3xl`} layout transition={spring}/>
+        {children}
       </div>
     );
 }

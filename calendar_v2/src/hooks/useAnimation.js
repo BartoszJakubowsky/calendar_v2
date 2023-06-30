@@ -28,6 +28,15 @@ function useAnimation() {
           exit: { opacity: 0, x: 0, y: -100 },
     }
 
+    const reverseCurtainVariant = 
+    {
+        name: 'reverseCurtainVariant',
+        initial: { opacity: 0, x: 0, y: 100 },
+        animate: { opacity: 1, x: 0, y: 0 },
+        transition : {duration:0.5, ease: 'easeOut'},
+        exit: { opacity: 1, x: 0, y: 0 },
+    }
+
     const buttonMessageVariant = 
     {
         animatedButton:{
@@ -38,7 +47,7 @@ function useAnimation() {
     }
 
    
-    return ([opacityVariant, xSwipeVariant, ySwipeVariant ]);
+    return ([opacityVariant, xSwipeVariant, ySwipeVariant, reverseCurtainVariant ]);
 
 
 }
