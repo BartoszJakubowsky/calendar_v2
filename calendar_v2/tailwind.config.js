@@ -18,11 +18,12 @@ export default {
     extend: {
       colors:{
           //white
+          'dark-white' : '#a5b4fc',
           'baseColor' : '#ffffff',
           'dark-baseColor' : '#000000',
           //indigo-100 indigo 500
           'accentLight' : '#f3e8ff',
-          'dark-accentLight' : '#6366f1',
+          'dark-accentLight' : '#818cf8',
           //purple-300 indigo-600
           'accentMedium' : '#d8b4fe',
           'dark-accentMedium' : '#4f46e5',

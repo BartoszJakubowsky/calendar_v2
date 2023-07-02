@@ -5,7 +5,7 @@ import { IoMdMoon } from "react-icons/io";
 
 export default function SwitchTheme({...rest}) {
  
-    
+    console.log(localStorage.getItem('theme'));
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'system' );
     const htmlDocument = document.documentElement;
     //true = dark
@@ -35,7 +35,7 @@ export default function SwitchTheme({...rest}) {
       }
     }, [theme])
     return (
-            <Switch className={rest.className} onClick={handleTheme} initial={theme === 'black'}>
+            <Switch className={rest.className} onClick={handleTheme} initial={theme === 'dark'}>
                 <IoIosSunny className="absolute left-3 text-yellow-200 dark:text-yellow-500"/>            
                 <IoMdMoon className="absolute right-3 text-dark dark:text-white"/>
             </Switch>

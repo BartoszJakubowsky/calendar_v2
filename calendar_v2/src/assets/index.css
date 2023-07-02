@@ -3,8 +3,19 @@
 @tailwind utilities;
 
 
+  .no-mark {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
   * {
     box-sizing: border-box;
+    @apply no-mark
   }
 /* removes blue shit on mobile after button click */
   * { -webkit-tap-highlight-color: rgba(0,0,0,0); }
@@ -65,30 +76,31 @@
 
 .button-form-ok {
 @apply  text-baseColor transition-colors duration-200 transform bg-accentStrong active:bg-accentMedium  hover:bg-accentStrongHover focus:outline-none focus:bg-accentStrongHover
+        dark:bg-dark-accentStrong dark:active:bg-dark-accentMedium  dark:hover:bg-dark-accentStrongHover  dark:focus:bg-dark-accentStrongHover
      
 }
 
 .text-form-input {
   @apply text-accentStrong bg-white focus:border-accentMediumStrong focus:ring-accentMedium focus:outline-none focus:ring focus:ring-opacity-40
+        dark:text-dark-accentStrong dark:bg-dark-white dark:focus:border-dark-accentMediumStrong dark:focus:ring-dark-accentMedium dark:focus:outline-none dark:focus:ring dark:focus:ring-opacity-40
 }
 
 
 .loadingIcon {
-  @apply fill-accentStrong
+  @apply fill-accentStrong dark:fill-dark-accentStrong
 }
 
-.loadingIconReverse {
-  @apply fill-baseColor
-}
+
 
 .option-off {
   @apply bg-accentMedium hover:bg-accentMediumStrong active:bg-accentLight
+        dark:bg-dark-accentMedium dark:hover:bg-dark-accentMediumStrong dark:active:bg-dark-accentLight
 }
 
 .option-on {
-  @apply bg-accentStrong hover:bg-accentStrongHover active:bg-accentMedium
+  @apply bg-accentStrong hover:bg-accentStrongHover active:bg-accentMedium 
+        dark:bg-dark-accentStrong dark:hover:bg-dark-accentStrongHover dark:active:bg-dark-accentMedium 
 }
-
 
 
 .custom-text-accentStrong {
@@ -100,9 +112,9 @@
 }
 
 .custom-border-accentMediumStrong {
-  @apply border-accentMediumStrong
+  @apply border-accentMediumStrong dark:border-dark-accentMediumStrong
 }
 
 .background-accentMediumStrong {
-  @apply bg-accentMediumStrong
+  @apply bg-accentMediumStrong dark:bg-dark-accentMediumStrong
 }
