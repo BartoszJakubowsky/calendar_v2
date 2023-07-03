@@ -2,6 +2,7 @@ import AnimatedContainer from '@/components/containers/AnimatedContainer';
 import Background from '@/components/ui/Background';
 import CalendarCard from './CalendarCard';
 import LoadingMessage from '@/components/ui/LoadingMessage';
+import MenuPage from '../menu/MenuPage';
 
 import {translateMainPage} from '@/locales/translate';
 import {getCalendars} from '@/api/calendars/calendarsApi';
@@ -43,6 +44,7 @@ const calendarCards = useMemo(()=>
 
  return(
     <Background>
+      <MenuPage/>
       <SwitchTheme className='absolute right-10 top-10 z-10'/>
       <AnimatedContainer animation={'opacityVariant'} className='flex justify-center items-center flex-wrap'>
       <AnimatePresence mode='wait' > {calendarCards? calendarCards :<LoadingMessage message={translateMainPage('loading')} theme={'accentStrong'}/>}</AnimatePresence>

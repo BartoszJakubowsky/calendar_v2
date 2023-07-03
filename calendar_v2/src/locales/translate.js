@@ -40,10 +40,16 @@ const translateMainPage = (text) =>
     return translate(path, text);
 
 }
+
+const translateMenu = (text) => {
+    const path = 'Menu';
+    return translate(path, text);
+}
 export {
     translateLoginForm, 
     translateAuthentication, 
     translateRegisterForm, 
     translatePasswordForm, 
-    translateMainPage
+    translateMainPage,
+    translateMenu
 };

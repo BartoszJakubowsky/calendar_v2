@@ -49,6 +49,16 @@
         "registerErrorSend" : "Prośba o rejestrację została już wysłana",
         "registerErrorUser" : "Użytkownik pod podaną nazwą już istnieje!",
         "error" : "Wystąpił błąd, spróbuj ponownie później"
+    },
+    "Menu" : 
+    {
+        "menu" : "Menu",
+        "calendar" : "Kalendarz",
+        "login" : "Wyloguj się",
+        "admin" : "Panel administratora",
+        "account" : "Konto",
+        "user" : "Pozostałe",
+        "main" : "Strona główna"
     }
   
 }
