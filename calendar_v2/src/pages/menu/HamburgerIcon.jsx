@@ -6,7 +6,7 @@ export default function HamburgerIcon({isOpen, setIsOpen,...rest})
   
   
   return (
-    <m.div className={`app flex items-center justify-center pt-10 ${rest.className}`} onClick={rest.onClick} transition={{duration:0.25, ease: 'easeOut'}} exit={{opacity: 0}} initial={{x: '-100%'}} animate={{x: "0%"}}>
+    <m.div className={`app flex items-center justify-center absolute left-1 top-1 ${rest.className}`} onClick={rest.onClick} transition={{duration:0.25, ease: 'easeOut'}} exit={{opacity: 0}} initial={{x: '-100%'}} animate={{x: "0%"}}>
       <button
         className="flex flex-col h-12 w-12 rounded justify-center items-center group"
         onClick={() => setIsOpen(!isOpen)}
@@ -14,20 +14,20 @@ export default function HamburgerIcon({isOpen, setIsOpen,...rest})
         <span
           className={`${genericHamburgerLine} ${
             isOpen
-              ? "rotate-45 translate-y-3 bg-gray-600 group-hover:bg-black"
-              : "bg-gray-600 group-hover:bg-black"
+              ? "rotate-45 translate-y-3 option-off"
+              : "option-on "
           }`}
         />
         <span
           className={`${genericHamburgerLine} ${
-            isOpen ? "opacity-0" : "bg-gray-600 group-hover:bg-black"
+            isOpen ? "opacity-0" : "option-on"
           }`}
         />
         <span
           className={`${genericHamburgerLine} ${
             isOpen
-              ? "-rotate-45 -translate-y-3 bg-gray-600 group-hover:bg-black"
-              : "bg-gray-600 group-hover:bg-black"
+              ? "-rotate-45 -translate-y-3 option-off "
+              : "option-on "
           }`}
         />
       </button>

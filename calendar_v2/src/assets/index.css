@@ -61,11 +61,16 @@
 }
 
 
+
 .background-gradient {
+  @apply bg-gradient-to-br from-accentLight via-accentMedium to-accentMedium
+  dark:bg-gradient-to-br dark:from-dark-accentLight dark:via-dark-accentMedium dark:to-dark-accentMedium
+}
+
+.background-gradient-reverse {
   @apply bg-gradient-to-br from-accentLight via-accentMedium to-accentMedium
   dark:bg-gradient-to-tl dark:from-dark-accentLight dark:via-dark-accentMedium dark:to-dark-accentMedium
 }
-
 .background {
   @apply bg-baseColor dark:bg-baseColor dark:bg-gradient-to-tl bg-gradient-to-tl dark:from-dark-accentLight from-accentLight dark:via-dark-accentLight via-accentLight to-accentLight dark:to-dark-accentLight 
 }

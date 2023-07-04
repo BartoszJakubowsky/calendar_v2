@@ -5,7 +5,6 @@ import { IoMdMoon } from "react-icons/io";
 
 export default function SwitchTheme({...rest}) {
  
-    console.log(localStorage.getItem('theme'));
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'system' );
     const htmlDocument = document.documentElement;
     //true = dark

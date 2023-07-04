@@ -58,7 +58,42 @@
         "admin" : "Panel administratora",
         "account" : "Konto",
         "user" : "Pozostałe",
-        "main" : "Strona główna"
+        "main" : "Strona główna",
+        "createCalendar" : "Stwórz kalendarz"
+    },
+    "CreateCalendarPage" :
+    {
+        "header" : "Stwórz kalendarz",
+        "nameLabel" : "Nazwa kalendarza",
+        "monthsLabel" : "Wybierz miesiąc oraz rok",
+        "bannedDaysLabel" : "Wybierz dni, których nie wyświetlać",
+        "timeLabel" : "Ustaw czas",
+        "timeFrom" : "od godziny",
+        "timeTo" : "do godziny",
+        "timeBetween" : "pomiędzy",
+        "sendButton" : "Zapisz nowy kalendarz",
+
+        "january": "Styczeń",
+        "february": "Luty",
+        "march": "Marzec",
+        "april": "Kwiecień",
+        "may": "Maj",
+        "june": "Czerwiec",
+        "july": "Lipiec",
+        "august": "Sierpień",
+        "september": "Wrzesień",
+        "october": "Październik",
+        "november": "Listopad",
+        "december": "Grudzień",
+
+        
+        "monday": "Poniedziałek",
+        "tuesday": "Wtorek",
+        "wednesday": "Środa",
+        "thursday": "Czwartek",
+        "friday": "Piątek",
+        "saturday": "Sobota",
+        "sunday": "Niedziela"
     }
   
 }

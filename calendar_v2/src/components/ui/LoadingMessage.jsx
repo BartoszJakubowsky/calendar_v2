@@ -1,7 +1,7 @@
 import AnimatedContainer from '@/components/containers/AnimatedContainer';
 import LoadingIcon from "./LoadingIcon";
 import { useState, useEffect } from 'react';
-export default function LoadingMessage({message, theme}) {
+export default function LoadingMessage({message, theme, ...rest}) {
     
 
     const [loadingDots, setLoadingDots] = useState('');
@@ -22,7 +22,7 @@ export default function LoadingMessage({message, theme}) {
     }, [loadingDots])
 
     return (
-        <AnimatedContainer animation={'opacityVariant'} className='relative'>
+        <AnimatedContainer animation={'opacityVariant'} className={`relative ${rest.className}`}>
             <LoadingIcon />
             <span className={`text-${theme} `} >
             <span className=' opacity-0'>{loadingDots}</span>{message}{loadingDots}

@@ -27,7 +27,7 @@ export default function CalendarCard({calendar}) {
     return (
         <div 
         onClick={handleClick}
-        className={` ${loading? 'scale-105 active:scale-105' : ''} overflow-hidden w-40 h-64 rounded-md border custom-border-accentMediumStrong select-none m-2 transition-all active:scale-110 hover:scale-105 hover:shadow-bottom-right duration-200 ease-in-out hover:shadow-accentMedium dark:hover:shadow-dark-accentMedium cursor-pointer`}>
+        className={` ${loading? 'scale-105 active:scale-105' : ''} overflow-hidden w-40 h-64 rounded-md border custom-border-accentMediumStrong select-none m-2 mb-6 transition-all active:scale-110 hover:scale-105 hover:shadow-bottom-right duration-200 ease-in-out hover:shadow-accentMedium dark:hover:shadow-dark-accentMedium cursor-pointer`}>
             <h3 className="sticky top-0 z-[1] w-full h-16 pt-4 text-baseColor text-sm font-semibold rounded-t-md background-accentMediumStrong text-center ">
                 {calendar.name}
             </h3>            <section className="no-scrollbar relative h-full custom-text-baseColor break-words text-sm p-2 overflow-auto background-border">

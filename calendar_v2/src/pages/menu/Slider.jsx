@@ -1,6 +1,7 @@
 
 import {mainPaths, adminPaths, userPaths} from '@/routes/Router';
 import useAuthentication from "@/hooks/useAuthentication";
+import SwitchTheme from '@/components/ui/SwitchTheme';
 
 import Section from './sliderContext/Section';
 import Link from './sliderContext/Link';
@@ -25,6 +26,7 @@ export default function Slider({isOpen, setIsOpen, theme})
                 overflow-auto no-scrollbar
                 ease-in-out duration-300 transition-all
                 ${isOpen ? "translate-x-0 " : "-translate-x-full"}`}>        
+            <SwitchTheme className=' absolute right-8 top-4 scale-90'/>
             <Section header='menu' links={mainLinks}/>
             <Section header='user' links={userLinks}/>
   {isAdmin? <Section header='admin' links={adminLinks}/> : false}
