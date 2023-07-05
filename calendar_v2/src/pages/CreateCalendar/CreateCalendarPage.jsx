@@ -1,17 +1,23 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import AnimatedContainer from '@/components/containers/AnimatedContainer';
+import {createCalendar} from '@/api/calendars/calendarsApi';
+
+import {translateCreateCalendarPage} from "@/locales/translate";
+
 import MenuPage from '@/pages/menu/MenuPage';
+import AnimatedContainer from '@/components/containers/AnimatedContainer';
 import FormContainer from '@/components/forms/FormContainer';
 import FormHeader from '@/components/forms/FormHeader';
-import {translateCreateCalendarPage} from "@/locales/translate";
 import LabelInput from "@/components/forms/LabelInput";
-import SelectYearMonth from './SelectYearMonth';
 import SelectOptions from "@/components/forms/SelectOptions";
-import Time from './Time';
 import FormButtonMessage from '@/components/forms/FormButtonMessage';
-import {createCalendar} from '@/api/calendars/calendarsApi';
-import { useNavigate } from 'react-router-dom';
+
+import SelectYearMonth from './SelectYearMonth';
+import Time from './Time';
+import AutoMonthSwitch from './AutoMonthSwitch';
+import SlotsForm from './SlotsForm';
+import SlotsSelect from './SlotsSelect'
 
 export default function CreateCalendarPage() {
     
@@ -21,7 +27,9 @@ export default function CreateCalendarPage() {
     const [nameError, setNameError] = useState(false);
     const [selectedMonths, setSelectedMonths] = useState([]);
     const [selectedMonthsError, setSelectedMonthsError] = useState(false);
+
     const [bannedDays, setBannedDays] = useState([]);
+    const [autoMonth, setAutoMonth] = useState(true);
 
 
     const [timeFrom, setTimeFrom] = useState('');
@@ -31,6 +39,13 @@ export default function CreateCalendarPage() {
     const [timeFromError, setTimeFromError] = useState(false);
     const [timeToError, setTimeToError] = useState(false);
     const [timeBetweenError, setTimeBetweenError] = useState(false);
+
+
+    const [slots, setSlots] = useState([]);
+    const [slotsError, setSlotsError] = useState(false);
+    const [formSlot, setFormSlot] = useState(null);
+
+    const [isOpen, setIsOpen] = useState(false);
 
     const [messageText, setMessageText] = useState('');
 
@@ -54,35 +69,41 @@ export default function CreateCalendarPage() {
     const timeFromCondition = () => checkCondition(timeFrom === '', setTimeFromError);
     const timeToCondition = () => checkCondition(timeTo === '', setTimeToError);
     const timeBetweenCondition= () => checkCondition(timeBetween === '', setTimeBetweenError);
+    const slotsCondition= () => checkCondition(slots.length === 0, setSlotsError);
+
     
 
     const checkError = () => 
     {
         //true == error
-        if (nameCondition() | monthsCondition() | timeFromCondition() | timeToCondition() | timeBetweenCondition())
+        if (nameCondition() | monthsCondition() | timeFromCondition() | timeToCondition() | timeBetweenCondition() | slotsCondition())
             return true;
 
-        createCalendar({name ,time:{timeFrom, timeTo, timeBetween}, months: selectedMonths, bannedDays }).then(res => 
+        createCalendar({name ,time:{timeFrom, timeTo, timeBetween}, months: selectedMonths, bannedDays, autoMonth }).then(res => 
             {
-                if (res)
-                {
-                    setMessageText(translateCreateCalendarPage(res.message));
+
+
+                return console.log(res);
+            //     if (res)
+            //     {
+            //         setMessageText(translateCreateCalendarPage(res.message));
                     
-                    setTimeout(() => {
-                        navigate('/');
-                    }, 2500);
+            //         setTimeout(() => {
+            //             navigate('/');
+            //         }, 2500);
                     
-                }
-                else
-                    setMessageText(translateCreateCalendarPage(res));
+            //     }
+            //     else
+            //         setMessageText(translateCreateCalendarPage(res));
             });
         return false;
     }
     return (
         <>
         <MenuPage/>
-        <AnimatedContainer animation={'opacityVariant'} className='background-gradient flex justify-center items-center'>
-            <FormContainer>
+        <AnimatedContainer animation={'opacityVariant'} className='background-gradient flex justify-center items-center overflow-auto'>
+            <FormContainer className='relative overflow-hidden'>
+                
                 <FormHeader text={translateCreateCalendarPage('header')}/>
                 <LabelInput 
                     inputContainerClassName={"mb-2 mt-2"}
@@ -99,6 +120,7 @@ export default function CreateCalendarPage() {
                     selectedMonthsError={selectedMonthsError}
                     setSelectedMonthsError={setSelectedMonthsError}
                     translateOption={translateCreateCalendarPage}
+                    labelText={translateCreateCalendarPage('monthsLabel')}
                 />
                 <Time 
                     timeFrom={timeFrom}
@@ -115,6 +137,32 @@ export default function CreateCalendarPage() {
                     setTimeBetweenError={setTimeBetweenError}
                     translate={translateCreateCalendarPage}
                 />
+                <AutoMonthSwitch 
+                 labelText={translateCreateCalendarPage('autoMonthLabel')}
+                 value={autoMonth}
+                 onChange={setAutoMonth}
+                 />
+                <SlotsSelect 
+                 labelText={translateCreateCalendarPage('slotsLabel')}
+                 addSlotText={translateCreateCalendarPage('addSlotText')}
+                 slots={slots}
+                 setSlots={setSlots}
+                 slotsError={slotsError}
+                 setSlotsError={setSlotsError}
+                 setFormSlot={setFormSlot}
+                 setIsOpen={setIsOpen}
+
+
+                 />
+                <SlotsForm 
+                 formSlot={formSlot}
+                 slots={slots}
+                 setSlots={setSlots}
+                 isOpen={isOpen}
+                 setIsOpen={setIsOpen}
+                 translate={translateCreateCalendarPage}
+                 />
+
                 <SelectOptions
                  className='mb-2'
                  selectedOptions={bannedDays}
@@ -124,12 +172,13 @@ export default function CreateCalendarPage() {
                  translateOption={translateCreateCalendarPage}
                 />
                 <FormButtonMessage
+                    className='mt-4'
                     messageText={messageText}
                     setMessageText={setMessageText}
                     checkError={checkError}
                     buttonText={translateCreateCalendarPage('sendButton')}
                 />
-                    </FormContainer>
+                </FormContainer>
         </AnimatedContainer>
         </>
     )

@@ -82,8 +82,9 @@
 .button-form-ok {
 @apply  text-baseColor transition-colors duration-200 transform bg-accentStrong active:bg-accentMedium  hover:bg-accentStrongHover focus:outline-none focus:bg-accentStrongHover
         dark:bg-dark-accentStrong dark:active:bg-dark-accentMedium  dark:hover:bg-dark-accentStrongHover  dark:focus:bg-dark-accentStrongHover
-     
 }
+
+
 
 .text-form-input {
   @apply text-accentStrong bg-white focus:border-accentMediumStrong focus:ring-accentMedium focus:outline-none focus:ring focus:ring-opacity-40
@@ -109,7 +110,7 @@
 
 
 .custom-text-accentStrong {
-  @apply text-accentStrong dark:text-dark-accentStrong active:text-accentLight duration-200  dark:active:text-dark-accentLight 
+  @apply text-accentStrong hover:text-accentStrongHover dark:hover:text-dark-accentStrongHover dark:text-dark-accentStrong active:text-accentLight duration-200  dark:active:text-dark-accentLight 
 }
 
 .custom-text-baseColor {

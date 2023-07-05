@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import FormButton from "./FormButton";
 import {motion as m} from 'framer-motion';
 import LoadingIcon from "@/components/ui/LoadingIcon";
-export default function FormButtonMessage({messageText, setMessageText, checkError, buttonText}) {
+export default function FormButtonMessage({messageText, setMessageText, checkError, buttonText, ...rest}) {
 
     const [index, setIndex] = useState(0);
     const [messageVisibility, setMessageVisibility] = useState(false);
@@ -41,8 +41,7 @@ export default function FormButtonMessage({messageText, setMessageText, checkErr
     
 
     return (
-        <div className={`overflow-hidden h-20`}>
-
+        <div className={`overflow-hidden h-20 ${rest.className}`}>
             <m.div animate={{y: `-${index * 25}%`}} transition={ messageVisibility? {duration: 0.7, ease: 'easeOut'} :{duration: 0.7, ease: 'easeOut'}}>
                 <FormButton onClick={handleClick} text={buttonText}/>
                 <div className={`w-full px-4 pt-2 tracking-wide text-center rounded-md custom-text-baseColor ${messageVisibility? 'visible' : 'invisible'}`}>{messageText}</div>

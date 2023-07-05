@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-export default function LabelInput({inputType, value, setValue, error, setError , autoComplete = 'on', labelColor, labelText, inputContainerClassName}) 
+export default function LabelInput({inputType, value, setValue, error, setError , autoComplete = 'on', labelColor, labelText, inputContainerClassName, inputClassName}) 
 {
 
     const handleValueChange = (event) => 
@@ -18,7 +18,7 @@ export default function LabelInput({inputType, value, setValue, error, setError 
         </label>
         <input
             type={inputType}
-            className={`peer block rounded-md w-full px-4 py-2 mt-2 border text-form-input`}
+            className={`peer block rounded-md w-full px-4 py-2 mt-2 border text-form-input ${inputClassName}`}
             onChange={handleValueChange}
             onBlur={handleValueChange}
             value={value}

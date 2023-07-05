@@ -6,7 +6,7 @@ const getCalendars = async () => {
 
 const createCalendar = async (calendar) => 
 {
-    return axios.post().then(response => 
+    return axios.post('/calendar/create').then(response => 
         {
             const message =  response.data.message;
             const token = response.data.token;

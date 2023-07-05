@@ -69,9 +69,12 @@
         "bannedDaysLabel" : "Wybierz dni, których nie wyświetlać",
         "timeLabel" : "Ustaw czas",
         "timeFrom" : "od godziny",
+        "autoMonthLabel" : "Automatyczne przedłużanie miesięcy",
         "timeTo" : "do godziny",
         "timeBetween" : "pomiędzy",
         "sendButton" : "Zapisz nowy kalendarz",
+        "slotsLabel" : "Stwórz sloty dla kalendarza",
+        "addSlotText" : "Dodaj nowy slot",
 
         "january": "Styczeń",
         "february": "Luty",
@@ -93,7 +96,18 @@
         "thursday": "Czwartek",
         "friday": "Piątek",
         "saturday": "Sobota",
-        "sunday": "Niedziela"
+        "sunday": "Niedziela",
+
+        "SlotsForm" :
+        {
+            "header-create" : "Stwórz nowy slot",
+            "header-edit" : "Edytuj slot",
+            "back" : "lub wróć z powrotem",
+            "nameLabel" : "Nazwa slotu",
+            "spaceLabel" : "Ilość miejsc",
+            "buttonSave" : "Zapisz",
+            "buttonDelete" : "Usuń"
+        }
     }
   
 }

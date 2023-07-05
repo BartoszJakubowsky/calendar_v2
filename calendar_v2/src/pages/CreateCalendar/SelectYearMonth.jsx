@@ -3,7 +3,7 @@ import { IoIosArrowForward as ArrowRight} from "react-icons/io";
 import { IoIosArrowBack as ArrowLeft } from "react-icons/io";
 import SelectOptions from "@/components/forms/SelectOptions";
 import Label from '@/components/forms/Label';
-export default function SelectYearMonth({selectedMonths, setSelectedMonths, selectedMonthsError, setSelectedMonthsError, translateOption}) {
+export default function SelectYearMonth({labelText, selectedMonths, setSelectedMonths, selectedMonthsError, setSelectedMonthsError, translateOption}) {
  
     
 
@@ -46,11 +46,11 @@ export default function SelectYearMonth({selectedMonths, setSelectedMonths, sele
 
         return (
             <div className="flex flex-col my-4">
-                <Label text={translateOption('monthsLabel')} error={selectedMonthsError} />
+                <Label text={labelText} error={selectedMonthsError} />
                     <div className="flex flex-row items-center">
-                        {((year === actualYear) && <ArrowLeft className=" pointer-events-none invisible"/> ) || 
+                        {((year === actualYear) && <ArrowLeft className=" pointer-events-none opacity-30"/> ) || 
                         <ArrowLeft className={`${arrowClassName} ${leftArrowClassName}`} onClick={()=>handleYear(year-1)}/>}
-                        <span className=" font-semibold custom-text-dark-baseColor pointer-events-none">{year}</span>
+                        <span className=" text-sm font-semibold custom-text-dark-baseColor pointer-events-none">{year}</span>
                         <ArrowRight className={`${arrowClassName} ${rightArrowClassName}`} onClick={()=>handleYear(year+1)}/>
                         </div>
                 <SelectOptions
