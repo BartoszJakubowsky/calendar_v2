@@ -32,6 +32,7 @@ export default function AnimatedContainer({animation, children, initial, animate
 
     return (
         <m.div className={`${'absolute inset-0'} ${rest.className}`}
+        key='animatedContainer'
         variants={animateVariants()} 
         initial={initial? initial : 'initial' }
         animate={animate? animate : 'animate'}

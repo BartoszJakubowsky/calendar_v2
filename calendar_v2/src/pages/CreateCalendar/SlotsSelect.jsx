@@ -9,12 +9,12 @@ export default function SlotsSelect({slots, slotsError, setSlotsError, labelText
         if (slotsError)
             setSlotsError(false);
 
-            setIsOpen(true);
             setFormSlot(slot);
+            setIsOpen(true);
+
     }
 
     const slotClassName = 'text-xs flex justify-center items-center flex-wrap h-16 w-16 rounded-sm text-baseColor cursor-pointer overflow-hidden'
-
     return (
         <div className=" flex flex-col ">
             <Label error={slotsError} text={labelText}/>
@@ -24,7 +24,7 @@ export default function SlotsSelect({slots, slotsError, setSlotsError, labelText
                         {addSlotText}
                     </span>
                 </button>
-                {slots.map(slot => <button key={slot.name} className={`option-off ${slotClassName}`} onClick={()=> handleClick(slot)}>{slot.name}</button>)}
+                {slots.map(slot => <button key={slot.name} className={`option-off text-dark-baseColor dark:text-baseColor ${slotClassName}`} onClick={()=> handleClick(slot)}>{slot.name}</button>)}
             </ul>
         </div>
     )

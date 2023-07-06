@@ -67,7 +67,7 @@
         "nameLabel" : "Nazwa kalendarza",
         "monthsLabel" : "Wybierz miesiąc oraz rok",
         "bannedDaysLabel" : "Wybierz dni, których nie wyświetlać",
-        "timeLabel" : "Ustaw czas",
+        "timeLabel" : "Ustaw czas dla wszystkich miesięcy",
         "timeFrom" : "od godziny",
         "autoMonthLabel" : "Automatyczne przedłużanie miesięcy",
         "timeTo" : "do godziny",
@@ -75,6 +75,10 @@
         "sendButton" : "Zapisz nowy kalendarz",
         "slotsLabel" : "Stwórz sloty dla kalendarza",
         "addSlotText" : "Dodaj nowy slot",
+
+
+        "apiSuccess" : "Stworzono nowy kalendarz!",
+        "apiError" : "Wystąpił błąd, spróbuj później",
 
         "january": "Styczeń",
         "february": "Luty",
@@ -107,6 +111,11 @@
             "spaceLabel" : "Ilość miejsc",
             "buttonSave" : "Zapisz",
             "buttonDelete" : "Usuń"
+        },
+        "TimeForm" :
+        {
+            "header" : "Ustaw czas dla wybranych miesięcy",
+            "back" : "lub wróć z powrotem"
         }
     }
   

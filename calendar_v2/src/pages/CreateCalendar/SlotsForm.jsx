@@ -3,7 +3,9 @@ import FormContainer from '@/components/forms/FormContainer';
 import FormHeader from '@/components/forms/FormHeader';
 import LabelInput from "@/components/forms/LabelInput";
 import FormButton from "@/components/forms/FormButton";
+
 import { useEffect, useState } from 'react';
+
 
 export default function SlotsForm({formSlot, slots, setSlots, translate, isOpen, setIsOpen}) {
     
@@ -30,10 +32,9 @@ export default function SlotsForm({formSlot, slots, setSlots, translate, isOpen,
             setName(formSlot.name);
             setSpace(formSlot.space);
         }
-        
-            
-        
-    },[formSlot]);
+    },[isOpen]);
+
+
 
     const handleSpaceChange = (number) =>
     {
@@ -43,7 +44,7 @@ export default function SlotsForm({formSlot, slots, setSlots, translate, isOpen,
             setSpace(number);
     }
     const handleSave = () => {
-        if(name.length <3)
+        if(name.length <3 || slots.some(slot => slot.name === name))
         {
             setNameError(true);
             return
@@ -68,11 +69,7 @@ export default function SlotsForm({formSlot, slots, setSlots, translate, isOpen,
 
     const handleDelete = () =>
     {
-        setSlots(slots.map(slot=> 
-            {
-                if (slot.name !== formSlot.name)
-                    return slot
-            }))
+        setSlots(slots.filter(slot => slot.name !== formSlot.name));
         setIsOpen(false);
 
     }
@@ -100,8 +97,19 @@ export default function SlotsForm({formSlot, slots, setSlots, translate, isOpen,
                  setValue={handleSpaceChange}
                  labelText={translateText('spaceLabel')}
                 />
-                <FormButton onClick={handleSave} className='absolute bottom-6 left-1/2 transform -translate-x-1/2 w-5/6 ' text={translateText('buttonSave')}/>
-                {/* <FormButton onClick={handleDelete} ok={false} bg='bg-red-300' className='absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-5/' text={translateText('buttonDelete')}/> */}
+                <FormButton 
+                 onClick={handleSave} 
+                className='absolute bottom-6 left-1/2 transform -translate-x-1/2 w-2/3 ' 
+                text={translateText('buttonSave')}
+                />
+                {formSlot? 
+                <FormButton   
+                 onClick={handleDelete} 
+                 ok={'button-form-reject'}  
+                 className={`absolute pointer-events-auto -bottom-6 left-1/2 transform -translate-x-1/2 w-2/3  ${formSlot.name === name? 'opacity-100' : ' opacity-0'}`} 
+                 text={translateText('buttonDelete')}
+                 />
+                 : false}
 
             </FormContainer>
         </SliderContainer>

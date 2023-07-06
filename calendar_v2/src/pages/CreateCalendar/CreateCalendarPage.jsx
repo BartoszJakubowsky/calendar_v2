@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {createCalendar} from '@/api/calendars/calendarsApi';
@@ -28,6 +28,8 @@ export default function CreateCalendarPage() {
     const [selectedMonths, setSelectedMonths] = useState([]);
     const [selectedMonthsError, setSelectedMonthsError] = useState(false);
 
+    const [months, setMonths] = useState([]);
+
     const [bannedDays, setBannedDays] = useState([]);
     const [autoMonth, setAutoMonth] = useState(true);
 
@@ -45,13 +47,41 @@ export default function CreateCalendarPage() {
     const [slotsError, setSlotsError] = useState(false);
     const [formSlot, setFormSlot] = useState(null);
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpenSlots, setIsOpenSlots] = useState(false);
 
     const [messageText, setMessageText] = useState('');
+    console.log(months);
+    useEffect(()=>
+    {   
+
+        if (months.length === 0 && selectedMonths.length === 0)
+            return
+        //add
+        if (months.length < selectedMonths.length)
+        {
+            setMonths([...months, {date: selectedMonths.slice(-1)[0], time: {timeFrom: '', timeTo: '', timeBetween: ''}}])
+        }
+            
+        else
+        {   
+            const oldMonths = [...months];
+            const newMonths = oldMonths.filter(month => month.date === selectedMonths.find(searchedMonth => searchedMonth === month.date))
+            setMonths(newMonths);
+        }
+    },[selectedMonths])
 
     const days = [
         "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
     ]
+
+
+
+
+
+
+
+
+
     const checkCondition = (condition, setState) => {
         
         if (condition)
@@ -66,6 +96,7 @@ export default function CreateCalendarPage() {
 
     const nameCondition = () => checkCondition(name.length < 3, setNameError);
     const monthsCondition = () => checkCondition(selectedMonths.length === 0, setSelectedMonthsError);
+    
     const timeFromCondition = () => checkCondition(timeFrom === '', setTimeFromError);
     const timeToCondition = () => checkCondition(timeTo === '', setTimeToError);
     const timeBetweenCondition= () => checkCondition(timeBetween === '', setTimeBetweenError);
@@ -79,22 +110,18 @@ export default function CreateCalendarPage() {
         if (nameCondition() | monthsCondition() | timeFromCondition() | timeToCondition() | timeBetweenCondition() | slotsCondition())
             return true;
 
-        createCalendar({name ,time:{timeFrom, timeTo, timeBetween}, months: selectedMonths, bannedDays, autoMonth }).then(res => 
+        createCalendar({name ,time:{timeFrom, timeTo, timeBetween}, months: selectedMonths, slots, bannedDays, autoMonth }).then(res => 
             {
-
-
-                return console.log(res);
-            //     if (res)
-            //     {
-            //         setMessageText(translateCreateCalendarPage(res.message));
+                if (res.data)
+                {
+                    setMessageText(translateCreateCalendarPage(res.message));
+                    // setTimeout(() => {
+                    //     navigate('/');
+                    // }, 2500);
                     
-            //         setTimeout(() => {
-            //             navigate('/');
-            //         }, 2500);
-                    
-            //     }
-            //     else
-            //         setMessageText(translateCreateCalendarPage(res));
+                }
+                else
+                    setMessageText(translateCreateCalendarPage(res.message));
             });
         return false;
     }
@@ -150,16 +177,14 @@ export default function CreateCalendarPage() {
                  slotsError={slotsError}
                  setSlotsError={setSlotsError}
                  setFormSlot={setFormSlot}
-                 setIsOpen={setIsOpen}
-
-
+                 setIsOpen={setIsOpenSlots}
                  />
                 <SlotsForm 
                  formSlot={formSlot}
                  slots={slots}
                  setSlots={setSlots}
-                 isOpen={isOpen}
-                 setIsOpen={setIsOpen}
+                 isOpen={isOpenSlots}
+                 setIsOpen={setIsOpenSlots}
                  translate={translateCreateCalendarPage}
                  />
 

@@ -18,8 +18,8 @@ export default function SelectOptions({selectedOptions, setSelectedOptions, sele
             return (
             <li 
                 onClick={() => handleOptionClick(index)}
-                className={`text-sm uppercase text-center px-1 py-2 m-1 cursor-pointer duration-150 custom-text-baseColor  active:scale-110
-                ${selectedOptions.includes(option.toUpperCase())? 'option-on' : 'option-off'}`}
+                className={`text-sm uppercase text-center px-1 py-2 m-1 cursor-pointer duration-150 active:scale-110
+                ${selectedOptions.includes(option.toUpperCase())? 'option-on text-baseColor' : 'option-off text-dark-baseColor'}`}
                 key={option}
                 >{translateSettings ? translateOption(translateSettings(option)) : translateOption(option)}</li>)
         })
