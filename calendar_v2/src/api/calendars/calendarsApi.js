@@ -6,10 +6,10 @@ const getCalendars = async () => {
 
 const createCalendar = async (calendar) => 
 {
-    console.log('do api', calendar);
-    return axios.post('/calendar/create').then(response => 
+    return axios.post('/calendar/create', calendar).then(response => 
         {
-            return {message: response.data.message}
+            console.log(response);
+            return response.data;
         }).catch(err => 
             {
                 console.log('authentication error', err);

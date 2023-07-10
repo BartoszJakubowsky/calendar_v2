@@ -50,7 +50,6 @@ export default function CreateCalendarPage() {
     const [isOpenSlots, setIsOpenSlots] = useState(false);
 
     const [messageText, setMessageText] = useState('');
-    console.log(months);
     useEffect(()=>
     {   
 
@@ -59,7 +58,8 @@ export default function CreateCalendarPage() {
         //add
         if (months.length < selectedMonths.length)
         {
-            setMonths([...months, {date: selectedMonths.slice(-1)[0], time: {timeFrom: '', timeTo: '', timeBetween: ''}}])
+            // setMonths([...months, {date: selectedMonths.slice(-1)[0], time: {timeFrom: '', timeTo: '', timeBetween: ''}}])
+            setMonths([...months, {date: selectedMonths.slice(-1)[0], time: {timeFrom : timeFrom, timeTo : timeTo, timeBetween: timeBetween}}])
         }
             
         else
@@ -73,13 +73,6 @@ export default function CreateCalendarPage() {
     const days = [
         "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
     ]
-
-
-
-
-
-
-
 
 
     const checkCondition = (condition, setState) => {
@@ -102,7 +95,6 @@ export default function CreateCalendarPage() {
     const timeBetweenCondition= () => checkCondition(timeBetween === '', setTimeBetweenError);
     const slotsCondition= () => checkCondition(slots.length === 0, setSlotsError);
 
-    
 
     const checkError = () => 
     {
@@ -110,10 +102,11 @@ export default function CreateCalendarPage() {
         if (nameCondition() | monthsCondition() | timeFromCondition() | timeToCondition() | timeBetweenCondition() | slotsCondition())
             return true;
 
-        createCalendar({name ,time:{timeFrom, timeTo, timeBetween}, months: selectedMonths, slots, bannedDays, autoMonth }).then(res => 
+        createCalendar({name, months, slots, bannedDays, autoMonth }).then(res => 
             {
                 if (res.data)
                 {
+                    console.log(res.data);
                     setMessageText(translateCreateCalendarPage(res.message));
                     // setTimeout(() => {
                     //     navigate('/');
