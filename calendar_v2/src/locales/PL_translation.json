@@ -61,6 +61,10 @@
         "main" : "Strona główna",
         "createCalendar" : "Stwórz kalendarz"
     },
+    "CalendarPage" : 
+    {
+        "loading" : "Poczekaj, pobieramy dla ciebie kalendarz"
+    },
     "CreateCalendarPage" :
     {
         "header" : "Stwórz kalendarz",
@@ -70,6 +74,7 @@
         "timeLabel" : "Ustaw czas dla wszystkich miesięcy",
         "timeFrom" : "od godziny",
         "autoMonthLabel" : "Automatyczne przedłużanie miesięcy",
+        "descriptionLabel" : "Dodaj opis kalendarza",
         "timeTo" : "do godziny",
         "timeBetween" : "pomiędzy",
         "sendButton" : "Zapisz nowy kalendarz",

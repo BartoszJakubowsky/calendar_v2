@@ -2,7 +2,8 @@ import { useState } from "react"
 import AnimatedContainer from '@/components/containers/AnimatedContainer';
 import LoadingIcon from "@/components/ui/LoadingIcon";
 import { useNavigate } from "react-router-dom";
-
+import useTrim from '@/hooks/useTrim';
+import {getCalendars} from '@/api/calendars/calendarsApi';
 import { lazyWithPreload } from "react-lazy-with-preload";
 
 const CalendarPage = lazyWithPreload(()=> import('@/pages/Calendar/CalendarPage'));
@@ -12,12 +13,23 @@ export default function CalendarCard({calendar}) {
 
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-
+    const calendarNavigateText = useTrim(calendar.name)
     const handleClick = async () => {
         setLoading(true);
+
+        
+        await CalendarPage.preload().then(await getCalendars().then(calendars =>
+            {
+                setTimeout(() => {
+                    navigate(`/kalendarz/${calendarNavigateText}`, {state : calendars});
+                }, 500);
+            }))
+
         await CalendarPage.preload().then(setTimeout(() => {
-            // navigate(`/kalendarz/${calendar.name}`);
-            navigate(`/kalendarz`);
+            
+
+
+            navigate(`/kalendarz/${calendarNavigateText}`, {state : calendar});
         }, 500))
     }
 

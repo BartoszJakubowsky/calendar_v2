@@ -50,3 +50,7 @@ export const translateCreateCalendarPage = (text) => {
     const path = 'CreateCalendarPage';
     return translate(path, text);
 }
+export const translateCalendarPage = (text) => {
+    const path = 'CalendarPage';
+    return translate(path, text);
+}

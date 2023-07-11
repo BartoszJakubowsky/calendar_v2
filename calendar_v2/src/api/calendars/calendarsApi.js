@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const getCalendars = async () => {
-    return axios.post('/calendar').then(response => response.data);
+    return axios.post('/calendar').then(response => response.data).catch(err =>
+        {
+            console.log('get calendars error');
+        });
 }
 
 const createCalendar = async (calendar) => 

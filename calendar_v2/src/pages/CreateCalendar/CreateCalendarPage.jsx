@@ -18,7 +18,7 @@ import Time from './Time';
 import AutoMonthSwitch from './AutoMonthSwitch';
 import SlotsForm from './SlotsForm';
 import SlotsSelect from './SlotsSelect'
-
+import CalendarDescription from './CalendarDescription'
 export default function CreateCalendarPage() {
     
     const navigate = useNavigate();
@@ -47,6 +47,10 @@ export default function CreateCalendarPage() {
     const [slotsError, setSlotsError] = useState(false);
     const [formSlot, setFormSlot] = useState(null);
 
+
+    const [description, setDescription] = useState('');
+    const [descriptionError, setDescriptionError] = useState(false);
+
     const [isOpenSlots, setIsOpenSlots] = useState(false);
 
     const [messageText, setMessageText] = useState('');
@@ -58,7 +62,6 @@ export default function CreateCalendarPage() {
         //add
         if (months.length < selectedMonths.length)
         {
-            // setMonths([...months, {date: selectedMonths.slice(-1)[0], time: {timeFrom: '', timeTo: '', timeBetween: ''}}])
             setMonths([...months, {date: selectedMonths.slice(-1)[0], time: {timeFrom : timeFrom, timeTo : timeTo, timeBetween: timeBetween}}])
         }
             
@@ -94,23 +97,23 @@ export default function CreateCalendarPage() {
     const timeToCondition = () => checkCondition(timeTo === '', setTimeToError);
     const timeBetweenCondition= () => checkCondition(timeBetween === '', setTimeBetweenError);
     const slotsCondition= () => checkCondition(slots.length === 0, setSlotsError);
+    const descriptionCondition = () => checkCondition(description === '' , setDescriptionError)
 
 
     const checkError = () => 
     {
         //true == error
-        if (nameCondition() | monthsCondition() | timeFromCondition() | timeToCondition() | timeBetweenCondition() | slotsCondition())
+        if (nameCondition() | monthsCondition() | timeFromCondition() | timeToCondition() | timeBetweenCondition() | slotsCondition() | descriptionCondition())
             return true;
 
-        createCalendar({name, months, slots, bannedDays, autoMonth }).then(res => 
+        createCalendar({name, months, slots, bannedDays, autoMonth, description}).then(res => 
             {
                 if (res.data)
                 {
-                    console.log(res.data);
                     setMessageText(translateCreateCalendarPage(res.message));
-                    // setTimeout(() => {
-                    //     navigate('/');
-                    // }, 2500);
+                    setTimeout(() => {
+                        navigate('/');
+                    }, 2500);
                     
                 }
                 else
@@ -123,7 +126,6 @@ export default function CreateCalendarPage() {
         <MenuPage/>
         <AnimatedContainer animation={'opacityVariant'} className='background-gradient flex justify-center items-center overflow-auto'>
             <FormContainer className='relative overflow-hidden'>
-                
                 <FormHeader text={translateCreateCalendarPage('header')}/>
                 <LabelInput 
                     inputContainerClassName={"mb-2 mt-2"}
@@ -134,6 +136,13 @@ export default function CreateCalendarPage() {
                     error={nameError}
                     labelText={translateCreateCalendarPage('nameLabel')}
                     />
+                <CalendarDescription
+                    labelText={translateCreateCalendarPage('descriptionLabel')}
+                    value={description}
+                    setValue={setDescription}
+                    setError={setDescriptionError}
+                    error={descriptionError}
+                />
                 <SelectYearMonth
                     selectedMonths={selectedMonths} 
                     setSelectedMonths={setSelectedMonths}
