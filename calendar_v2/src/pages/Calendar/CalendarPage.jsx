@@ -5,13 +5,16 @@ import LoadingMessage from '@/components/ui/LoadingMessage';
 import {translateCalendarPage} from "@/locales/translate"
 import {getCalendars} from '@/api/calendars/calendarsApi';
 import { AnimatePresence } from 'framer-motion';
+import MenuPage from '@/pages/menu/MenuPage';
+import Carousel from '@/components/containers/Carousel';
+import MonthTable from './MonthTable';
 export default function CalendarPage() {
 
     const location = useLocation();
     const navigate = useNavigate();
     
     const searchedCalendarName = location.pathname.split('/').pop()
-
+    const [swipe, setSwipe] = useState(0);
     const compareLocationToCalendar = (calendars) => {
         const trim = (text) => {
           return JSON.parse(JSON.stringify(text.replaceAll(' ', '_').normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
@@ -65,17 +68,29 @@ const verifyCalendarExist = useMemo(()=>
         
     },[])
 
+    
 
 
     return (
-            <AnimatedContainer  className={'background flex justify-center'} animation={'opacityVariant'}>
+            <AnimatedContainer  className={'background flex justify-center items-center'} animation={'opacityVariant'}>
                 <AnimatePresence mode='wait'>
                     {calendar?  
-                    <AnimatedContainer  className={'relative flex w-fit h-fit'} animation={'opacityVariant'}>
-                        <div>
-                            siema
-                        </div>
+                    <>
+                    <AnimatedContainer  className={'relative w-full h-full background'} animation={'opacityVariant'}>
+                    <MenuPage/>
+                        <h3 className='custom-text-accentStrong text-xl underline font-bold mt-3'>
+                            {calendar.name}
+                        </h3>
+                        <Carousel 
+                            // className={`bg-transparent`}
+                            className={`bg-red-300 w-11/12 md:w-3/4 h-11/12  md:h-3/4  `}
+                            containerClassName={'w-full h-full flex justify-center items-center'}
+                            startPosition={0}
+                            pages ={calendar.months.map((month, index)=> <MonthTable key={index} data={month}/>)}
+                            swipeToIndex={swipe}
+                            />
                     </AnimatedContainer>
+                    </>
                     :
                     <LoadingMessage message={translateCalendarPage('loading')} theme={'accentStrong'} className=' self-center'/>
                     }

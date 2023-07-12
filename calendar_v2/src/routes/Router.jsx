@@ -16,12 +16,12 @@ export default function Router() {
 
 
     return(
-    <AnimatePresence >
+    <AnimatePresence>
         <Routes key={location.pathname} location={location}>
         {user? 
         <>
             <Route path='/' element={<MainPage replace/>}/>
-            <Route path='/kalendarz/*' element={ <Suspense fallback={<div className='absolute inset-0 bg-red-300'></div>}><CalendarPage/></Suspense>}/>
+            <Route path='/kalendarz/*' element={ <CalendarPage/>}/>
             <Route path='/logowanie' element={<LoginPage page={1} replace/>}/>
             <Route path='*' element={<div>not found</div>} replace/>
 

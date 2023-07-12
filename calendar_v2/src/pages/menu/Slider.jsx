@@ -1,4 +1,3 @@
-
 import {mainPaths, adminPaths, userPaths} from '@/routes/Router';
 import useAuthentication from "@/hooks/useAuthentication";
 import SwitchTheme from '@/components/ui/SwitchTheme';

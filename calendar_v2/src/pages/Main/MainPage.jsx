@@ -42,15 +42,15 @@ const calendarCards = useMemo(()=>
 
  return(
    <>
-   <MenuPage/>
    <AnimatedContainer animation={'opacityVariant'} className='flex items-start md:items-center justify-center background overflow-auto'>
+   <MenuPage/>
       <AnimatePresence mode='wait'> 
          {calendarCards? 
             <div className=' mt-10 flex-wrap flex justify-center'>
                {calendarCards}
             </div>
             :
-            <LoadingMessage message={translateMainPage('loading')} theme={'accentStrong'} className=' self-center'/>}
+            <LoadingMessage message={translateMainPage('loading')} theme={'accentStrong dark:text-dark-accentStrong'} className=' self-center'/>}
       </AnimatePresence>
    </AnimatedContainer>
    </>
