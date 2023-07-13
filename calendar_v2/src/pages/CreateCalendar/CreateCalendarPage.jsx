@@ -54,6 +54,8 @@ export default function CreateCalendarPage() {
     const [isOpenSlots, setIsOpenSlots] = useState(false);
 
     const [messageText, setMessageText] = useState('');
+
+
     useEffect(()=>
     {   
 
@@ -62,7 +64,7 @@ export default function CreateCalendarPage() {
         //add
         if (months.length < selectedMonths.length)
         {
-            setMonths([...months, {date: selectedMonths.slice(-1)[0], time: {timeFrom : timeFrom, timeTo : timeTo, timeBetween: timeBetween}}])
+            setMonths([...months, {date: selectedMonths.slice(-1)[0]}])
         }
             
         else
@@ -79,7 +81,6 @@ export default function CreateCalendarPage() {
 
 
     const checkCondition = (condition, setState) => {
-        
         if (condition)
         {
           setState(true);
@@ -99,14 +100,13 @@ export default function CreateCalendarPage() {
     const slotsCondition= () => checkCondition(slots.length === 0, setSlotsError);
     const descriptionCondition = () => checkCondition(description === '' , setDescriptionError)
 
-
     const checkError = () => 
     {
         //true == error
         if (nameCondition() | monthsCondition() | timeFromCondition() | timeToCondition() | timeBetweenCondition() | slotsCondition() | descriptionCondition())
             return true;
 
-        createCalendar({name, months, slots, bannedDays, autoMonth, description}).then(res => 
+    createCalendar({name, months, slots, bannedDays, autoMonth, description, time:{timeFrom, timeTo, timeBetween}}).then(res => 
             {
                 if (res.data)
                 {

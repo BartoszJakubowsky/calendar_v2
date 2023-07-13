@@ -31,7 +31,6 @@ export default function LoginForm({userFormData, setSwipe})
 
 
     
-    
     const checkError = () => 
     {
         //true == error

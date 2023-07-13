@@ -5,6 +5,7 @@ export default function LabelInput({inputType, value, setValue, error, setError 
 
     const handleValueChange = (event) => 
     {   
+
         if (error)
             setError(false);
         

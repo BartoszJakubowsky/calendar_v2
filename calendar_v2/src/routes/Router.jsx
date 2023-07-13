@@ -20,9 +20,9 @@ export default function Router() {
         <Routes key={location.pathname} location={location}>
         {user? 
         <>
-            <Route path='/' element={<MainPage replace/>}/>
+            <Route key='mainpage' path='/' element={<MainPage replace/>}/>
             <Route path='/kalendarz/*' element={ <CalendarPage/>}/>
-            <Route path='/logowanie' element={<LoginPage page={1} replace/>}/>
+            <Route key='login' path='/logowanie' element={<LoginPage page={1} replace/>}/>
             <Route path='*' element={<div>not found</div>} replace/>
 
             {isAdmin? 
@@ -31,7 +31,7 @@ export default function Router() {
         </>
         : 
         <>
-        <Route path='/logowanie' element={<LoginPage page={1} replace/>}/>
+        <Route key='login' path='/logowanie' element={<LoginPage page={1} replace/>}/>
         <Route path='*' element={<Navigate to='/logowanie' replace/>}/>
         </>
 
