@@ -65,6 +65,16 @@
     {
         "loading" : "Poczekaj, pobieramy dla ciebie kalendarz",
         "time" : "Czas",
+        "sign" : "Zapisz mnie",
+        "sign_out" : "Wypisz mnie",
+
+
+
+
+
+
+
+
         "january": "Styczeń",
         "february": "Luty",
         "march": "Marzec",

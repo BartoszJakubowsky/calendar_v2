@@ -4,7 +4,6 @@ import {getExistingToken} from '@/api/authentication/tokenApi';
 
 const AuthContext = createContext();
 
-    // eslint-disable-next-line react/prop-types
     function AuthProvider({children}) 
     {
         

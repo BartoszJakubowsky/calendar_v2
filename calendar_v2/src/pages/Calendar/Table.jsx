@@ -3,17 +3,17 @@ import TableData from "./TableData";
 import { translateCalendarPage } from "@/locales/translate";
 
 
-export default function Table({week}) {
+export default function Table({week, websocket}) {
 
 
 const {name,days, bannedDays, time} = week;
 
  return (
-    <table className="h-full w-full">
+    <table className="">
         <tbody>
             <TableHeader
-             rowClassName='h-12 w-full flex flex-row'
-             cellClassName='bg-accentLight dark:bg-accentLight border-2 border-slate-700 flex flex-col grow  '
+             rowClassName='flex flex-row'
+             cellClassName='bg-accentLight dark:bg-accentLight border-2 border-slate-700'
              data={days}
              bannedData={bannedDays}
              additionalFirstCol={'time'}
@@ -26,11 +26,12 @@ const {name,days, bannedDays, time} = week;
                     <TableData
                     key={time}
                     rowClassName='flex flex-row'
-                    cellClassName='bg-accentLight dark:bg-accentLight border-2 border-slate-700 '
+                    cellClassName='bg-accentLight dark:bg-dark-accentLight border-2 border-slate-700 text-dark-baseColor dark:text-baseColor'
                     days={days}
                     bannedDays={bannedDays}  
                     time={time}
                     translate={translateCalendarPage}
+                    websocket={websocket}
                   />
                 )
             })}

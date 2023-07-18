@@ -1,21 +1,12 @@
-import { redirect } from "react-router-dom";
-
-export default function TableData({days, bannedDays, rowClassName, cellClassName, time, translate}) {
- 
-
-
-
-
-
+import Record from './Record'
+export default function TableData({days, bannedDays, rowClassName, cellClassName, time, translate, websocket}) {
 
     const recordCell = (records) =>
     {
         return records.map((record, index) =>
             {
                 return (
-                    <button key={index} className=" w-24 h-14 border-1 border-slate-700">
-                        {record.data == '' ? "sign": record.data}
-                    </button>
+                    <Record key={index} record={record} translate={translate} websocket={websocket}/>
                 )
             })
     }
@@ -25,7 +16,6 @@ export default function TableData({days, bannedDays, rowClassName, cellClassName
 
         return slots.map(slot=>
             {
-                console.log(slot);
                 return (
                     <div key={slot.id} className="flex flex-col items-center justify-center">
                         {recordCell(slot.records)}
@@ -53,7 +43,7 @@ export default function TableData({days, bannedDays, rowClassName, cellClassName
             <>
             {renderCells?
                 <tr className={`${rowClassName}`}>
-                <td className={`${cellClassName} border-l-0 border-r-2 sticky -left-[1px] w-16`}>
+                <td className={`${cellClassName} border-l-0 border-r-2 sticky -left-[1px] w-16 bg-accentLight dark:bg-dark-accentLight text-dark-baseColor dark:text-baseColor justify-center flex`}>
                     {time}
                 </td>
                 {renderCells}
