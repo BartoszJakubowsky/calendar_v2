@@ -33,8 +33,8 @@ export default function CalendarPage() {
       
 
 const verifyCalendarExist = useMemo(()=>
-    {
-
+    {   
+        console.log(location.state);
         const passedCalendars = location.state;
         if (passedCalendars)
         {
@@ -54,15 +54,13 @@ const verifyCalendarExist = useMemo(()=>
     {
         if (!calendar)
             return;
-
+            
         return WebsocketProvider(calendar);
     },[calendar])
 
     useEffect(()=>
     {
-        if (calendar)
-            return;
-
+        if (!calendar)        
         getCalendars().then(calendars => 
             {
                 const checkedCalendar = compareLocationToCalendar(calendars);
@@ -78,7 +76,10 @@ const verifyCalendarExist = useMemo(()=>
                     navigate('/brak_strony', {state: location.pathname})
                 }, 500);
             })
-        
+
+            return ()=> {
+                window.history.replaceState({}, document.title)
+            }
     },[])
 
     
@@ -124,7 +125,6 @@ async function WebsocketProvider(calendar)
 
     socket.on('sign', data => 
     {   
-        console.log('signed', data.data);
     })
     socket.on('error', ()=>
     {
@@ -139,6 +139,6 @@ async function WebsocketProvider(calendar)
     }
 
     return (
-        {emitMessage}
+        {emitMessage, socket}
         );
 }
