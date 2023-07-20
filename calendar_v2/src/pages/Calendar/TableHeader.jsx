@@ -1,11 +1,10 @@
 
 
-export default function TableHeader({data, bannedData, rowClassName, cellClassName, additionalFirstCol, translate}) {
+export default function TableHeader({ days, bannedData, rowClassName, cellClassName, additionalFirstCol, translate}) {
 
     
-
-    const filteredHeaders = data.filter(data => !bannedData.includes(data.name.toUpperCase()))
-    const th = filteredHeaders.length > 0 ? filteredHeaders.map((data) =>
+    const filteredDays = days.filter(day => !bannedData.includes(day.name.toUpperCase()))
+    const th = filteredDays.length > 0 ? filteredDays.map((day) =>
         {
             const verifyBannedData = (dataToVerify) => {
                 const _dataToVerify = dataToVerify.toUpperCase();
@@ -13,19 +12,22 @@ export default function TableHeader({data, bannedData, rowClassName, cellClassNa
                 return bannedData.includes(_dataToVerify)
             }
 
-            if (verifyBannedData(data.name))
+            if (verifyBannedData(day.name))
                 return false;
+
+            const date = day.date.split('T')[0].split('-').reverse().join("-");
             return (
-                <th key={data.id} className={`${cellClassName} flex flex-col grow bg-accentMedium dark:bg-dark-accentMedium text-dark-baseColor dark:text-baseColor font-medium`}>
-                    <h3 className="pb-1">{translate(data.name)}</h3>
+                <th key={day.id} className={`${cellClassName} flex flex-col grow bg-accentMedium dark:bg-dark-accentMedium text-dark-baseColor dark:text-baseColor font-medium`}>
+                    <h3 className="pb-1">{translate(day.name)}</h3>
+                    <h4>{date}</h4>
                     <div className="flex justify-evenly overflow-hidden">
-                        {data.slots.map(slot => 
+                        {day.columns.map(column => 
                             {
                                return (<h4 
-                                 key={slot.id}
+                                 key={column.id}
                                 //  className="w-24 h-14"
                                  className="h-14 w-16 text-sm text-center"
-                                 >{slot.name} nieoficjalne</h4>)
+                                 >{column.name}</h4>)
                             })}
                     </div>
                 </th>
@@ -36,8 +38,8 @@ export default function TableHeader({data, bannedData, rowClassName, cellClassNa
 
         <>
         {th? 
-            <tr className={`${rowClassName}`}>
-                {additionalFirstCol? <th className={`${cellClassName} border-l-0 sticky -left-[1px] w-16  bg-accentLight dark:bg-dark-accentLight text-dark-baseColor dark:text-baseColor`}>
+            <tr className={`${rowClassName} sticky top-0 z-[2]`}>
+                {additionalFirstCol? <th className={`${cellClassName}  sticky -left-[1px] w-16  bg-accentLight dark:bg-dark-accentLight text-dark-baseColor dark:text-baseColor`}>
                     {translate(additionalFirstCol) }
                 </th> 
                 :

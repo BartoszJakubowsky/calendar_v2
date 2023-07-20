@@ -8,7 +8,7 @@ const getCalendars = async () => {
 }
 
 const createCalendar = async (calendar) => 
-{
+{   
     return axios.post('/calendar/create', calendar).then(response => 
         {
             console.log(response);

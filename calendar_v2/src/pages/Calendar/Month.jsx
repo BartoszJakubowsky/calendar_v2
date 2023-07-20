@@ -1,13 +1,21 @@
 import { translateCalendarPage } from "@/locales/translate";
 import Table from "./Table";
-export default function MonthTable({month, websocket}) {
+export default function MonthTable({month, websocket, swipe, setSwipe, maxIndex}) {
     
     
 
     const [yearName, monthName] = month.name.split('.').map(name => name.toLowerCase());
 
   
+    const handleSwipeLeft = () => 
+    {
+        setSwipe(swipe-1);
+    }
 
+    const handleSwipeRight = () => 
+    {
+        setSwipe(swipe+1);
+    }
     const weeks = month.weeks.map((week, index)=>
     {
         return (
@@ -20,10 +28,10 @@ export default function MonthTable({month, websocket}) {
         <div className="overflow-hidden w-full h-full border-2 border-slate-700">
         <h3 className="relative text-lg w-full md:h-[4%] h-[5%] text-center bg-accentStrongHover dark:bg-dark-accentStrongHover text-baseColor dark:text-baseColor">
             {translateCalendarPage(monthName)}
-            <span className="absolute text-sm left-1 top-1">
+            <span onClick={handleSwipeLeft} className={`absolute text-sm left-1 top-1 transition-all duration-200 ${swipe === 0 ? ' opacity-50 pointer-events-none' : ''}`}>
                 leftArrow
             </span>
-            <span className="absolute text-sm right-1 top-1">
+            <span onClick={handleSwipeRight} className={`absolute text-sm right-1 top-1 transition-all duration-200 ${swipe === maxIndex? 'opacity-50 pointer-events-none':''}`}>
                 rightArrow
             </span>
         </h3>

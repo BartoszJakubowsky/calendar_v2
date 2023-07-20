@@ -10,6 +10,7 @@ function useAnimation() {
         exit: { opacity: 0},
     }
 
+    
       
     const xSwipeVariant = 
     {
@@ -37,6 +38,15 @@ function useAnimation() {
         exit: { opacity: 1, x: 0, y: 0 },
     }
 
+    const scaleVariant = 
+    {
+        name: 'scaleVariant',
+        initial: { opacity: 0, scale :0.5 },
+        animate: { opacity: 1, scale : 1 },
+        transition : {duration:0.5, ease: 'easeOut'},
+        exit: { opacity: 0, scale :0.75},
+    }
+
     const buttonMessageVariant = 
     {
         animatedButton:{
@@ -47,7 +57,7 @@ function useAnimation() {
     }
 
    
-    return ([opacityVariant, xSwipeVariant, ySwipeVariant, reverseCurtainVariant ]);
+    return ([opacityVariant, xSwipeVariant, ySwipeVariant, reverseCurtainVariant, scaleVariant ]);
 
 
 }

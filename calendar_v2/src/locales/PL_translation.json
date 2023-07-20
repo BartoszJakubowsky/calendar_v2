@@ -67,12 +67,7 @@
         "time" : "Czas",
         "sign" : "Zapisz mnie",
         "sign_out" : "Wypisz mnie",
-
-
-
-
-
-
+        "conservation" : "Ups... wygląda na to, że trwają prace konserwacyjne 😬. Spróbuj później",
 
 
         "january": "Styczeń",
@@ -111,7 +106,6 @@
         "sendButton" : "Zapisz nowy kalendarz",
         "slotsLabel" : "Stwórz sloty dla kalendarza",
         "addSlotText" : "Dodaj nowy slot",
-
 
         "apiSuccess" : "Stworzono nowy kalendarz!",
         "apiError" : "Wystąpił błąd, spróbuj później",

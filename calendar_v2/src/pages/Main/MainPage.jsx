@@ -38,7 +38,7 @@ const calendarCards = useMemo(()=>
          
       })
 }, [calendars])
-
+console.log(calendars);
  return(
    <>
    <AnimatedContainer animation={'opacityVariant'} className='flex items-start md:items-center justify-center background overflow-auto'>

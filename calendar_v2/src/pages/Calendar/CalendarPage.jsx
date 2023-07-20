@@ -9,6 +9,7 @@ import MenuPage from '@/pages/menu/MenuPage';
 import Carousel from '@/components/containers/Carousel';
 import Month from './Month';
 import io from 'socket.io-client';
+import Modal from '@/components/ui/Modal';
 export default function CalendarPage() {
 
     const location = useLocation();
@@ -19,6 +20,7 @@ export default function CalendarPage() {
 
     const searchedCalendarName = location.pathname.split('/').pop()
     const [swipe, setSwipe] = useState(0);
+    const [openModal, setOpenModal] = useState(false);
     const compareLocationToCalendar = (calendars) => {
         const trim = (text) => {
           return JSON.parse(JSON.stringify(text.replaceAll(' ', '_').normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
@@ -82,16 +84,26 @@ const verifyCalendarExist = useMemo(()=>
             }
     },[])
 
-    
+    const handleClick = () => {
 
+        websocket.then(websocket => websocket.socket.emit('conservation', {id: calendar._id, conservation: true}));
+        setOpenModal(!openModal)
+    }
 
+    websocket && websocket.then(websocket => 
+        {
+            websocket.socket.on('conservation', (conservation)=> conservation._id === calendar._id && setOpenModal(true));
+            
+        })
     return (
-        <AnimatedContainer  key='main' className={'background flex justify-center items-start overflow-auto'} animation={'opacityVariant'}>
+        <AnimatedContainer className={'background flex justify-center items-start overflow-auto'} animation={'opacityVariant'}>
                 <AnimatePresence mode='wait'>
+                    <button className='absolute right-0 z-[100]' onClick={handleClick}>click</button>
+                    <Modal  isOpen={calendar.conservation? true :openModal} text={translateCalendarPage('conservation')} setIsOpen={setOpenModal} onClick={()=> navigate('/')}/>
                     <MenuPage/>
                     {calendar?  
                     <>
-                    <AnimatedContainer key='children' className={'relative w-full h-full flex justify-center flex-wrap'} animation={'opacityVariant'}>
+                    <AnimatedContainer  className={'relative w-full h-full flex justify-center flex-wrap'} animation={'opacityVariant'}>
                         <h3 className='custom-text-accentStrong text-center text-xl w-full underline font-bold md:pt-4 pt-4 '>
                             {calendar.name}
                         </h3>
@@ -99,7 +111,7 @@ const verifyCalendarExist = useMemo(()=>
                             className={`w-11/12 md:w-3/4 h-5/6 md:h-3/4 md:-mt-28 -mt-4 rounded-sm`}
                             containerClassName={'w-full h-full bg-accentMedium dark:bg-dark-accentMedium'}
                             startPosition={0}
-                            pages ={calendar.months.map((month, index)=> <Month key={index} month={month} websocket={websocket}/>)}
+                            pages ={calendar.months.map((month, index)=> <Month key={index} month={month} websocket={websocket} swipe={swipe} maxIndex={calendar.months.length-1} setSwipe={setSwipe}/>)}
                             swipeToIndex={swipe}
                             />
                     </AnimatedContainer>
