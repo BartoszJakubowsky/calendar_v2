@@ -67,9 +67,8 @@
         "time" : "Czas",
         "sign" : "Zapisz mnie",
         "sign_out" : "Wypisz mnie",
-        "conservation" : "Ups... wygląda na to, że trwają prace konserwacyjne 😬. Spróbuj później",
-
-
+        "modalTextConservation" : "Ups... wygląda na to, że trwają prace konserwacyjne 😬. Spróbuj później",
+        "modalButtonText" : "Okej",
         "january": "Styczeń",
         "february": "Luty",
         "march": "Marzec",

@@ -1,7 +1,7 @@
 import AnimatedContainer from '@/components/containers/AnimatedContainer'
 import { AnimatePresence } from 'framer-motion';
 import FormButton from '@/components/forms/FormButton'
-export default function Modal({text, onClick, isOpen, setIsOpen}) {
+export default function Modal({modalText, buttonText, onClick, isOpen, setIsOpen}) {
     
 
     const spring = {
@@ -23,8 +23,8 @@ export default function Modal({text, onClick, isOpen, setIsOpen}) {
              transition={spring} 
             animation={"scaleVariant"} 
             className='relative w-80 rounded-sm h-60 mb-3/4 background p-4 overflow-hidden text-lg'>
-               {text}
-               <FormButton onClick={handleClick} text={'ok'} className='w-[100px] absolute -bottom-6 right-3'/>
+               {modalText}
+               <FormButton onClick={handleClick} text={buttonText} className=' w-32 absolute -bottom-6 right-3'/>
             </AnimatedContainer>
             </AnimatedContainer>
     :

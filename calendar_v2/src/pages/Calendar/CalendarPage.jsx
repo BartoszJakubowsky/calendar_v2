@@ -10,11 +10,14 @@ import Carousel from '@/components/containers/Carousel';
 import Month from './Month';
 import io from 'socket.io-client';
 import Modal from '@/components/ui/Modal';
+import useAuthentication from '@/hooks/useAuthentication';
+import AdminPage from './AdminTools/AdminPage';
 export default function CalendarPage() {
 
     const location = useLocation();
     const navigate = useNavigate();
 
+    const {isAdmin} = useAuthentication();
 
  
 
@@ -96,10 +99,16 @@ const verifyCalendarExist = useMemo(()=>
             
         })
     return (
-        <AnimatedContainer className={'background flex justify-center items-start overflow-auto'} animation={'opacityVariant'}>
+        <>
+        <AnimatedContainer className={'background flex justify-center items-start overflow-hidden'} animation={'opacityVariant'}>
                 <AnimatePresence mode='wait'>
-                    <button className='absolute right-0 z-[100]' onClick={handleClick}>click</button>
-                    <Modal  isOpen={calendar.conservation? true :openModal} text={translateCalendarPage('conservation')} setIsOpen={setOpenModal} onClick={()=> navigate('/')}/>
+                    {isAdmin && calendar.conservation ? <AdminPage/> : <button className='absolute right-0 z-[100]' onClick={handleClick}>click</button>}
+                    <Modal  
+                     isOpen={calendar.conservation && !isAdmin? true :openModal} 
+                     modalText={translateCalendarPage('modalTextConservation')} 
+                     buttonText={translateCalendarPage('modalButtonText')} 
+                     setIsOpen={setOpenModal} 
+                     onClick={()=> navigate('/')}/>
                     <MenuPage/>
                     {calendar?  
                     <>
@@ -121,6 +130,7 @@ const verifyCalendarExist = useMemo(()=>
                     }
             </AnimatePresence>
             </AnimatedContainer>
+        </>
     )
 }
 
