@@ -16,6 +16,9 @@ export default {
   ],
   theme: {
     extend: {
+      transitionProperty :{
+        height: 'height'
+      },
       colors:{
           //white
           'dark-white' : '#a5b4fc',

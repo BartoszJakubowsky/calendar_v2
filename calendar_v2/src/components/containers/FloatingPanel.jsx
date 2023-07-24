@@ -1,6 +1,7 @@
 import {motion as m} from 'framer-motion';
 import { useState } from 'react';
 import { useRef } from 'react';
+import {IoIosReorder as DragIcon} from 'react-icons/io'
 export default function FloatingPanel({children, ...rest}) {
     
     const panelRef = useRef(null)
@@ -8,41 +9,25 @@ export default function FloatingPanel({children, ...rest}) {
     const elementWidth = panelRef?.current?.clientWidth? panelRef.current.clientWidth : 0;
 
     const [width, setWidth] = useState(false);
-    const [height, setHeight] = useState(false);
 
-    const handleResize = (moveVal, direction) => 
+    const handleResize = (moveVal) => 
     {
         
-        if (direction === 'x')
-            panelRef.current.style.width = `${(width? width : elementWidth )+ moveVal}px`;
-        else if (direction === 'y')
-            panelRef.current.style.height = `${(height? height : elementHeight )+ moveVal}px`;
-        else
-        {
-            panelRef.current.style.width = `${(width? width : elementWidth )+ moveVal}px`;
-            panelRef.current.style.height = `${(height? height : elementHeight )+ moveVal}px`;
-        }
+            panelRef.current.style.width = `${(width? width : elementWidth )- moveVal}px`;
     }   
 
-    const handleDragEnd = (direction) =>
+    const handleDragEnd = () =>
     {
 
-        if (direction == 'x')
             setWidth(panelRef.current.clientWidth);
-        else if (direction == 'y')
-            setHeight(panelRef.current.style.height);
-        else
-        {
-            setWidth(panelRef.current.style.width);
-            setHeight(panelRef.current.style.height);
-        }
     }
     return (
         <m.div
          ref={panelRef}
          className={rest.className}
          drag
-         dragConstraints={{top:0, left:0, right: window.innerWidth - elementWidth, bottom : window.innerHeight - elementHeight}}
+        //  dragConstraints={{top:0, left:0, right: window.innerWidth - elementWidth, bottom : window.innerHeight - elementHeight}}
+         dragConstraints={{top:0, left:0, right: 0, bottom : window.innerHeight - elementHeight}}
          dragMomentum={false}
          dragElastic={0.05}
         //  onDragEnd={(event, info) =>
@@ -52,15 +37,9 @@ export default function FloatingPanel({children, ...rest}) {
         // }}
         >
         {children}
-        <DragElement 
-         className='absolute top-1/2 bottom-1/2 right-1'
-         direction={'x'}
-         handleDragEnd={handleDragEnd}
-         handleResize={handleResize}/>
 
         <DragElement 
-         className='absolute bottom-1 right-1'
-         direction={'xy'}
+         className='absolute bottom-1/2 top-1/2 left-1'
          handleDragEnd={handleDragEnd}
          handleResize={handleResize}/>
         </m.div>
@@ -71,19 +50,18 @@ export default function FloatingPanel({children, ...rest}) {
 }
 
 
-function DragElement({direction, handleResize, handleDragEnd,  ...rest}) {
+function DragElement({handleResize, handleDragEnd,  ...rest}) {
     
 
     let moveX;
-    let moveY;
     
     return (
         <m.div className={rest.className}
-         drag={direction}
-         dragConstraints={{ left: 0, right: 0}}
+         drag
+         dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0}}
          dragMomentum={false}
          dragElastic={0.01}
-         onDragEnd={()=>handleDragEnd(direction)}
+         onDragEnd={()=>handleDragEnd()}
          onDrag={(event, info) => 
         {
             const checkX = () => {
@@ -93,14 +71,7 @@ function DragElement({direction, handleResize, handleDragEnd,  ...rest}) {
                 else
                     return moveVal
             }
-            const checkY = () => {
-                const moveVal = info.offset.y;
-                if (moveY === moveVal)
-                    return false
-                else
-                    return moveVal
-            }
-
+           
 
             const setX = () => {
                 const x = checkX() ;
@@ -110,31 +81,10 @@ function DragElement({direction, handleResize, handleDragEnd,  ...rest}) {
                 moveX = x;
                 handleResize(x, 'x')
             }
-            const setY = () => 
-            {
-                const y = checkY() ;
-
-                if (!y)
-                    return;
-
-                moveY = y;
-                handleResize(y, 'y')
-            }
-            
-            if (direction == 'x')
-                setX();
-            else if (direction == 'y')
-                setY();
-            else
-            {
-                setX();
-                setY();
-            }
-            
-
+            setX();
         }}
         >
-            x
+            <DragIcon className=' rotate-90 cursor-ew-resize'/>
         </m.div>
 
     )

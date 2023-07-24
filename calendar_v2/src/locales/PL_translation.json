@@ -88,7 +88,14 @@
         "thursday": "Czwartek",
         "friday": "Piątek",
         "saturday": "Sobota",
-        "sunday": "Niedziela"
+        "sunday": "Niedziela",
+        "AdminTools" :
+        {
+            "bannedDaysLabel" : "Wybierz dni, których nie wyświetlać w całym miesiącu",
+            "weeksLabel" : "Tygodnie",
+            "weekLabel" : "Tydzień",
+            "daysLabel" : "Dni"
+         } 
     },
     "CreateCalendarPage" :
     {

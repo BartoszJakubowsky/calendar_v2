@@ -98,25 +98,28 @@ const verifyCalendarExist = useMemo(()=>
             websocket.socket.on('conservation', (conservation)=> conservation._id === calendar._id && setOpenModal(true));
             
         })
+
+        console.log(calendar);
     return (
         <>
-        <AnimatedContainer className={'background flex justify-center items-start overflow-hidden'} animation={'opacityVariant'}>
+        <AnimatedContainer key='calendarPageContainer' className={'background flex justify-center items-start overflow-hidden'} animation={'opacityVariant'}>
                 <AnimatePresence mode='wait'>
-                    {isAdmin && calendar.conservation ? <AdminPage/> : <button className='absolute right-0 z-[100]' onClick={handleClick}>click</button>}
+                    {isAdmin && calendar.conservation ? <AdminPage calendar={calendar} setCalendar={setCalendar}/> : <button className='absolute right-0 z-[100]' onClick={handleClick}>click</button>}
                     <Modal  
                      isOpen={calendar.conservation && !isAdmin? true :openModal} 
                      modalText={translateCalendarPage('modalTextConservation')} 
                      buttonText={translateCalendarPage('modalButtonText')} 
                      setIsOpen={setOpenModal} 
                      onClick={()=> navigate('/')}/>
-                    <MenuPage/>
+                    {isAdmin && calendar.conservation ? <MenuPage lock={true}/> : <MenuPage/>}
                     {calendar?  
                     <>
-                    <AnimatedContainer  className={'relative w-full h-full flex justify-center flex-wrap'} animation={'opacityVariant'}>
+                    <AnimatedContainer key='calendarPage'  className={'relative w-full h-full flex justify-center flex-wrap'} animation={'opacityVariant'}>
                         <h3 className='custom-text-accentStrong text-center text-xl w-full underline font-bold md:pt-4 pt-4 '>
                             {calendar.name}
                         </h3>
                         <Carousel 
+                            key='carosuel'
                             className={`w-11/12 md:w-3/4 h-5/6 md:h-3/4 md:-mt-28 -mt-4 rounded-sm`}
                             containerClassName={'w-full h-full bg-accentMedium dark:bg-dark-accentMedium'}
                             startPosition={0}
