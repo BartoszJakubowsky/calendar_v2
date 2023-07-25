@@ -12,7 +12,7 @@ export default function SelectOptions({selectedOptions, setSelectedOptions, sele
             setSelectedOptions([...selectedOptions, chosenOption])
     }
 
-    const renderDays = optionsArr.map((option, index)=>
+    const renderData = optionsArr.map((option, index)=>
         {
 
             return (
@@ -31,7 +31,7 @@ export default function SelectOptions({selectedOptions, setSelectedOptions, sele
         </label>
         <div className="flex flex-col">
         <ul className="flex flex-row justify-start w-full  overflow-x-scroll no-scroll md:overflow-x-auto">
-            {renderDays}
+            {renderData}
         </ul>
         </div>
         </div>

@@ -94,7 +94,10 @@
             "bannedDaysLabel" : "Wybierz dni, których nie wyświetlać w całym miesiącu",
             "weeksLabel" : "Tygodnie",
             "weekLabel" : "Tydzień",
-            "daysLabel" : "Dni"
+            "daysLabel" : "Dni",
+            "slotLabel" : "Slot z recordami dla godziny",
+            "recordLabel" : "Rekord",
+            "removeMonth" : "Czy usunąć ten miesiąc?"
          } 
     },
     "CreateCalendarPage" :
