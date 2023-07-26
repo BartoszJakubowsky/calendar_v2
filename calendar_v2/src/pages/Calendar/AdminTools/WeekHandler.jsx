@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import LabelInput from '@/components/forms/LabelInput';
+import Accordion from "@/components/containers/Accordion";
 
-export default function WeekHandler({week, weekIndex, monthIndex, children, calendar, setCalendar}) {
+export default function WeekHandler({week, weekIndex, monthIndex, children, calendar, setCalendar, translate, fixDate}) {
 
-
-  const [deleteWeek, setDeleteWeek] = useState(week.delete? week.delete : false)
+  const [erase, setErase] = useState(week.erase)
+  const [messages, setMessages] = useState(week.messages || [])
   const isMounted = useRef(false);
 
+    const dayFrom= fixDate(week.days[0].date);
+    const dayTo = week.days.length > 1? fixDate(week.days[week.days.length-1].date) : false;
+
+const dayFromTo = dayTo? dayFrom + " : " + dayTo : dayFrom; 
     useEffect(()=>
     {
         if(!isMounted.current)
@@ -17,7 +22,7 @@ export default function WeekHandler({week, weekIndex, monthIndex, children, cale
 
         handleCalendarUpdate();
 
-    }, [])
+    }, [erase, messages])
 
 
   
@@ -27,7 +32,7 @@ const handleCalendarUpdate = () => {
     const updateWeeks = (weeks) => weeks.map((week, index) => {
 
       if (weekIndex !== index) return week;
-      return { ...week, jakisKLicz : 'x' }; 
+      return { ...week,  }; 
 
     })
 
@@ -36,7 +41,7 @@ const handleCalendarUpdate = () => {
       
         const updatedWeeks = updateWeeks(month.weeks);
       
-        return { ...month, weeks: updatedWeeks }; 
+        return { ...month, weeks: updatedWeeks, messages, remove: erase}; 
       });
 
       const updatedCalendar = {...calendar, months : updatedMonths};
@@ -45,12 +50,17 @@ const handleCalendarUpdate = () => {
     }
     
     return (
-        <div>
-            <LabelInput inputType={'checkbox'} value={deleteWeek} setValue={setDeleteWeek} />
+        <Accordion
+        key={weekIndex}
+        label={translate('weekLabel') + ' ' + dayFromTo}
+        labelClassName={``}
+        contentClassName={``}
+        >
+            <LabelInput inputType={'checkbox'} value={erase} setValue={setErase} />
             <div>messages</div>
             <div>time</div>
             <div>indelibleDays</div>
             {children}
-        </div>
+        </Accordion>
     )   
 }

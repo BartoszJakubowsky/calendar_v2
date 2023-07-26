@@ -88,7 +88,7 @@
 
 .button-form-reject {
   @apply text-baseColor transition-colors duration-200 transform bg-red-300 active:bg-red-200  hover:bg-red-400 focus:outline-none focus:bg-red-500
-          dark:bg-dark-accentStrong dark:active:bg-dark-accentMedium  dark:hover:bg-dark-accentStrongHover  dark:focus:bg-dark-accentStrongHover
+          dark:bg-rose-900 dark:active:bg-rose-600  dark:hover:bg-rose-800  dark:focus:bg-rose-700
   }
 
 
@@ -114,6 +114,8 @@
   @apply bg-accentStrong hover:bg-accentStrongHover active:bg-accentMedium 
         dark:bg-dark-accentStrong dark:hover:bg-dark-accentStrongHover dark:active:bg-dark-accentMedium 
 }
+
+.
 
 
 .custom-text-accentStrong {

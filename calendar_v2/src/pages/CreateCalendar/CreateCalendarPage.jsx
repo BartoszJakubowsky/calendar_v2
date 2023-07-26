@@ -105,8 +105,7 @@ export default function CreateCalendarPage() {
         //true == error
         if (nameCondition() | monthsCondition() | timeFromCondition() | timeToCondition() | timeBetweenCondition() | slotsCondition() | descriptionCondition())
             return true;
-
-    createCalendar({name, months, slots, bannedDays, autoMonth, description, time:{timeFrom, timeTo, timeBetween}}).then(res => 
+        createCalendar({name, months, slots, bannedDays, autoMonth, description, time:{timeFrom, timeTo, timeBetween}}).then(res => 
             {
                 if (res.data)
                 {
@@ -124,8 +123,8 @@ export default function CreateCalendarPage() {
     return (
         <>
         <MenuPage/>
-        <AnimatedContainer animation={'opacityVariant'} className='background-gradient flex justify-center items-center overflow-auto'>
-            <FormContainer className='relative overflow-hidden'>
+        <AnimatedContainer animation={'opacityVariant'} className={`background-gradient flex justify-center items-center overflow-auto ${isOpenSlots? 'overflow-auto' : 'overflow-auto'}`}>
+            <FormContainer className='relative overflow-hidden mt-[150px] md:mt-0 md:mb-0 mb-4'>
                 <FormHeader text={translateCreateCalendarPage('header')}/>
                 <LabelInput 
                     inputContainerClassName={"mb-2 mt-2"}

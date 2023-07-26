@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Accordion({ initial = false, label, children, labelClassName, contentClassName }) {
+export default function Accordion({ initial = false, label, children, labelClassName, contentClassName, accordionClassName }) {
   const [expanded, setExpanded] = useState(initial);
 
   const handleClick = () => {
@@ -8,7 +8,7 @@ export default function Accordion({ initial = false, label, children, labelClass
   };
 
   return (
-    <div >
+    <div className={`${accordionClassName}`}>
       <h4 className={`${labelClassName} `}  onClick={handleClick}>
         {label}
       </h4>

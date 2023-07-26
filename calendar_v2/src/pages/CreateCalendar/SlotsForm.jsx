@@ -21,7 +21,9 @@ export default function SlotsForm({formSlot, slots, setSlots, translate, isOpen,
 
 
     useEffect(()=>
-    {
+    {   
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
         if(!formSlot)
         {
             setName('');
@@ -99,14 +101,14 @@ export default function SlotsForm({formSlot, slots, setSlots, translate, isOpen,
                 />
                 <FormButton 
                  onClick={handleSave} 
-                className='absolute bottom-6 left-1/2 transform -translate-x-1/2 w-2/3 ' 
+                className='absolute bottom-36 md:bottom-6 left-1/2 transform -translate-x-1/2 w-[16rem] ' 
                 text={translateText('buttonSave')}
                 />
                 {formSlot? 
                 <FormButton   
                  onClick={handleDelete} 
                  ok={'button-form-reject'}  
-                 className={`absolute pointer-events-auto -bottom-6 left-1/2 transform -translate-x-1/2 w-2/3  ${formSlot.name === name? 'opacity-100' : ' opacity-0'}`} 
+                 className={`absolute pointer-events-auto  bottom-24 md:-bottom-6 left-1/2 transform -translate-x-1/2 w-[16rem] ${formSlot.name === name? 'opacity-100' : ' opacity-0'}`} 
                  text={translateText('buttonDelete')}
                  />
                  : false}

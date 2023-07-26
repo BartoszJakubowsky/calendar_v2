@@ -91,13 +91,16 @@
         "sunday": "Niedziela",
         "AdminTools" :
         {
-            "bannedDaysLabel" : "Wybierz dni, których nie wyświetlać w całym miesiącu",
+            "localSettings" : "Ustawienia dla każdego elementu z osobna",
+            "bannedDaysLabel" : "Dni, których nie wyświetlać w całym miesiącu",
             "weeksLabel" : "Tygodnie",
             "weekLabel" : "Tydzień",
             "daysLabel" : "Dni",
             "slotLabel" : "Slot z recordami dla godziny",
             "recordLabel" : "Rekord",
-            "removeMonth" : "Czy usunąć ten miesiąc?"
+            "removeMonth" : "Czy usunąć ten miesiąc?",
+            "monthMessages" : "Wiadomość wyświetlana zamiast miesiąca",
+            "monthMessagePlaceholder" : "Wpisz wiadomość"
          } 
     },
     "CreateCalendarPage" :
