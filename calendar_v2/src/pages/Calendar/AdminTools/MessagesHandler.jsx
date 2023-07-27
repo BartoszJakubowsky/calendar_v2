@@ -2,62 +2,91 @@ import LabelInput from '@/components/forms/LabelInput';
 export default function MessagesHandler({messages, setMessages, boundaryArray, maxMessages, translate, ...rest}) {
     
 
-    
     const updateMessages = (newMessage, index) => {
         const updatedMessages = messages.map((oldMessage, oldIndex)=>
         {
         if (oldIndex !== index)
             return oldMessage;
         
-        return {newMessage}
+        return newMessage
         })
-
         setMessages(updatedMessages);
     }
-
     const handleAddMessage = () => {
-        setMessages([...messages, {data: '', expires: '', from: false, to: false}])
+        const newMessage = {data: '', expires: {date: '', time: ''}, from: false, to: false}
+        if (messages.length === 0)
+            setMessages([newMessage])
+        else
+            setMessages([...messages, newMessage])
     }
 
     const handleDeleteMessage = (indexToRemove) => {
         setMessages(messages.filter((message, messageIndex) => messageIndex !== indexToRemove))
     }
 
-    console.log(messages);
-
    return (
     <div className={`${rest.className}`}>
         {messages.length > 0 && messages.map((message, index)=>
         {
             const handleDataChange = (newData) => {
-                const newMessage = {...messages[index], data: newData};
-                updateMessages(newMessage);
+                const newMessage = {...message, data: newData};
+                updateMessages(newMessage, index);
             }
 
             const handleDateChange = (newDate) => {
-                const newMessage = {...messages[index], data: newDate};
-                updateMessages(newMessage);
+                const newMessage = { ...message, expires: { ...message.expires, date: newDate } };
+                updateMessages(newMessage, index);
             }
 
+            const handleTimeChange = (newTime) => {
+                const newMessage = { ...message, expires: { ...message.expires, time: newTime } };
+                updateMessages(newMessage, index);
+            }
+
+            const handleFromChange = () => {
+
+            }
+
+            const handleToChange = () => {
+                
+            }
             return (
                 <div
-                className='relative'
-                key={index}
-                >
-                    <LabelInput
-                    inputType={'textarea'}
-                    value={message.data}
-                    setValue={handleDataChange}
-                    placeHolder={translate('monthMessagePlaceholder')}
-                    />
-                    <button 
-                    onClick={()=>handleDeleteMessage(index)}  
-                    className={`absolute right-1 top-1 button-form-reject w-6 h-6 rounded-sm text:dark-baseColor dark:text-baseColor`}>
-                    -
-                    </button>
-                    <div className='flex'> 
-                        <LabelInput inputType='date' inputClassName='w-full'/>
-                        <LabelInput inputType='time' inputClassName='w-full'/>
+                className='flex w-full flex-row'
+                key={index}>
+                    <div className='relative w-2/3  mr-2 mb-2'>
+                        <LabelInput
+                        inputType={'textarea'}
+                        inputContainerClassName='w-full h-full relative min-w-[full]'
+                        inputClassName='h-full'
+                        value={message.data}
+                        setValue={handleDataChange}
+                        placeHolder={translate('monthMessagePlaceholder')}
+                        />
+                        <button 
+                        onClick={()=>handleDeleteMessage(index)}  
+                        className={`flex justify-center absolute right-1 top-3 button-form-reject w-6 h-6 rounded-sm text:dark-baseColor dark:text-baseColor`}>
+                        -
+                        </button>
+                    </div>
+                    <div className='flex flex-col w-1/3'> 
+                        <LabelInput 
+                        inputType='date' 
+                        inputClassName='w-full'
+                        value={message.expires.date}
+                        setValue={handleDateChange}
+                        />
+                        <LabelInput 
+                        inputType='time' 
+                        inputClassName='w-full'
+                        value={message.expires.time}
+                        setValue={handleTimeChange}
+                        />
+                        {boundaryArray ? 
+                        <div className='flex w-full h-10'>
+                      
+                        </div> 
+                        : false}
                     </div>
                 </div>
             )
@@ -65,7 +94,7 @@ export default function MessagesHandler({messages, setMessages, boundaryArray, m
         {maxMessages === messages.length ? 
         false
         :        
-        <button onClick={handleAddMessage}  className={`option-on w-6 h-6 rounded-sm text:dark-baseColor dark:text-baseColor`}>
+        <button onClick={handleAddMessage}  className={`mt-1 option-on w-6 h-6 rounded-sm text:dark-baseColor dark:text-baseColor`}>
            +
         </button>
         }

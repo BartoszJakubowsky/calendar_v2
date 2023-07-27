@@ -7,8 +7,11 @@ import MessagesHandler from './MessagesHandler';
 export default function MonthHandler({month, monthIndex ,translate, children, calendar, setCalendar}) {
     const isMounted = useRef(false);
     const [erase, setErase] = useState(month.erase || false);
-    const [message, setMessage] = useState(month.messages);
+    const [messages, setMessages] = useState(month.messages);
 
+    useEffect(()=>{
+
+    },[])
     useEffect(()=>
     {
         if(!isMounted.current)
@@ -19,7 +22,7 @@ export default function MonthHandler({month, monthIndex ,translate, children, ca
 
         handleCalendarUpdate();
 
-    }, [erase, message])
+    }, [erase, messages])
     const handleCalendarUpdate = () =>
     {
 
@@ -27,24 +30,22 @@ export default function MonthHandler({month, monthIndex ,translate, children, ca
         {
             if (index === monthIndex)
             {
-                return {...month, erase}
+                return {...month, erase, ...messages}
             }
             else
                 return month;
         })
-
        const updatedCalendar = {
         ...calendar,
         months : updatedMonths
        }
-
        setCalendar(updatedCalendar)
     }
     return (    
         <Accordion
         label={translateCalendarPage(month.name.split('.')[1].toLowerCase())}
-        labelClassName={`bg-accentLight dark:bg-dark-accentLight rounded-sm p-2 text-lg underline cursor-pointer`}
-        contentClassName={`bg-accentLight dark:bg-dark-accentLight rounded-sm p-4 border-b-2  border-accentMedium dark:border-dark-accentMedium`}
+        labelClassName={`bg-accentLight dark:bg-dark-accentLight rounded-sm p-2 text-lg underline cursor-pointer w-full`}
+        contentClassName={`bg-accentLight dark:bg-dark-accentLight rounded-sm p-4 border-b-2  border-accentMedium dark:border-dark-accentMedium w-full  `}
         initial={true}
         >
             <LabelInput 
@@ -62,9 +63,10 @@ export default function MonthHandler({month, monthIndex ,translate, children, ca
             initial={true}
             >
                 <MessagesHandler
-                messages={message}
-                setMessages={setMessage}
-                maxMessages={1}
+                messages={messages}
+                setMessages={setMessages}
+                maxMessages={2}
+                boundaryArray={['10', '11', '12']}
                 translate={translate}
                 />
             </Accordion>

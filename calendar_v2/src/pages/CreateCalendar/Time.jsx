@@ -47,6 +47,8 @@ export default function Time({timeFrom, setTimeFrom, timeTo, setTimeTo, timeBetw
             onChange={handleTimeBetweenChange}
             error={timeBetweenError}
             text={translate('timeBetween')}
+            min={'00:30'}
+            max={'03:00'}
         />
         </div>
         </div>
@@ -62,9 +64,9 @@ export function TimeInput({min, max, value, onChange, error, text, ...rest}) {
             <Label text={text} labelColor='text-dark-baseColor duration-300 ' error={error}/>
           <input 
             type='time' 
-            step='900'
             min={min}
             max={max}
+            step={'900'}
             value={value} 
             onChange={onChange}
             className={`text-form-input rounded-sm ${rest.className}`}

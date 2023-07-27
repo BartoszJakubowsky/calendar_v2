@@ -11,7 +11,7 @@ export default function LabelInput({
   labelText,
   inputContainerClassName,
   inputClassName,
-  placeHolder
+  placeHolder,
 }) {
   const checkboxRef = useRef(null); 
   const handleValueChange = (event) => {
@@ -62,7 +62,7 @@ export default function LabelInput({
           required
           autoComplete={autoComplete}
           placeholder={placeHolder? placeHolder : ''}
-        />
+        ></input>
       )}
     </div>
   );

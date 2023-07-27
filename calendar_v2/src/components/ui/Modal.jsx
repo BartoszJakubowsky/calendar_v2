@@ -24,7 +24,7 @@ export default function Modal({modalText, buttonText, onClick, isOpen, setIsOpen
             animation={"scaleVariant"} 
             className='relative w-80 rounded-sm h-60 mb-3/4 background p-4 overflow-hidden text-lg'>
                {modalText}
-               <FormButton onClick={handleClick} text={buttonText} className=' w-1/4 absolute -bottom-6 right-3'/>
+               <FormButton onClick={handleClick} text={buttonText} className=' w-32 absolute -bottom-6 right-3'/>
             </AnimatedContainer>
             </AnimatedContainer>
     :
