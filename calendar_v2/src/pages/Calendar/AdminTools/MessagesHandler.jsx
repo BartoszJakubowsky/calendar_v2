@@ -1,7 +1,6 @@
 import LabelInput from '@/components/forms/LabelInput';
 export default function MessagesHandler({messages, setMessages, boundaryArray, maxMessages, translate, ...rest}) {
     
-
     const updateMessages = (newMessage, index) => {
         const updatedMessages = messages.map((oldMessage, oldIndex)=>
         {
@@ -43,12 +42,17 @@ export default function MessagesHandler({messages, setMessages, boundaryArray, m
                 updateMessages(newMessage, index);
             }
 
-            const handleFromChange = () => {
+            const handleFromChange = (newFrom) => {
 
+                const newFromIndex = boundaryArray.indexOf(newFrom);
+                const newMessage = { ...message, from: newFromIndex};
+                updateMessages(newMessage, index);
             }
 
-            const handleToChange = () => {
-                
+            const handleToChange = (newTo) => {
+                const newToIndex = boundaryArray.indexOf(newTo);
+                const newMessage = { ...message, to: newToIndex};
+                updateMessages(newMessage, index);
             }
             return (
                 <div
@@ -84,7 +88,18 @@ export default function MessagesHandler({messages, setMessages, boundaryArray, m
                         />
                         {boundaryArray ? 
                         <div className='flex w-full h-10'>
-                      
+                            <LabelInput 
+                            inputType='list' 
+                            inputContainerClassName='mr-1'
+                            valueList={boundaryArray}
+                            value={0}
+                            setValue={handleFromChange} />
+                             <LabelInput 
+                            inputType='list' 
+                            inputContainerClassName='ml-1'
+                            valueList={boundaryArray}
+                            value={boundaryArray.length-1}
+                            setValue={handleToChange} />
                         </div> 
                         : false}
                     </div>

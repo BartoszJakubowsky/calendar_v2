@@ -100,7 +100,16 @@
             "recordLabel" : "Rekord",
             "removeMonth" : "Czy usunąć ten miesiąc?",
             "monthMessages" : "Wiadomość wyświetlana zamiast miesiąca",
-            "monthMessagePlaceholder" : "Wpisz wiadomość"
+            "monthMessagePlaceholder" : "Wpisz wiadomość",
+
+
+            "removeWeek" : "Czy usunąć ten tydzień?",
+            "weekMessages" : "Wiadomości wyświetlane zamiast dni",
+            "weekBannedDays" : "Dni, których nie wyświetlać w tygodniu",
+            "removeDay" : "Czy chcesz usunąć ten dzień?",
+
+            "columnLabel" : "Kolumny",
+            "removeColumn" : "Czy chcesz usunąć tą kolumnę?"
          } 
     },
     "CreateCalendarPage" :

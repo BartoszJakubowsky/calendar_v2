@@ -12,6 +12,7 @@ export default function LabelInput({
   inputContainerClassName,
   inputClassName,
   placeHolder,
+  valueList
 }) {
   const checkboxRef = useRef(null); 
   const handleValueChange = (event) => {
@@ -27,7 +28,25 @@ export default function LabelInput({
   };
 
   return (
-    <div className={`${inputContainerClassName}`}>
+    <>
+    {inputType === 'list'? 
+      <select 
+       id='list' 
+       onChange={handleValueChange}
+       className={`peer block rounded-md w-full mt-2 border text-form-input ${inputContainerClassName}`}
+       >
+        {valueList.map((option, index)=>{
+          return (
+          <option 
+          key={index} 
+          selected={value === index}
+          value={option}
+          className={`${inputClassName}`}
+          >{option}
+          </option>)
+        })}
+      </select>
+      :<div className={`${inputContainerClassName}`}>
       {labelText ? (
         <label
           className={`block text-sm font-semibold ${
@@ -64,6 +83,7 @@ export default function LabelInput({
           placeholder={placeHolder? placeHolder : ''}
         ></input>
       )}
-    </div>
+    </div>}
+    </>
   );
 }
