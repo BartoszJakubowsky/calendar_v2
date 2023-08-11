@@ -1,10 +1,11 @@
 import useAuthentication from '@/hooks/useAuthentication';
 import {Routes, Route, useLocation, Navigate} from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import LoginPage from '@/pages/Login/LoginPage'
 import MainPage from '@/pages/Main/MainPage'
 import CreateCalendarPage from '@/pages/CreateCalendar/CreateCalendarPage'
 import { AnimatePresence } from 'framer-motion';
+import AdminPage from '../pages/Admin/AdminPage';
 
 const CalendarPage = lazy(()=> import('@/pages/Calendar/CalendarPage'));
     
@@ -14,7 +15,6 @@ export default function Router() {
     const {isAdmin, user} = useAuthentication();
     const location = useLocation();
 
-
     return(
     <AnimatePresence>
         <Routes key={location.pathname} location={location}>
@@ -23,6 +23,7 @@ export default function Router() {
             <Route key='mainpage' path='/' element={<MainPage replace/>}/>
             <Route path='/kalendarz/*' element={ <CalendarPage/>}/>
             <Route key='login' path='/logowanie' element={<LoginPage page={1} replace/>}/>
+            <Route key='admin' path='/administrator' element={<AdminPage/>}/>
             <Route path='*' element={<div>not found</div>} replace/>
 
             {isAdmin? 
@@ -35,7 +36,7 @@ export default function Router() {
         <Route path='*' element={<Navigate to='/logowanie' replace/>}/>
         </>
 
-        }
+}
     </Routes>
     </AnimatePresence>
     )
@@ -53,7 +54,7 @@ const userPaths = [
 ]
 
 const adminPaths = [
-    {name: 'admin', path:  '/administator'},
+    {name: 'admin', path:  '/administrator'},
     {name: 'createCalendar', path:  '/tworzenie_kalendarza'},
 ]
 
