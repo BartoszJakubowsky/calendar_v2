@@ -30,7 +30,8 @@ export default function AnimatedContainer({animation, children, initial, animate
         return allAnimations.find(searchedAnimation => searchedAnimation.name === animation);
     }
     return (
-        <m.div className={`${'absolute inset-0'} ${rest.className}`}
+        <m.div className={`${'absolute inset-0'} ${rest.className}`} 
+        onClick={rest.onClick}
         // key={rest.key? rest.key : `animatedContainer`}
         variants={animateVariants()} 
         initial={initial? initial : 'initial' }

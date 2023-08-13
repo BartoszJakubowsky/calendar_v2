@@ -19,7 +19,7 @@ const AuthContext = createContext();
         }
        
         const [user, setUser] = useState(getUserFromToken());
-        const isAdmin = user?.permissions?.includes('Admin');
+        const isAdmin = user?.permissions?.includes('ADMIN');
 
         //to fix -> main page navigates to login page
         // useEffect(() => {

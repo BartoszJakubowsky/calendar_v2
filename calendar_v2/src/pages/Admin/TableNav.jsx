@@ -13,7 +13,7 @@ export default function TableNav({currentPage, setCurrentPage, links}) {
 
 
   return (
-    <header className="sticky top-0 w-full h-14 z-10 pt-2 pb-20 bg-transparent">
+    <header className="sticky top-0 w-full h-14 z-10 pt-2 md:pb-20 bg-accentLight dark:bg-dark-accentLight">
       <nav className="flex flex-row gap-2 justify-center relative 2xl:mx-[15%]">
         <span className="border-b border-black absolute w-10/12 -bottom-3 left-1/2 -translate-x-1/2" />
         <ul className="flex gap-2">

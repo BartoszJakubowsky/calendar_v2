@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import {getAllData} from '@/api/admin/adminApi'
 import UserConfirmed from './UserConfirmed';
 import { AnimatePresence } from 'framer-motion';
+import UserRegister from './UserRegister';
 export default function AdminPage() {
 
 
@@ -24,23 +25,38 @@ useEffect(()=>{
         setFetchStatus(false);
     }, 1000))
 },[])
-
-
 const links = [
     'Użytkownicy',
     "Rejestracja",
     'Hasło',
     'Kalendarze'
     ];
+
+const transformDate = (date) => {
+
+    const formatNumber = (number) => {
+        return number < 10 ? '0' + number : number;
+    }
+
+    const originalDate = new Date(date);
+    const newDate = new Date(originalDate);
+    newDate.setHours(newDate.getHours() + 2);
+
+    const formattedDate = `${formatNumber(newDate.getUTCDate())}.${formatNumber(newDate.getUTCMonth() + 1)}.${newDate.getUTCFullYear()}, ${formatNumber(newDate.getUTCHours())}:${formatNumber(newDate.getUTCMinutes())}`;
+    return (formattedDate);
+}
  return (
-    <AnimatedContainer key='calendarPageContainer' className={'background flex justify-start items-center flex-col'} animation={'opacityVariant'}>
+    <AnimatedContainer key='calendarPageContainer' className={'background md:pt-0 pt-10 overflow-hidden'} animation={'opacityVariant'}>
        <MenuPage/>
-        <TableNav currentPage={currentPage} setCurrentPage={setCurrentPage} links={links}/>
-        <section className='flex md:w-2/3 w-11/12 justify-center h-full overflow-hidden'>
+    <TableNav currentPage={currentPage} setCurrentPage={setCurrentPage} links={links}/>
+        <section className='flex md:w-2/3 w-11/12 justify-center h-full mx-auto overflow-y-auto no-scrollbar'>
         <AnimatePresence mode='wait'>
         {fetchStatus
         ? <LoadingMessage message={'Czekaj, pobieramy dla ciebie najświeższe dane'} theme={'text-accentStrong dark:text-dark-accentStrong'}/>
-        : <UserConfirmed users={usersConfirmed} setUsersConfirmed={setUsersConfirmed}/>
+        : 
+        currentPage === 0 && <UserConfirmed users={usersConfirmed} setUsersConfirmed={setUsersConfirmed}/> ||
+        currentPage === 1 && <UserRegister users={usersRegister} setUsersRegister={setUsersRegister} setUsersConfirmed={setUsersConfirmed} transformDate={transformDate}/>  ||
+        currentPage === 2 && <UserPassword users={usersPassword} setUsersPassword={setUsersPassword} transformDate={transformDate}/>
         }
         </AnimatePresence>
         </section>

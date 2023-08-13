@@ -168,6 +168,23 @@
             "header" : "Ustaw czas dla wybranych miesięcy",
             "back" : "lub wróć z powrotem"
         }
+    },
+    "AdminPage":
+    {
+        "findUser" : "Znajdź użytkownika",
+        "userName" : "Nazwa użytkownika",
+        "userLogin" : "Login użytkownika",
+        "createdAt" : "Prośba dodana: ",
+        "userPermissions" : "Uprawnienia użytkownika",
+        "USER" : "Użytkownik",
+        "ADMIN" : "Administrator",
+        "saveUser" : "Zapisz zmiany",
+        "deleteUser" : "Usuń użytkownika",
+        "modalDeleteUser" : "Czy na pewno chcesz usunąć użytkownika?",
+        "modalDeleteUserButton" : "Usuń użytkownika",
+        "noRegisterUsers" : "Brak nowych próśb o rejestrację!",
+        "saveUserRegister" : "Zatwierdź rejestrację",
+        "deleteUserRegister" : "Odrzuć rejestrację"
     }
   
 }
