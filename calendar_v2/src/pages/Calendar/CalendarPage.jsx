@@ -60,7 +60,7 @@ const verifyCalendarExist = useMemo(()=>
         if (!calendar)
             return;
             
-        return WebsocketProvider(calendar);
+        return  WebsocketProvider(calendar);
     },[calendar])
 
     useEffect(()=>
@@ -84,19 +84,24 @@ const verifyCalendarExist = useMemo(()=>
 
             return ()=> {
                 window.history.replaceState({}, document.title)
+                websocket.then(websocket => websocket.socket.disconnect())
             }
     },[])
 
     const handleClick = () => {
 
-        websocket.then(websocket => websocket.socket.emit('conservation', {id: calendar._id, conservation: true}));
-        setOpenModal(!openModal)
+        websocket.then(websocket => websocket.socket.emit('conservation', {id: calendar._id, conservation: !calendar.conservation}));
+        setCalendar({...calendar, conservation: !calendar.conservation})
+        
     }
 
     websocket && websocket.then(websocket => 
         {
-            websocket.socket.on('conservation', (conservation)=> conservation._id === calendar._id && setOpenModal(true));
-            
+            websocket.socket.on('conservation', (conservation)=> {
+                console.log('ile');
+                if (conservation.id === calendar._id)
+                    setOpenModal(true)
+                });
         })
 
         console.log(calendar);
@@ -104,7 +109,7 @@ const verifyCalendarExist = useMemo(()=>
         <>
         <AnimatedContainer key='calendarPageContainer' className={'background flex justify-center items-start overflow-hidden'} animation={'opacityVariant'}>
                 <AnimatePresence mode='wait'>
-                    {isAdmin && calendar.conservation ? <AdminPage calendar={calendar} setCalendar={setCalendar}/> : <button className='absolute right-0 z-[100]' onClick={handleClick}>click</button>}
+                    {isAdmin && calendar.conservation ? <AdminPage turnOfConservation={handleClick} calendar={calendar} setCalendar={setCalendar}/> : <button className='absolute right-0 z-[100]' onClick={handleClick}>click</button>}
                     <Modal  
                      isOpen={calendar.conservation && !isAdmin? true :openModal} 
                      modalText={translateCalendarPage('modalTextConservation')} 

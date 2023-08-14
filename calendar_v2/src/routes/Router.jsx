@@ -7,6 +7,8 @@ import CreateCalendarPage from '@/pages/CreateCalendar/CreateCalendarPage'
 import { AnimatePresence } from 'framer-motion';
 import AdminPage from '../pages/Admin/AdminPage';
 
+
+
 const CalendarPage = lazy(()=> import('@/pages/Calendar/CalendarPage'));
     
 
@@ -14,7 +16,7 @@ export default function Router() {
 
     const {isAdmin, user} = useAuthentication();
     const location = useLocation();
-
+    
     return(
     <AnimatePresence>
         <Routes key={location.pathname} location={location}>
@@ -22,8 +24,8 @@ export default function Router() {
         <>
             <Route key='mainpage' path='/' element={<MainPage replace/>}/>
             <Route path='/kalendarz/*' element={ <CalendarPage/>}/>
+            <Route path='/administrator' element={ <AdminPage/>}/>
             <Route key='login' path='/logowanie' element={<LoginPage page={1} replace/>}/>
-            <Route key='admin' path='/administrator' element={<AdminPage/>}/>
             <Route path='*' element={<div>not found</div>} replace/>
 
             {isAdmin? 
@@ -45,7 +47,7 @@ export default function Router() {
 const mainPaths = 
 [
     {name: 'main', path : '/',},
-    {name: 'calendar', path: '/kalendarz'}
+    {name: 'calendar', path: '/kalendarz' }
 ]
 
 const userPaths = [
@@ -54,7 +56,7 @@ const userPaths = [
 ]
 
 const adminPaths = [
-    {name: 'admin', path:  '/administrator'},
+    {name: 'admin', path:  '/administrator' },
     {name: 'createCalendar', path:  '/tworzenie_kalendarza'},
 ]
 

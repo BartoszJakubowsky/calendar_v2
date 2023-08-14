@@ -36,7 +36,8 @@
     },
     "MainPage":
     {
-        "loading" :"Poczekaj, pobieramy dla ciebie dane"
+        "loading" :"Poczekaj, pobieramy dla ciebie dane",
+        "noCalendars" : "Nie dodano jeszcze żadnego kalendarza!"
     },
     "Authentication":
     {
@@ -178,13 +179,51 @@
         "userPermissions" : "Uprawnienia użytkownika",
         "USER" : "Użytkownik",
         "ADMIN" : "Administrator",
-        "saveUser" : "Zapisz zmiany",
-        "deleteUser" : "Usuń użytkownika",
+        "saveUserConfirmed" : "Zapisz zmiany",
+        "deleteUserConfirmed" : "Usuń użytkownika",
+        "noConfirmedUsers" : "Nie dodano jeszcze żadnego użytkownika",
+
+        "confirmedEditTrue" : "Użytkownik zaktualizowany pomyślnie",
+        "confirmedEditFalse" : "Wystąpił błąd podczas aktualizacji użytkownika",
+        "confirmedDeleteTrue" : "Użytkownik został usunięty",
+        "confirmedDeleteFalse" : "Wystąpił błąd podczas usuwania użytkownika",
+
         "modalDeleteUser" : "Czy na pewno chcesz usunąć użytkownika?",
         "modalDeleteUserButton" : "Usuń użytkownika",
         "noRegisterUsers" : "Brak nowych próśb o rejestrację!",
         "saveUserRegister" : "Zatwierdź rejestrację",
-        "deleteUserRegister" : "Odrzuć rejestrację"
+        "deleteUserRegister" : "Odrzuć rejestrację",
+        "registerAddTrue" : "Użytkownik pomyślnie dodany",
+        "registerAddFalse" : "Wystąpił błąd podczas dodawania użytkownika",
+        "registerDeleteTrue" : "Użytkownik pomyślnie usunięty",
+        "registerDeleteFalse" : "Wystąpił błąd podczas usuwania użytkownika",
+        "passwordAddTrue" : "Hasło użytkownika zostało zresetowane",
+        "passwordAddFalse" : "Wystąpił błąd podczas resetowania hasła",
+        "passwordDeleteTrue" : "Prośba o zresetowanie hasła zostałą odrzucona",
+        "passwordDeleteFalse" : "Podczas odrzucania prośby o reset hasła wystąpił błąd",
+        "saveUserPassword" : "Zresetuj hasło",
+        "deleteUserPassword" : "Usuń prośbę o reset hasła",
+        "loading" : "Poczekaj na odpowiedź",
+        "noPasswordUsers" : "Brak nowych próśb o zresetowanie hasła!",
+        "calendarDesc" : "Opis kalendarza",
+        "calendarMonths" : "Miesiące kalendarza",
+        "deleteCalendar" : "Usuń kalendarz",
+        "calendarDeleteTrue" : "Kalendarz został usunięty",
+        "calendarDeleteFalse" : "Wystąpił błąd podczas usuwania kalendarza",
+        "noCalendars" : "Nie dodano jeszcze żadnego kalendarza!",
+
+        "january": "Styczeń",
+        "february": "Luty",
+        "march": "Marzec",
+        "april": "Kwiecień",
+        "may": "Maj",
+        "june": "Czerwiec",
+        "july": "Lipiec",
+        "august": "Sierpień",
+        "september": "Wrzesień",
+        "october": "Październik",
+        "november": "Listopad",
+        "december": "Grudzień"
     }
   
 }

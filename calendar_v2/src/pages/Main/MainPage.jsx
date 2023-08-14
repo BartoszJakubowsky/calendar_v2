@@ -15,7 +15,6 @@ const [calendars, setCalendars] = useState(false);
 
 useMemo(()=>
 {
-
    getCalendars().then(data => setTimeout(() => {
       setCalendars(data);
    }, 1000));
@@ -25,7 +24,12 @@ useMemo(()=>
 const calendarCards = useMemo(()=>
 {
    if (!calendars)
-      return;
+      return
+
+   if (calendars.length === 0)
+      return <AnimatedContainer className={'relative'} animation={'ySwipeVariant'} transition={{duration:0.5, ease: 'easeOut'}}>
+               <h3 className='text-accentStrong dark:text-dark-accentStrong'>{translateMainPage('noCalendars')}</h3>
+            </AnimatedContainer>
    return calendars.map((calendar, index) => 
       {
 

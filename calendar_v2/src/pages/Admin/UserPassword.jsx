@@ -3,16 +3,16 @@ import Accordion from '@/components/containers/Accordion'
 import {translateAdminPage} from '@/locales/translate'
 import AccordionContent from './AccordionContent';
 import {useState} from 'react'
-import {  addUserFromRegister, deleteUserFromRegister } from '@/api/admin/adminApi';
+import {  updateUserFromPassword, deleteUserFromPassword } from '@/api/admin/adminApi';
 
-export default function UserRegister({users,transformDate, deleteUserRegister, addUserConfirmed}) {
+export default function UserPassword({users, transformDate, deleteUserPassword, updateUserConfirmed}) {
     
     return (
         <>
         <AnimatedContainer className={'w-full h-full relative'} animation={'ySwipeVariant'}>
             {users.length == 0?
             <h1 className='text-accentStrong dark:text-dark-accentStrong text-lg text-center'>
-                {translateAdminPage('noRegisterUsers')}
+                {translateAdminPage('noPasswordUsers')}
             </h1>
             :
             users.map(user=> {
@@ -26,8 +26,8 @@ export default function UserRegister({users,transformDate, deleteUserRegister, a
                        <UserPanel 
                         user={user} 
                         transformDate={transformDate} 
-                        deleteUserRegister={deleteUserRegister}
-                        addUserConfirmed={addUserConfirmed}
+                        deleteUserPassword={deleteUserPassword}
+                        updateUserConfirmed={updateUserConfirmed}
                        />
                     </Accordion>
                 )
@@ -37,13 +37,13 @@ export default function UserRegister({users,transformDate, deleteUserRegister, a
   )
 }
 
-function UserPanel ({user, transformDate, addUserConfirmed, deleteUserRegister }) {
+function UserPanel ({user, transformDate, deleteUserPassword, updateUserConfirmed }) {
   const [fetchData, setFetchData] = useState(false);
   const [result, setResult] = useState(null);
   const [textOnTrue, setTextOnTrue] = useState('registerAddTrue')
   const [textOnFalse, setTextOnFalse] = useState('registerAddFalse');
 
-  const handleResponse = (res, action) => {
+  const handleResponse = (res) => {
 
 
      setTimeout(() => {
@@ -54,41 +54,37 @@ function UserPanel ({user, transformDate, addUserConfirmed, deleteUserRegister }
       setFetchData(false)
       setResult(null)
 
-      if (action === 'add' && res)
-      {
-        addUserConfirmed(res);
-        deleteUserRegister(user);
-      }
-      else if (action === 'delete' && res)
-      {
-        deleteUserRegister(user)
-      }
+        if (res)
+        {
+            updateUserConfirmed(res)
+            deleteUserPassword(user)
+        }
     }, 1500);
   }
   
 
   const handleAddClick = () => {
-    setTextOnTrue('registerAddTrue')
-    setTextOnFalse('registerAddFalse')
+    setTextOnTrue('passwordAddTrue')
+    setTextOnFalse('passwordAddFalse')
 
     setFetchData(true)
     handleResponse(true)
-    addUserFromRegister(user).then(res => handleResponse(res.data, 'add'))
+    updateUserFromPassword(user).then(res => handleResponse(res.data))
   }
   const handleDeleteClick = () => {
 
-    setTextOnTrue('registerDeleteTrue')
-    setTextOnFalse('registerDeleteFalse')
+    setTextOnTrue('passwordDeleteTrue')
+    setTextOnFalse('passwordDeleteFalse')
 
     setFetchData(true)
     handleResponse(true)
-    deleteUserFromRegister(user).then(res => handleResponse(res.data, 'delete'))
+    deleteUserFromPassword(user).then(res => handleResponse(res.data))
   }
 
   return (
     <AccordionContent
-    buttonAddText={translateAdminPage('saveUserRegister')}
-    buttonDeleteText={translateAdminPage('deleteUserRegister')}
+    buttonAddText={translateAdminPage('saveUserPassword')}
+    buttonDeleteText={translateAdminPage('deleteUserPassword')}
     buttonAddOnClick={handleAddClick}
     buttonDeleteOnClick={handleDeleteClick}
     fetchData={fetchData}

@@ -8,7 +8,7 @@ import DayHandler from "./DayHandler";
 import ColumnHandler from "./ColumnHandler";
 import SlotHandler from "./SlotHandler";
 import RecordHandler from "./RecordHandler";
-export default function AdminPage({ calendar, setCalendar }) {
+export default function AdminPage({ calendar, setCalendar, turnOfConservation }) {
   const [changedCalendar, setChangedCalendar] = useState(calendar);
 
   const translate = (text) => translateCalendarPage("AdminTools" + "." + text);
@@ -28,6 +28,7 @@ export default function AdminPage({ calendar, setCalendar }) {
     <div className="fixed inset-0 z-20 overflow-auto">
       <FloatingPanel className="bg-accentMedium dark:bg-dark-accentMedium p-2 z-20 w-[400px] overflow-x-hidden h-full right-0 absolute top-0 min-w-[150px]  flex-wrap items-start flex-col">
         <h3 className="h-fit w-full">Ustawienia globalne</h3>
+        <button onClick={()=>turnOfConservation()}>off</button>
         <h3 className="text-lg rounded-sm bg-accentLight dark:bg-dark-accentLight border-b-2  border-accentMedium dark:border-dark-accentMedium w-full h-fit">
           {translate("localSettings")}
         </h3>

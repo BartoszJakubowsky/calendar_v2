@@ -1,9 +1,7 @@
-
-
 import { motion as m } from "framer-motion";
-import { useState } from "react";
+import Ping from "@/components/ui/Ping";
 
-export default function TableNav({currentPage, setCurrentPage, links}) {
+export default function TableNav({currentPage, setCurrentPage, links, usersRegister, usersPassword}) {
 
 
 
@@ -21,7 +19,11 @@ export default function TableNav({currentPage, setCurrentPage, links}) {
             return (
               <li key={link} onClick={() => setCurrentPage(index)} className={`relative cursor-pointer`}>
                   <div className="flex flex-col items-center">
-                    <h3 className={`${matchCurrentLink(link)? 'text-accentStrong dark:text-dark-accentStrong' : 'text-black' } transition-colors duration-200`}>{link}</h3>
+                    <h3 className={`${matchCurrentLink(link)? 'text-accentStrong dark:text-dark-accentStrong' : 'text-black' } transition-colors duration-200 relative`}>
+                      {link}
+                      {index == 1 && usersRegister && usersRegister.length !=0? <Ping/> :false}
+                      {index == 2 && usersPassword && usersPassword.length !=0? <Ping/> :false}
+                    </h3>
                     {matchCurrentLink(link)  && (
                       <m.span
                         layoutId="underline"

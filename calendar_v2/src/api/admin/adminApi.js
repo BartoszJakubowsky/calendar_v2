@@ -18,17 +18,24 @@ const deleteAxios = async (path, data) => axios.delete(path, data);
 const updateUser = async (user) => postAxios(`user/${user._id}`, user);
 const deleteUser = async (user) => deleteAxios(`user/${user._id}`);
 
-const addUserFromRegister = async (user) => {
-  console.log(user, "got");
-  return putAxios(`register/add`, user);
-};
+const addUserFromRegister = async (user) => putAxios(`register/add`, user);
 const deleteUserFromRegister = async (user) =>
   deleteAxios(`register/${user._id}`);
 
+const updateUserFromPassword = async (user) =>
+  postAxios(`password/${user._id}`);
+const deleteUserFromPassword = async (user) =>
+  postAxios(`password/${user._id}`);
+
+const deleteCalendar = async (calendar) =>
+  deleteAxios(`calendar/${calendar._id}`);
 export {
   getAllData,
   updateUser,
   deleteUser,
   addUserFromRegister,
   deleteUserFromRegister,
+  updateUserFromPassword,
+  deleteUserFromPassword,
+  deleteCalendar,
 };

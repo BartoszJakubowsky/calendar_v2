@@ -78,7 +78,7 @@ export default function SlotsForm({formSlot, slots, setSlots, translate, isOpen,
 
     return (
         <SliderContainer isOpen={isOpen} className='background z-10 ease-in'>
-            <FormContainer className='h-full w-full'>
+            <FormContainer className='h-full w-full flex flex-wrap flex-col'>
                 <FormHeader text={headerText}/>
                 <h3 onClick={()=>setIsOpen(false)} className=' text-center custom-text-accentStrong cursor-pointer '>{translateText('back')}</h3>
                 
@@ -99,19 +99,21 @@ export default function SlotsForm({formSlot, slots, setSlots, translate, isOpen,
                  setValue={handleSpaceChange}
                  labelText={translateText('spaceLabel')}
                 />
+                <div className='self-end mt-auto w-full '>
                 <FormButton 
                  onClick={handleSave} 
-                className='absolute bottom-36 md:bottom-6 left-1/2 transform -translate-x-1/2 w-96 ' 
+                className=' !mb-4' 
                 text={translateText('buttonSave')}
                 />
                 {formSlot? 
                 <FormButton   
                  onClick={handleDelete} 
                  ok={'button-form-reject'}  
-                 className={`absolute pointer-events-auto  bottom-24 md:-bottom-6 left-1/2 transform -translate-x-1/2 w-96 ${formSlot.name === name? 'opacity-100' : ' opacity-0'}`} 
+                 className={`pointer-events-auto ${formSlot.name === name? 'opacity-100' : ' opacity-0'}`} 
                  text={translateText('buttonDelete')}
                  />
                  : false}
+                 </div>
 
             </FormContainer>
         </SliderContainer>

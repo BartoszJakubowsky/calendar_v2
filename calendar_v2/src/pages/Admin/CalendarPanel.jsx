@@ -3,31 +3,30 @@ import Accordion from '@/components/containers/Accordion'
 import {translateAdminPage} from '@/locales/translate'
 import AccordionContent from './AccordionContent';
 import {useState} from 'react'
-import {  addUserFromRegister, deleteUserFromRegister } from '@/api/admin/adminApi';
+import {  deleteCalendar } from '@/api/admin/adminApi';
 
-export default function UserRegister({users,transformDate, deleteUserRegister, addUserConfirmed}) {
+export default function CalendarPanel({calendars, transformDate, deleteCalendarFromCalendars}) {
     
     return (
         <>
         <AnimatedContainer className={'w-full h-full relative'} animation={'ySwipeVariant'}>
-            {users.length == 0?
+            {calendars.length == 0?
             <h1 className='text-accentStrong dark:text-dark-accentStrong text-lg text-center'>
-                {translateAdminPage('noRegisterUsers')}
+                {translateAdminPage('noCalendars')}
             </h1>
             :
-            users.map(user=> {
+            calendars.map(calendar=> {
                 return (
                     <Accordion
-                    key={user._id}
-                    label={user.name}
+                    key={calendar._id}
+                    label={calendar.name}
                     labelClassName={`bg-accentLight dark:bg-dark-accentLight rounded-sm p-2  cursor-pointer w-full border-b-2 border-accentMedium dark:border-dark-accentMedium`}
                     contentClassName={`bg-accentLight border-accentMedium dark:bg-dark-accentLight rounded-b-sm p-1 border-b-2  border-accentMedium dark:border-dark-accentMedium w-full  `}
                     >
-                       <UserPanel 
-                        user={user} 
+                       <PanelForCalendar 
+                        calendar={calendar} 
                         transformDate={transformDate} 
-                        deleteUserRegister={deleteUserRegister}
-                        addUserConfirmed={addUserConfirmed}
+                        deleteCalendarFromCalendars={deleteCalendarFromCalendars}
                        />
                     </Accordion>
                 )
@@ -37,13 +36,13 @@ export default function UserRegister({users,transformDate, deleteUserRegister, a
   )
 }
 
-function UserPanel ({user, transformDate, addUserConfirmed, deleteUserRegister }) {
+function PanelForCalendar ({calendar, transformDate, deleteCalendarFromCalendars }) {
   const [fetchData, setFetchData] = useState(false);
   const [result, setResult] = useState(null);
   const [textOnTrue, setTextOnTrue] = useState('registerAddTrue')
   const [textOnFalse, setTextOnFalse] = useState('registerAddFalse');
 
-  const handleResponse = (res, action) => {
+  const handleResponse = (res) => {
 
 
      setTimeout(() => {
@@ -54,42 +53,26 @@ function UserPanel ({user, transformDate, addUserConfirmed, deleteUserRegister }
       setFetchData(false)
       setResult(null)
 
-      if (action === 'add' && res)
-      {
-        addUserConfirmed(res);
-        deleteUserRegister(user);
-      }
-      else if (action === 'delete' && res)
-      {
-        deleteUserRegister(user)
-      }
+        if (res)
+         deleteCalendarFromCalendars(calendar)
     }, 1500);
   }
   
 
-  const handleAddClick = () => {
-    setTextOnTrue('registerAddTrue')
-    setTextOnFalse('registerAddFalse')
-
-    setFetchData(true)
-    handleResponse(true)
-    addUserFromRegister(user).then(res => handleResponse(res.data, 'add'))
-  }
+  
   const handleDeleteClick = () => {
 
-    setTextOnTrue('registerDeleteTrue')
-    setTextOnFalse('registerDeleteFalse')
+    setTextOnTrue('calendarDeleteTrue')
+    setTextOnFalse('calendarDeleteFalse')
 
     setFetchData(true)
     handleResponse(true)
-    deleteUserFromRegister(user).then(res => handleResponse(res.data, 'delete'))
+    deleteCalendar(calendar).then(res => handleResponse(res.data))
   }
 
   return (
     <AccordionContent
-    buttonAddText={translateAdminPage('saveUserRegister')}
-    buttonDeleteText={translateAdminPage('deleteUserRegister')}
-    buttonAddOnClick={handleAddClick}
+    buttonDeleteText={translateAdminPage('deleteCalendar')}
     buttonDeleteOnClick={handleDeleteClick}
     fetchData={fetchData}
     result={result}
@@ -98,10 +81,13 @@ function UserPanel ({user, transformDate, addUserConfirmed, deleteUserRegister }
     loadingMessage={translateAdminPage('loading')}
     >
         <div className='p-2'>
-            <h3 className='text-accentStrong dark:text-dark-accentStrong'>{translateAdminPage('userLogin')}</h3>
-               <p className='w-full mb-1'>{user.mail}</p>
-            <h3 className='text-accentStrong dark:text-dark-accentStrong'>{translateAdminPage('createdAt')}</h3>
-                <p className='w-full '>{transformDate(user.updatedAt)}</p>
+            <h3 className='text-accentStrong dark:text-dark-accentStrong'>{translateAdminPage('calendarDesc')}</h3>
+               <p className='w-full mb-1'>{calendar.description}</p>
+            <h3 className='text-accentStrong dark:text-dark-accentStrong'>{translateAdminPage('calendarMonths')}</h3>
+                {calendar.months.map(month => {
+                    const [year, monthName] = month.name.split('.');
+                    return <p key={month._id} className='w-full '>{`${translateAdminPage(monthName.toLowerCase())}  ${year}`}</p>
+                })}
         </div>
     </AccordionContent>
   )
