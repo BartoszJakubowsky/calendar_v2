@@ -1,5 +1,4 @@
 import FloatingPanel from "@/components/containers/FloatingPanel";
-import Accordion from "@/components/containers/Accordion";
 import { translateCalendarPage } from "@/locales/translate";
 import MonthHandler from "./MonthHandler";
 import WeekHandler from "./WeekHandler";
@@ -8,8 +7,23 @@ import DayHandler from "./DayHandler";
 import ColumnHandler from "./ColumnHandler";
 import SlotHandler from "./SlotHandler";
 import RecordHandler from "./RecordHandler";
-export default function AdminPage({ calendar, setCalendar, turnOfConservation }) {
+import Modal from '@/components/ui/Modal'
+import {updateCalendar} from '@/api/admin/adminApi';
+import AnimatedContainer from "@/components/containers/AnimatedContainer";
+import MainSettingsHandler from './MainSettingsHandler'
+import LoadingMessage from '@/components/ui/LoadingMessage';
+
+export default function AdminPage({ calendar, setCalendar, turnOffConservation }) {
+
   const [changedCalendar, setChangedCalendar] = useState(calendar);
+  const [calendarBackup, setCalednarBackup] = useState(calendar);
+  const [isFetching, setIsFetching] = useState(false);
+
+  const [isOpenModalLeave, setOpenModalLeave] = useState(false);
+  const [isOpenModalSave, setOpenModalSave] = useState(false);
+  const [isOpenModalApiTrue, setOpenModalApiTrue] = useState(false);
+  const [isOpenModalApiFalse, setOpenModalApiFalse] = useState(false);
+
 
   const translate = (text) => translateCalendarPage("AdminTools" + "." + text);
   const days = [
@@ -22,19 +36,96 @@ export default function AdminPage({ calendar, setCalendar, turnOfConservation })
     "sunday",
   ];
   const fixDate = (date) => date.split("T")[0].split("-").reverse().join("-");
-  const labelClassName = `bg-slate-300`;
-  const contentClassName = `bg-slate-200`;
+
+  const handleLeave = () => {
+    setCalendar(calendarBackup);
+    turnOffConservation();
+  }
+  const handleSave = () => {
+    updateCalendar(calendar._id, changedCalendar).then(response => {
+     
+     
+      setTimeout(() => {
+        setIsFetching(false);
+
+        if (response)
+          setOpenModalApiTrue(true);
+        else
+          setOpenModalApiFalse(true);
+     }, 1000);
+      
+    })
+  }
+  const handleLeaveClick = () => {
+    setOpenModalLeave(true)
+  }
+  const handleSaveClick = () => {
+    setOpenModalSave(true);
+  }
+
+  
   return (
-    <div className="fixed inset-0 z-20 overflow-auto">
-      <FloatingPanel className="bg-accentMedium dark:bg-dark-accentMedium p-2 z-20 w-[400px] overflow-x-hidden h-full right-0 absolute top-0 min-w-[150px]  flex-wrap items-start flex-col">
-        <h3 className="h-fit w-full">Ustawienia globalne</h3>
-        <button onClick={()=>turnOfConservation()}>off</button>
-        <h3 className="text-lg rounded-sm bg-accentLight dark:bg-dark-accentLight border-b-2  border-accentMedium dark:border-dark-accentMedium w-full h-fit">
-          {translate("localSettings")}
-        </h3>
+    <>
+    <Modal
+    modalText={translate('modalLeave')}
+    buttonText={translate('modalButtonLeave')}
+    onClick={handleLeave}
+    isOpen={isOpenModalLeave}
+    setIsOpen={setOpenModalLeave}
+    onlyButton={false}
+    />
+    <Modal
+    modalText={translate('modalSave')}
+    buttonText={translate('modalButtonSave')}
+    onClick={handleSave}
+    isOpen={isOpenModalSave}
+    setIsOpen={setOpenModalSave}
+    onlyButton={false}
+    />
+    <Modal
+    modalText={translate('modalApiTrue')}
+    buttonText={translate('modalButtonApiTrue')}
+    onClick={turnOffConservation}
+    isOpen={isOpenModalApiTrue}
+    setIsOpen={setOpenModalApiTrue}
+    />
+    <Modal
+    modalText={translate('modalApiFalse')}
+    buttonText={translate('modalButtonApiFalse')}
+    isOpen={isOpenModalApiFalse}
+    setIsOpen={setOpenModalApiFalse}
+    onlyButton={false}
+    />
+    {isFetching && 
+     <AnimatedContainer className={'backdrop-blur-sm z-50 flex justify-center items-center'} animation={'opacityVariant'}>
+      <LoadingMessage message={translate('loadingApi')} theme={'text-accentStrong'} className={'w-fit h-fit'}/>
+    </AnimatedContainer>
+    }
+    <AnimatedContainer className="fixed inset-0 z-20 overflow-auto" animation={'xSwipeVariant'}>
+      <FloatingPanel className="bg-accentMedium dark:bg-dark-accentMedium p-2 z-20 w-[400px] overflow-x-hidden h-full right-0 absolute top-0 min-w-[30px]  flex-wrap items-start flex-col">
+
+    <div className="min-w-[400px]">
+    <div className="flex">
+        <button className="option-off p-2 rounded-sm border-2 border-accentLight dark:border-dark-accentLight my-2" 
+        onClick={handleSaveClick}>
+          {translate('buttonSave')}
+        </button>
+        <button 
+        className="button-form-reject ml-1 !text-black p-2 rounded-sm border-2 border-accentLight dark:border-dark-accentLight my-2" 
+        onClick={handleLeaveClick}>{translate('buttonLeave')}
+        </button>
+      </div>
+
 
         <div className=" w-full flex-row flex-wrap ">
           {/* Month */}
+
+          <MainSettingsHandler
+          translate={translate}
+          calendar={changedCalendar}
+          setCalendar={setChangedCalendar}
+          />
+
           {changedCalendar.months.map((month, monthIndex) => {
             return (
               <MonthHandler
@@ -91,17 +182,8 @@ export default function AdminPage({ calendar, setCalendar, turnOfConservation })
                                   >
                                     {column.slots.map((slot, slotIndex) => {
                                       return (
-                                        <Accordion
-                                          key={slotIndex}
-                                          label={
-                                            translate("slotLabel") +
-                                            " " +
-                                            week.time[slotIndex]
-                                          }
-                                          labelClassName={`${labelClassName} ml-3`}
-                                          contentClassName={`${contentClassName} ml-4`}
-                                        >
                                           <SlotHandler
+                                            key={slotIndex}
                                             slot={slot}
                                             slotIndex={slotIndex}
                                             columnIndex={columnIndex}
@@ -110,21 +192,13 @@ export default function AdminPage({ calendar, setCalendar, turnOfConservation })
                                             dayIndex={dayIndex}
                                             calendar={changedCalendar}
                                             setCalendar={setChangedCalendar}
+                                            translate={translate}
                                           >
                                             {slot.records.map(
                                               (record, recordIndex) => {
                                                 return (
-                                                  <Accordion
-                                                    key={recordIndex}
-                                                    label={
-                                                      translate("recordLabel") +
-                                                      ": " +
-                                                      record.data
-                                                    }
-                                                    labelClassName={`${labelClassName} ml-3`}
-                                                    contentClassName={`${contentClassName} ml-4`}
-                                                  >
                                                     <RecordHandler
+                                                      key={recordIndex}
                                                       record={record}
                                                       recordIndex={recordIndex}
                                                       slotIndex={slotIndex}
@@ -136,13 +210,12 @@ export default function AdminPage({ calendar, setCalendar, turnOfConservation })
                                                       setCalendar={
                                                         setChangedCalendar
                                                       }
+                                                      translate={translate}
                                                     />
-                                                  </Accordion>
                                                 );
                                               }
                                             )}
                                           </SlotHandler>
-                                        </Accordion>
                                       );
                                     })}
                                   </ColumnHandler>
@@ -158,7 +231,9 @@ export default function AdminPage({ calendar, setCalendar, turnOfConservation })
             );
           })}
         </div>
+        </div>
       </FloatingPanel>
-    </div>
+    </AnimatedContainer>
+    </>
   );
 }

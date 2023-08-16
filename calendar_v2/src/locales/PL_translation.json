@@ -110,7 +110,38 @@
             "removeDay" : "Czy chcesz usunąć ten dzień?",
 
             "columnLabel" : "Kolumny",
-            "removeColumn" : "Czy chcesz usunąć tą kolumnę?"
+            "removeColumn" : "Czy chcesz usunąć tą kolumnę?",
+
+            "dayMessages" : "Wiadomości wyświetlane zamiast dnia (kolumn)",
+            "slotsLabel" : "Sloty",
+
+            "removeSlot" : "Usuń slot",
+            "slotMessage" : "Dodaj wiadomość wyświetlaną zamiast slota",
+            "recordsLabel" : "Rekordy",
+
+            "recordMessage" : "Wiadomość wyświetlana zamiast recordu",
+            "removeRecord" : "Usuń record",
+            "userRecord" : "Zapisany użytkownik",
+
+            "modalLeave" : "Czy na pewno chcesz wyjść z trybu edycji? Zmiany nie zostaną zapisane",
+            "modalButtonLeave" : "Tak, wyjdź",
+            "modalSave" : "Czy na pewno chcesz zapisać zmiany?",
+            "modalButtonSave" : "Tak, zapisz",
+
+            "modalApiTrue": "Zmiany zapisano",
+            "modalButtonApiTrue" : "Ok",
+
+            "modalApiFalse" : "Wystąpił błąd podczas zapisywania zmian",
+            "modalButtonApiFalse" : "Ok",
+
+            "buttonSave" : "Zapisz wprowadzone zmiany",
+            "buttonLeave" : "Zamknij tryb edycji",
+
+            "mainSettings" : "Ustawienia główne",
+            "nameLabel" : "Nazwa kalendarza",
+            "descriptionLabel" : "Opis kalendarza",
+            "messagesLabel" : "Powiadomienia kalendarza",
+            "loadingApi" : "Poczekaj, zapisujemy zmiany"
          } 
     },
     "CreateCalendarPage" :

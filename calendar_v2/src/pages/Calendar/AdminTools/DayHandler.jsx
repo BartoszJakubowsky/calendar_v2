@@ -31,7 +31,7 @@ export default function DayHandler({day, dayIndex, weekIndex, monthIndex, childr
         })
 
         const updatedMonths = calendar.months.map((month, index) => {
-            if (monthIndex !== monthIndex) return month;
+            if (monthIndex !== index) return month;
           
             const updatedWeeks = month.weeks.map((week, index) => {
               if (weekIndex !== index) return week;
@@ -65,9 +65,10 @@ export default function DayHandler({day, dayIndex, weekIndex, monthIndex, childr
             inputContainerClassName=' border-b-2 border-baseColor border-dark-baseColor dark:border-accentLight   flex flex-wrap  h-fit cursor-pointer'
             />
              <Accordion
-            label={translate('weekMessages')}
+            label={translate('dayMessages')}
             labelClassName={` rounded-sm mt-1 dark:text-baseColor font-medium cursor-pointer`}
             contentClassName={`rounded-sm mb-2`}
+            initial={true}
             >
             <MessagesHandler
             messages={messages}

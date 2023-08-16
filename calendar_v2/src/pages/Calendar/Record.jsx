@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react"
 import useAuthentication from '@/hooks/useAuthentication'
-export default function Record({record, translate, websocket}) {
+import useSocket from '@/hooks/useSocket';
+export default function Record({record, translate, calendarId}) {
 
     const {user} = useAuthentication();
+    const {socket, updateRecord} = useSocket();
     const [name, setName] = useState(record.data);
     const id = record.id;
     const [hoverMessage, setHoverMessage] = useState(false);
-
     const handleSign = (data) =>
     {
-      if (data.recordID === id)
+      if (data.recordId === id)
         setName(data.data)
     }
     useEffect(()=>
     {
-      websocket.then(websocket => websocket.socket.on('sign', data => handleSign(data)))
+      socket && socket.on('sign', data => handleSign(data))
     },[])
 
     const handleMouseEnter = () => {
@@ -30,7 +31,7 @@ export default function Record({record, translate, websocket}) {
 
       const handleClick = () => {
 
-        websocket.then(websocket => websocket.emitMessage({recordID: id, data: name === '' ? user.name : ''}));
+        updateRecord({recordId: id, calendarId, data: name === '' ? user.name : ''});
         if (name === '')
         {
             setHoverMessage(false);

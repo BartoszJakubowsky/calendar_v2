@@ -17,10 +17,10 @@ function useAnimation() {
 
   const xSwipeVariant = {
     name: "xSwipeVariant",
-    initial: { opacity: 0, x: -200, y: 0 },
+    initial: { opacity: 0, x: 200, y: 0 },
     animate: { opacity: 1, x: 0, y: 0 },
     transition: { duration: 0.5, ease: "easeOut" },
-    exit: { opacity: 0, x: 0, y: -100 },
+    exit: { opacity: 0, x: 200, y: 0 },
   };
   const ySwipeVariant = {
     name: "ySwipeVariant",

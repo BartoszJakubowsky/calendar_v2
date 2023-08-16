@@ -8,18 +8,18 @@ import { AnimatePresence } from 'framer-motion';
 import MenuPage from '@/pages/menu/MenuPage';
 import Carousel from '@/components/containers/Carousel';
 import Month from './Month';
-import io from 'socket.io-client';
 import Modal from '@/components/ui/Modal';
 import useAuthentication from '@/hooks/useAuthentication';
 import AdminPage from './AdminTools/AdminPage';
+import useSocket from '@/hooks/useSocket';
 export default function CalendarPage() {
 
     const location = useLocation();
     const navigate = useNavigate();
 
     const {isAdmin} = useAuthentication();
-
- 
+    const {socket, setConservation, compareSocketId} = useSocket();
+    
 
     const searchedCalendarName = location.pathname.split('/').pop()
     const [swipe, setSwipe] = useState(0);
@@ -39,7 +39,7 @@ export default function CalendarPage() {
 
 const verifyCalendarExist = useMemo(()=>
     {   
-        console.log(location.state);
+        
         const passedCalendars = location.state;
         if (passedCalendars)
         {
@@ -55,14 +55,6 @@ const verifyCalendarExist = useMemo(()=>
 
     const [calendar, setCalendar] = useState(verifyCalendarExist);
     
-    const websocket = useMemo(()=>
-    {
-        if (!calendar)
-            return;
-            
-        return  WebsocketProvider(calendar);
-    },[calendar])
-
     useEffect(()=>
     {
         if (!calendar)        
@@ -84,42 +76,39 @@ const verifyCalendarExist = useMemo(()=>
 
             return ()=> {
                 window.history.replaceState({}, document.title)
-                websocket.then(websocket => websocket.socket.disconnect())
             }
     },[])
 
     const handleClick = () => {
 
-        websocket.then(websocket => websocket.socket.emit('conservation', {id: calendar._id, conservation: !calendar.conservation}));
+        setConservation(calendar._id, !calendar.conservation);
         setCalendar({...calendar, conservation: !calendar.conservation})
         
     }
+  
+    useEffect(()=>{
+        socket && socket.on('conservation', (message)=> {
+            if (message.calendarId === calendar._id && !compareSocketId(message.senderId))
+                setOpenModal(true)
+            });
+    },[])
+        
 
-    websocket && websocket.then(websocket => 
-        {
-            websocket.socket.on('conservation', (conservation)=> {
-                console.log('ile');
-                if (conservation.id === calendar._id)
-                    setOpenModal(true)
-                });
-        })
-
-        console.log(calendar);
     return (
         <>
         <AnimatedContainer key='calendarPageContainer' className={'background flex justify-center items-start overflow-hidden'} animation={'opacityVariant'}>
                 <AnimatePresence mode='wait'>
-                    {isAdmin && calendar.conservation ? <AdminPage turnOfConservation={handleClick} calendar={calendar} setCalendar={setCalendar}/> : <button className='absolute right-0 z-[100]' onClick={handleClick}>click</button>}
+                    {isAdmin && calendar.conservation ? <AdminPage turnOffConservation={handleClick} calendar={calendar} setCalendar={setCalendar}/> : <button className='absolute right-0 z-[100]' onClick={handleClick}>click</button>}
                     <Modal  
                      isOpen={calendar.conservation && !isAdmin? true :openModal} 
                      modalText={translateCalendarPage('modalTextConservation')} 
                      buttonText={translateCalendarPage('modalButtonText')} 
                      setIsOpen={setOpenModal} 
                      onClick={()=> navigate('/')}/>
-                    {isAdmin && calendar.conservation ? <MenuPage lock={true}/> : <MenuPage/>}
+                     <MenuPage/>
                     {calendar?  
                     <>
-                    <AnimatedContainer key='calendarPage'  className={'relative w-full h-full flex justify-center flex-wrap'} animation={'opacityVariant'}>
+                    <AnimatedContainer key={'calendarPage'}  className={'relative w-full h-full flex justify-center flex-wrap'} animation={'opacityVariant'}>
                         <h3 className='custom-text-accentStrong text-center text-xl w-full underline font-bold md:pt-4 pt-4 '>
                             {calendar.name}
                         </h3>
@@ -128,7 +117,7 @@ const verifyCalendarExist = useMemo(()=>
                             className={`w-11/12 md:w-3/4 h-5/6 md:h-3/4 md:-mt-28 -mt-4 rounded-sm`}
                             containerClassName={'w-full h-full bg-accentMedium dark:bg-dark-accentMedium'}
                             startPosition={0}
-                            pages ={calendar.months.map((month, index)=> <Month key={index} month={month} websocket={websocket} swipe={swipe} maxIndex={calendar.months.length-1} setSwipe={setSwipe}/>)}
+                            pages ={calendar.months.map((month, index)=> <Month key={month._id} month={month} calendarId = {calendar._id} swipe={swipe} maxIndex={calendar.months.length-1} setSwipe={setSwipe}/>)}
                             swipeToIndex={swipe}
                             />
                     </AnimatedContainer>
@@ -143,32 +132,3 @@ const verifyCalendarExist = useMemo(()=>
 }
 
 
-async function WebsocketProvider(calendar)
-{
-    const baseUrl = import.meta.env.VITE_BASE_URL;
-    const socket = io.connect(baseUrl);
-
-    socket.on("connected", (data) => 
-    {
-        console.log('connected');
-    });
-
-    socket.on('sign', data => 
-    {   
-    })
-    socket.on('error', ()=>
-    {
-        console.log('error');
-    });
-
-    const emitMessage = updatedRecord =>
-    {
-        updatedRecord.calendarID = calendar._id;
-        updatedRecord.socketID = socket.id;
-        socket.emit('updateRecord', updatedRecord);
-    }
-
-    return (
-        {emitMessage, socket}
-        );
-}

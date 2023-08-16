@@ -1,6 +1,6 @@
 import { translateCalendarPage } from "@/locales/translate";
 import Table from "./Table";
-export default function MonthTable({month, websocket, swipe, setSwipe, maxIndex}) {
+export default function MonthTable({month, swipe, setSwipe, maxIndex, calendarId}) {
     
     
 
@@ -19,7 +19,7 @@ export default function MonthTable({month, websocket, swipe, setSwipe, maxIndex}
     const weeks = month.weeks.map((week, index)=>
     {
         return (
-            <Table key={index} week={week} websocket={websocket}/>
+            <Table key={index} week={week} calendarId = {calendarId}/>
         )
        
     });

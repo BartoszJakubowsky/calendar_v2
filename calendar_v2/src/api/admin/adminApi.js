@@ -15,10 +15,10 @@ const putAxios = async (path, data) => axios.put(path, data);
 const postAxios = async (path, data) => axios.post(path, data);
 const deleteAxios = async (path, data) => axios.delete(path, data);
 
-const updateUser = async (user) => postAxios(`user/${user._id}`, user);
+const updateUser = async (user) => putAxios(`user/${user._id}`, user);
 const deleteUser = async (user) => deleteAxios(`user/${user._id}`);
 
-const addUserFromRegister = async (user) => putAxios(`register/add`, user);
+const addUserFromRegister = async (user) => postAxios(`register/add`, user);
 const deleteUserFromRegister = async (user) =>
   deleteAxios(`register/${user._id}`);
 
@@ -29,6 +29,9 @@ const deleteUserFromPassword = async (user) =>
 
 const deleteCalendar = async (calendar) =>
   deleteAxios(`calendar/${calendar._id}`);
+
+const updateCalendar = async (calendarId, calendar) =>
+  putAxios(`calendar/${calendarId}`, calendar);
 export {
   getAllData,
   updateUser,
@@ -38,4 +41,5 @@ export {
   updateUserFromPassword,
   deleteUserFromPassword,
   deleteCalendar,
+  updateCalendar,
 };

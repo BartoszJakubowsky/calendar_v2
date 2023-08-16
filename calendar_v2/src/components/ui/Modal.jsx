@@ -30,7 +30,7 @@ export default function Modal({modalText, buttonText, onClick, isOpen, setIsOpen
 
     const handleClick = () => {
         onClick && onClick();
-        setIsOpen(!isOpen);
+        setIsOpen(false);
     }
 
     const handleGlobalClick = () => {

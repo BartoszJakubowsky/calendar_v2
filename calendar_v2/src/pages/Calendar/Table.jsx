@@ -3,7 +3,7 @@ import TableData from "./TableData";
 import { translateCalendarPage } from "@/locales/translate";
 
 
-export default function Table({week, websocket}) {
+export default function Table({week, calendarId}) {
 
 const {days, bannedDays, time} = week;
  return (
@@ -30,7 +30,7 @@ const {days, bannedDays, time} = week;
                 bannedDays={bannedDays}  
                 time={time}
                 translate={translateCalendarPage}
-                websocket={websocket}
+                calendarId = {calendarId}
                 />
                 )
             })}

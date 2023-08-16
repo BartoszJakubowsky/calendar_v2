@@ -9,9 +9,7 @@ export default function MonthHandler({month, monthIndex ,translate, children, ca
     const [erase, setErase] = useState(month.erase || false);
     const [messages, setMessages] = useState(month.messages);
 
-    useEffect(()=>{
-
-    },[])
+  
     useEffect(()=>
     {
         if(!isMounted.current)
@@ -60,6 +58,7 @@ export default function MonthHandler({month, monthIndex ,translate, children, ca
             label={translate('monthMessages')}
             labelClassName={`bg-accentLight dark:bg-dark-accentLight rounded-sm mt-1 dark:text-baseColor font-medium cursor-pointer`}
             contentClassName={`bg-accentLight dark:bg-dark-accentLight rounded-sm`}
+            initial={true}
             >
                 <MessagesHandler
                 messages={messages}

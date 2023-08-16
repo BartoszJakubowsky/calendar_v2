@@ -39,7 +39,7 @@ const handleCalendarUpdate = () => {
     })
 
     const updatedMonths = calendar.months.map((month, index) => {
-        if (monthIndex !== monthIndex) return month;
+        if (monthIndex !== index) return month;
       
         const updatedWeeks = updateWeeks(month.weeks);
         return { ...month, weeks: updatedWeeks}; 
@@ -72,6 +72,7 @@ const boundaryArrayForMessages = week.days.map(day => translateCalendarPage(day.
             label={translate('weekBannedDays')}
             labelClassName={` rounded-sm mt-1 dark:text-baseColor font-medium cursor-pointer`}
             contentClassName={`rounded-sm`}
+            initial={true}
             >
                 <SelectOptions
                 selectedOptions={bannedDays}
@@ -84,6 +85,7 @@ const boundaryArrayForMessages = week.days.map(day => translateCalendarPage(day.
             label={translate('weekMessages')}
             labelClassName={` rounded-sm mt-1 dark:text-baseColor font-medium cursor-pointer`}
             contentClassName={`rounded-sm mb-2`}
+            initial={true}
             >
                 <MessagesHandler
                 messages={messages}

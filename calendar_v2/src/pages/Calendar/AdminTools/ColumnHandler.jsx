@@ -32,7 +32,7 @@ export default function ColumnHandler({column, columnIndex, dayIndex, weekIndex,
 
 
         const updatedMonths = calendar.months.map((month, index) => {
-            if (monthIndex !== monthIndex) return month;
+            if (monthIndex !== index) return month;
           
             const updatedWeeks = month.weeks.map((week, index) => {
               if (weekIndex !== index) return week;
@@ -71,15 +71,22 @@ export default function ColumnHandler({column, columnIndex, dayIndex, weekIndex,
             label={translate('weekMessages')}
             labelClassName={` rounded-sm mt-1 dark:text-baseColor font-medium cursor-pointer`}
             contentClassName={`rounded-sm mb-2`}
+            initial={true}
             >
             <MessagesHandler
             messages={messages}
             setMessages={setMessages}
             translate={translate}
-            boundaryArray={columns}
             />
             </Accordion>
+            <Accordion
+            label={translate('slotsLabel')}
+            accordionClassName={`${erase? 'cursor-none pointer-events-none [&>*]:!text-red-300 [&>*]:line-through text-ellipsis ' : 'pointer-events-auto cursor-pointer'}`}
+            labelClassName={` p-2 bg-accentMedium dark:bg-dark-accentMedium  w-full text-dark-baseColor border-b-2 `}
+            contentClassName={` p-2  text-dark-baseColor bg-accentLight dark:text-baseColor dark:bg-dark-accentLight  w-full text-dark-baseColor border-2 border-accentMedium dark:border-dark-accentMedium `}
+            >
             {children}
+            </Accordion>
             </>
         )
 }

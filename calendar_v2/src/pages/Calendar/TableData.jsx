@@ -1,11 +1,11 @@
 import Record from './Record'
-export default function TableData({days, bannedDays, rowClassName, cellClassName, time, translate, websocket, index}) {
+export default function TableData({days, bannedDays, rowClassName, cellClassName, time, translate, index, calendarId}) {
     const recordCell = (records) =>
     {
         return records.map(record =>
             {
                 return (
-                    <Record key={record.id} record={record} translate={translate} websocket={websocket}/>
+                    <Record key={record.id} record={record} translate={translate} calendarId = {calendarId}/>
                 )
             })
     }
