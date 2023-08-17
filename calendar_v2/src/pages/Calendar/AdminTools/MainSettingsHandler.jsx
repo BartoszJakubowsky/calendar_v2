@@ -19,7 +19,7 @@ export default function MainSettingsHandler({translate, calendar, setCalendar}) 
 
         handleCalendarUpdate();
 
-    }, [messages])
+    }, [messages, name, description])
     const handleCalendarUpdate = () =>
     {
        setCalendar({...calendar, messages, name, description})

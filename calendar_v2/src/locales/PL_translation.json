@@ -105,7 +105,7 @@
 
 
             "removeWeek" : "Czy usunąć ten tydzień?",
-            "weekMessages" : "Wiadomości wyświetlane zamiast dni",
+            "weekMessages" : "Wiadomości wyświetlane zamiast slotów",
             "weekBannedDays" : "Dni, których nie wyświetlać w tygodniu",
             "removeDay" : "Czy chcesz usunąć ten dzień?",
 

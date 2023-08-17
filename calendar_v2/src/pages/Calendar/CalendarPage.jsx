@@ -93,7 +93,7 @@ const verifyCalendarExist = useMemo(()=>
             });
     },[])
         
-
+    console.log(calendar);
     return (
         <>
         <AnimatedContainer key='calendarPageContainer' className={'background flex justify-center items-start overflow-hidden'} animation={'opacityVariant'}>

@@ -15,7 +15,6 @@ import LoadingMessage from '@/components/ui/LoadingMessage';
 
 export default function AdminPage({ calendar, setCalendar, turnOffConservation }) {
 
-  const [changedCalendar, setChangedCalendar] = useState(calendar);
   const [calendarBackup, setCalednarBackup] = useState(calendar);
   const [isFetching, setIsFetching] = useState(false);
 
@@ -23,7 +22,6 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
   const [isOpenModalSave, setOpenModalSave] = useState(false);
   const [isOpenModalApiTrue, setOpenModalApiTrue] = useState(false);
   const [isOpenModalApiFalse, setOpenModalApiFalse] = useState(false);
-
 
   const translate = (text) => translateCalendarPage("AdminTools" + "." + text);
   const days = [
@@ -35,14 +33,19 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
     "saturday",
     "sunday",
   ];
-  const fixDate = (date) => date.split("T")[0].split("-").reverse().join("-");
+  const fixDate = (date) => {
+    // return date
+    return date.split("T")[0].split("-").reverse().join("-");
+  }
 
   const handleLeave = () => {
     setCalendar(calendarBackup);
     turnOffConservation();
   }
   const handleSave = () => {
-    updateCalendar(calendar._id, changedCalendar).then(response => {
+    setIsFetching(true);
+    
+    updateCalendar(calendar._id, calendar).then(response => {
      
      
       setTimeout(() => {
@@ -122,11 +125,11 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
 
           <MainSettingsHandler
           translate={translate}
-          calendar={changedCalendar}
-          setCalendar={setChangedCalendar}
+          calendar={calendar}
+          setCalendar={setCalendar}
           />
 
-          {changedCalendar.months.map((month, monthIndex) => {
+          {calendar.months.map((month, monthIndex) => {
             return (
               <MonthHandler
                 key={monthIndex}
@@ -134,8 +137,8 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
                 translate={translate}
                 days={days}
                 monthIndex={monthIndex}
-                calendar={changedCalendar}
-                setCalendar={setChangedCalendar}
+                calendar={calendar}
+                setCalendar={setCalendar}
               >
                 {month.weeks.map((week, weekIndex) => {
                   return (
@@ -144,8 +147,8 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
                       week={week}
                       weekIndex={weekIndex}
                       monthIndex={monthIndex}
-                      calendar={changedCalendar}
-                      setCalendar={setChangedCalendar}
+                      calendar={calendar}
+                      setCalendar={setCalendar}
                       translate={translate}
                       fixDate={fixDate}
                       days={days}
@@ -160,8 +163,8 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
                             monthIndex={monthIndex}
                             weekIndex={weekIndex}
                             dayIndex={dayIndex}
-                            calendar={changedCalendar}
-                            setCalendar={setChangedCalendar}
+                            calendar={calendar}
+                            setCalendar={setCalendar}
                             translate={translate}
                             date={date}
                             time={week.time}
@@ -175,8 +178,8 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
                                     monthIndex={monthIndex}
                                     weekIndex={weekIndex}
                                     dayIndex={dayIndex}
-                                    calendar={changedCalendar}
-                                    setCalendar={setChangedCalendar}
+                                    calendar={calendar}
+                                    setCalendar={setCalendar}
                                     translate={translate}
                                     columns={day.columns.map(column => column.name)}
                                   >
@@ -190,8 +193,8 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
                                             monthIndex={monthIndex}
                                             weekIndex={weekIndex}
                                             dayIndex={dayIndex}
-                                            calendar={changedCalendar}
-                                            setCalendar={setChangedCalendar}
+                                            calendar={calendar}
+                                            setCalendar={setCalendar}
                                             translate={translate}
                                           >
                                             {slot.records.map(
@@ -206,9 +209,9 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
                                                       monthIndex={monthIndex}
                                                       weekIndex={weekIndex}
                                                       dayIndex={dayIndex}
-                                                      calendar={changedCalendar}
+                                                      calendar={calendar}
                                                       setCalendar={
-                                                        setChangedCalendar
+                                                        setCalendar
                                                       }
                                                       translate={translate}
                                                     />

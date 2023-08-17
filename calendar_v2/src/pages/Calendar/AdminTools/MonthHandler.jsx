@@ -28,7 +28,7 @@ export default function MonthHandler({month, monthIndex ,translate, children, ca
         {
             if (index === monthIndex)
             {
-                return {...month, erase, ...messages}
+                return {...month, erase, messages}
             }
             else
                 return month;

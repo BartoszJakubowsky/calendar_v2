@@ -1,11 +1,12 @@
 import { translateCalendarPage } from "@/locales/translate";
 import Table from "./Table";
+import Message from "./Message";
 export default function MonthTable({month, swipe, setSwipe, maxIndex, calendarId}) {
     
     
 
     const [yearName, monthName] = month.name.split('.').map(name => name.toLowerCase());
-
+    const message = month.messages.map((message, index) => <Message key={index} message={message}/>)
   
     const handleSwipeLeft = () => 
     {
@@ -26,6 +27,7 @@ export default function MonthTable({month, swipe, setSwipe, maxIndex, calendarId
 
     return (
         <div className="overflow-hidden w-full h-full border-2 border-slate-700">
+            {message}
         <h3 className="relative text-lg w-full md:h-[4%] h-[5%] text-center bg-accentStrongHover dark:bg-dark-accentStrongHover text-baseColor dark:text-baseColor">
             {translateCalendarPage(monthName)}
             <span onClick={handleSwipeLeft} className={`absolute text-sm left-1 top-1 transition-all duration-200 ${swipe === 0 ? ' opacity-50 pointer-events-none' : ''}`}>

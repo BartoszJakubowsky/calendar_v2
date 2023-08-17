@@ -12,7 +12,7 @@ export default function MessagesHandler({messages, setMessages, boundaryArray, m
         setMessages(updatedMessages);
     }
     const handleAddMessage = () => {
-        const newMessage = {data: '', expires: {date: '', time: ''}, from: false, to: false}
+        const newMessage = {data: '', expires: {date: '', time: ''}, from: boundaryArray? 0 : false, to: boundaryArray?  boundaryArray.length-1 : false}
         if (messages.length === 0)
             setMessages([newMessage])
         else
@@ -43,7 +43,6 @@ export default function MessagesHandler({messages, setMessages, boundaryArray, m
             }
 
             const handleFromChange = (newFrom) => {
-
                 const newFromIndex = boundaryArray.indexOf(newFrom);
                 const newMessage = { ...message, from: newFromIndex};
                 updateMessages(newMessage, index);

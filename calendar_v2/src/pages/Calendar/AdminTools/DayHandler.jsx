@@ -27,7 +27,7 @@ export default function DayHandler({day, dayIndex, weekIndex, monthIndex, childr
         const updateDays = (days) => days.map((day, index)=>{
             if (dayIndex !== index) return day
 
-            return {...day, erase, ...messages}
+            return {...day, erase, messages}
         })
 
         const updatedMonths = calendar.months.map((month, index) => {

@@ -35,7 +35,7 @@ const handleCalendarUpdate = () => {
 
       if (weekIndex !== index) return week;
 
-      return { ...week, ...messages, erase, ...bannedDays}; 
+      return { ...week, messages, erase, bannedDays}; 
     })
 
     const updatedMonths = calendar.months.map((month, index) => {

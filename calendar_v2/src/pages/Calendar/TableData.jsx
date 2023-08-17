@@ -9,7 +9,6 @@ export default function TableData({days, bannedDays, rowClassName, cellClassName
                 )
             })
     }
-
     const renderCells = (slots) =>
     {
 
@@ -41,6 +40,7 @@ export default function TableData({days, bannedDays, rowClassName, cellClassName
     const filteredDays = days.filter(day => !bannedDays.includes(day.name.toUpperCase()))
     const renderDays = filteredDays.length > 0?  filteredDays.map(day => 
         {
+            console.log(day.messages);
             return (
                 <td key={day.id} className={`${cellClassName} flex flex-row grow`}>
                     {/* {slotCell(cell.slots)} */}
