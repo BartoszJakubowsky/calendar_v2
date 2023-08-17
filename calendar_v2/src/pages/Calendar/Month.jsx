@@ -26,16 +26,16 @@ export default function MonthTable({month, swipe, setSwipe, maxIndex, calendarId
     });
 
     return (
-        <div className="overflow-hidden w-full h-full border-2 border-slate-700">
+        <div className="overflow-hidden w-full h-full border-2 border-slate-700 relative">
             {message}
         <h3 className="relative text-lg w-full md:h-[4%] h-[5%] text-center bg-accentStrongHover dark:bg-dark-accentStrongHover text-baseColor dark:text-baseColor">
             {translateCalendarPage(monthName)}
-            <span onClick={handleSwipeLeft} className={`absolute text-sm left-1 top-1 transition-all duration-200 ${swipe === 0 ? ' opacity-50 pointer-events-none' : ''}`}>
-                leftArrow
-            </span>
-            <span onClick={handleSwipeRight} className={`absolute text-sm right-1 top-1 transition-all duration-200 ${swipe === maxIndex? 'opacity-50 pointer-events-none':''}`}>
-                rightArrow
-            </span>
+            <button onClick={handleSwipeLeft} className={`absolute text-sm left-1 top-1 transition-all duration-200 ${swipe === 0 ? ' opacity-50 pointer-events-none' : ''}`}>
+                {translateCalendarPage('previousMonth')}
+            </button>
+            <button onClick={handleSwipeRight} className={`absolute text-sm right-1 top-1 transition-all duration-200 ${swipe === maxIndex? 'opacity-50 pointer-events-none':''}`}>
+                {translateCalendarPage('nextMonth')}
+            </button>
         </h3>
         <div className="flex flex-wrap flex-col md:h-[96%] h-[95%] w-full overflow-auto touch-auto bg-red-300">
             {weeks}

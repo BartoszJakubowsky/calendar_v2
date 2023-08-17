@@ -6,6 +6,9 @@ export default function TableHeader({ days, bannedData, rowClassName, cellClassN
     const filteredDays = days.filter(day => !bannedData.includes(day.name.toUpperCase()))
     const th = filteredDays.length > 0 ? filteredDays.map((day) =>
         {
+            if (day.erase)
+                return false;
+            
             const verifyBannedData = (dataToVerify) => {
                 const _dataToVerify = dataToVerify.toUpperCase();
                 //bannedData -> global settings, data.bannedData -> localSettings
@@ -33,12 +36,11 @@ export default function TableHeader({ days, bannedData, rowClassName, cellClassN
                 </th>
             )
         }) : false;
-
+    
     return (
-
         <>
         {th? 
-            <tr className={`${rowClassName} sticky top-0 z-[2]`}>
+            <tr className={`${rowClassName} sticky top-0 z-[6]`}>
                 {additionalFirstCol? <th className={`${cellClassName}  sticky -left-[1px] w-16  bg-accentLight dark:bg-dark-accentLight text-dark-baseColor dark:text-baseColor`}>
                     {translate(additionalFirstCol) }
                 </th> 

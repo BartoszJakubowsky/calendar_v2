@@ -64,6 +64,8 @@
     },
     "CalendarPage" : 
     {
+        "nextMonth" : "Następny miesiąc",
+        "previousMonth" : "Poprzedni miesiąc",
         "loading" : "Poczekaj, pobieramy dla ciebie kalendarz",
         "time" : "Czas",
         "sign" : "Zapisz mnie",
@@ -105,18 +107,19 @@
 
 
             "removeWeek" : "Czy usunąć ten tydzień?",
-            "weekMessages" : "Wiadomości wyświetlane zamiast slotów",
+            "weekMessages" : "Wiadomości wyświetlane zamiast dni",
             "weekBannedDays" : "Dni, których nie wyświetlać w tygodniu",
             "removeDay" : "Czy chcesz usunąć ten dzień?",
 
             "columnLabel" : "Kolumny",
             "removeColumn" : "Czy chcesz usunąć tą kolumnę?",
+            "columnMessages" : "Wiadomość wyświetlane zamiast kolumnu",
 
             "dayMessages" : "Wiadomości wyświetlane zamiast dnia (kolumn)",
             "slotsLabel" : "Sloty",
 
             "removeSlot" : "Usuń slot",
-            "slotMessage" : "Dodaj wiadomość wyświetlaną zamiast slota",
+            "slotMessage" : "Dodaj wiadomość wyświetlaną zamiast rekordów",
             "recordsLabel" : "Rekordy",
 
             "recordMessage" : "Wiadomość wyświetlana zamiast recordu",

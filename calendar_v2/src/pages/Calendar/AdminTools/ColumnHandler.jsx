@@ -68,7 +68,7 @@ export default function ColumnHandler({column, columnIndex, dayIndex, weekIndex,
             inputContainerClassName=' border-b-2 border-baseColor border-dark-baseColor dark:border-accentLight   flex flex-wrap  h-fit cursor-pointer'
             />
              <Accordion
-            label={translate('weekMessages')}
+            label={translate('columnMessages')}
             labelClassName={` rounded-sm mt-1 dark:text-baseColor font-medium cursor-pointer`}
             contentClassName={`rounded-sm mb-2`}
             initial={true}
@@ -77,6 +77,7 @@ export default function ColumnHandler({column, columnIndex, dayIndex, weekIndex,
             messages={messages}
             setMessages={setMessages}
             translate={translate}
+            maxMessages={1}
             />
             </Accordion>
             <Accordion
@@ -85,7 +86,7 @@ export default function ColumnHandler({column, columnIndex, dayIndex, weekIndex,
             labelClassName={` p-2 bg-accentMedium dark:bg-dark-accentMedium  w-full text-dark-baseColor border-b-2 `}
             contentClassName={` p-2  text-dark-baseColor bg-accentLight dark:text-baseColor dark:bg-dark-accentLight  w-full text-dark-baseColor border-2 border-accentMedium dark:border-dark-accentMedium `}
             >
-            {children}
+                {children}
             </Accordion>
             </>
         )

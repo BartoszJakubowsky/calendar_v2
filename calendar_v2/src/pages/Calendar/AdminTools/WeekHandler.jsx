@@ -91,7 +91,7 @@ const boundaryArrayForMessages = week.days.map(day => translateCalendarPage(day.
                 messages={messages}
                 setMessages={setMessages}
                 translate={translate}
-                boundaryArray={boundaryArrayForMessages}
+                maxMessages={1}
                 />
             </Accordion>
             <Accordion

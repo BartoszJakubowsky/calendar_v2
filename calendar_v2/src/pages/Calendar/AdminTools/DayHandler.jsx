@@ -74,7 +74,7 @@ export default function DayHandler({day, dayIndex, weekIndex, monthIndex, childr
             messages={messages}
             setMessages={setMessages}
             translate={translate}
-            boundaryArray={time}
+            maxMessages={1}
             />
             </Accordion>
             <Accordion

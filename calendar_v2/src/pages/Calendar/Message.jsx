@@ -1,4 +1,8 @@
-export default function Message({message}) {
+export default function Message({message, hide, ...rest}) {
+    
+
+    if (hide)
+      return false
     
     const data = message.data;
     const date = message.date;
@@ -15,15 +19,17 @@ export default function Message({message}) {
 
         return inputDate < currentDate;
       }
-    
-    const isPast = date && isPastDate(date);
 
+    if (data == '')
+      return false
+
+    const isPast = date && isPastDate(date);
     if (isPast)
       return false
     
     return (
-        <div className="m-2 w-full h-full flex justify-center items-center bg-accentMedium dark:a rounded-md">
-            {data}
+        <div className={`${rest.className? rest.className : ''} z-[1] inset-0 absolute flex justify-center items-center bg-accentMedium dark:a rounded-md border-2 border-accentStrong dark:border-dark-accentStrong`}>
+            <p className={`${rest.className? '': 'sticky top-1/4 bottom-1/2 left-1/4 -translate-x-1/4'} text-center`}>{data}</p>
         </div>
     )
       
