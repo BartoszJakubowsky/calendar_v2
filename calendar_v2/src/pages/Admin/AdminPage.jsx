@@ -9,6 +9,8 @@ import { AnimatePresence } from 'framer-motion';
 import UserRegister from './UserRegister';
 import UserPassword from './UserPassword';
 import CalendarPanel from './CalendarPanel';
+import {translateAdminPage} from '@/locales/translate'
+
 export default function AdminPage() {
 
 
@@ -30,10 +32,10 @@ useEffect(()=>{
     }, 1000))
 },[])
 const links = [
-    'Użytkownicy',
-    "Rejestracja",
-    'Hasło',
-    'Kalendarze'
+    translateAdminPage("userLink"),
+    translateAdminPage("registerLink"),
+    translateAdminPage("passwordLink"),
+    translateAdminPage("calendarLink")
     ];
 
 const transformDate = (date) => {
@@ -68,7 +70,7 @@ const deleteCalendarFromCalendars = (deleteCalendar) => setCalendars(calendars.f
         <section className='flex md:w-2/3 w-11/12 justify-center h-full mx-auto overflow-y-auto no-scrollbar'>
         <AnimatePresence mode='wait'>
         {fetchStatus
-        ? <LoadingMessage message={'Czekaj, pobieramy dla ciebie najświeższe dane'} theme={'text-accentStrong dark:text-dark-accentStrong'}/>
+        ? <LoadingMessage message={translateAdminPage('loadingData')} theme={'text-accentStrong dark:text-dark-accentStrong text-center '}/>
         : 
         currentPage === 0 && <UserConfirmed users={usersConfirmed} updateUserConfirmed={updateUserConfirmed} deleteUserConfirmed={deleteUserConfirmed}/> ||
         currentPage === 1 && <UserRegister users={usersRegister} transformDate={transformDate} deleteUserRegister={deleteUserRegister} addUserConfirmed={addUserConfirmed} />   ||

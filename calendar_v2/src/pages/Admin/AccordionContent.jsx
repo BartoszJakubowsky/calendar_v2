@@ -47,9 +47,9 @@ function ApiMessage({result, textOnTrue, textOnFalse, loadingMessage}) {
         <AnimatedContainer className={'backdrop-blur-sm z-10 flex justify-center items-center'} animation={'opacityVariant'}>
             <div className='backdrop-blur-sm flex justify-center items-center'>
            { result === null? 
-            <LoadingMessage message={loadingMessage} theme={'text-accentStrong'} className={'w-fit h-fit'}/>
+            <LoadingMessage message={loadingMessage} theme={'text-accentStrong dark:text-dark-accentStrong'} className={'w-fit h-fit'}/>
             :
-            <AnimatedContainer className='flex justify-center items-center relative text-accentStrong w-fit h-fit ' animation={'opacityVariant'}>   
+            <AnimatedContainer className='flex justify-center items-center relative text-accentStrong dark:text-dark-accentStrong w-fit h-fit ' animation={'opacityVariant'}>   
                 {result? textOnTrue : textOnFalse}
             </AnimatedContainer>}
             </div>

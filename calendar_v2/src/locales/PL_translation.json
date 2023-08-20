@@ -257,7 +257,20 @@
         "september": "Wrzesień",
         "october": "Październik",
         "november": "Listopad",
-        "december": "Grudzień"
+        "december": "Grudzień",
+
+        "userLink" : "Użytkownicy",
+        "registerLink": "Rejestracja",
+        "passwordLink": "Hasło",
+        "calendarLink" : "Kalendarze",
+
+        "loadingData" : "Poczekaj, pobieramy dla ciebie dane"
+
+    },
+    "NotFoundPage" : {
+        "notFound" : "Nie znaleziono takiej strony!",
+        "moveMainPage" : "Zostaniesz przekierowany do strony głównej",
+        "ups": "Ups"
     }
   
 }

@@ -47,3 +47,8 @@ export const translateAdminPage = (text) => {
   const path = "AdminPage";
   return translate(path, text);
 };
+
+export const translateNotFoundPage = (text) => {
+  const path = "NotFoundPage";
+  return translate(path, text);
+};

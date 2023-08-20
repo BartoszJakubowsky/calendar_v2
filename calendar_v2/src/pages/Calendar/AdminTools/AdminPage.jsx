@@ -101,13 +101,13 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
     />
     {isFetching && 
      <AnimatedContainer className={'backdrop-blur-sm z-50 flex justify-center items-center'} animation={'opacityVariant'}>
-      <LoadingMessage message={translate('loadingApi')} theme={'text-accentStrong'} className={'w-fit h-fit'}/>
+      <LoadingMessage message={translate('loadingApi')} theme={'text-accentStrong dark:text-dark-accentStrong'} className={'w-fit h-fit'}/>
     </AnimatedContainer>
     }
     <AnimatedContainer className="fixed inset-0 z-20 overflow-auto" animation={'xSwipeVariant'}>
-      <FloatingPanel className="bg-accentMedium dark:bg-dark-accentMedium p-2 z-20 w-[400px] overflow-x-hidden h-full right-0 absolute top-0 min-w-[30px]  flex-wrap items-start flex-col">
+      <FloatingPanel className="bg-accentMedium dark:bg-dark-accentMedium p-2 z-20 w-10/12 md:w-[400px] overflow-x-hidden h-full max-w-full right-0 absolute top-0 min-w-[30px]  flex-wrap items-start flex-col">
 
-    <div className="min-w-[400px]">
+    <div className="md:min-w-[400px] min-w-[300px]">
     <div className="flex">
         <button className="option-off p-2 rounded-sm border-2 border-accentLight dark:border-dark-accentLight my-2" 
         onClick={handleSaveClick}>

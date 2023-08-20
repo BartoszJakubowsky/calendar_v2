@@ -25,7 +25,7 @@ export default function FloatingPanel({children, ...rest}) {
         <m.div
          ref={panelRef}
          className={rest.className}
-         drag
+         drag='x'
         //  dragConstraints={{top:0, left:0, right: window.innerWidth - elementWidth, bottom : window.innerHeight - elementHeight}}
          dragConstraints={{top:0, left:0, right: 0, bottom : window.innerHeight - elementHeight}}
          dragMomentum={false}
@@ -39,7 +39,7 @@ export default function FloatingPanel({children, ...rest}) {
         {children}
 
         <DragElement 
-         className='absolute bottom-1/2 top-1/2 left-1'
+         className='absolute bottom-1/2 top-1/2 -left-2 py-10 px-4 '
          handleDragEnd={handleDragEnd}
          handleResize={handleResize}/>
         </m.div>
@@ -57,11 +57,11 @@ function DragElement({handleResize, handleDragEnd,  ...rest}) {
     
     return (
         <m.div className={rest.className}
-         drag
+         drag='x'
          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0}}
          dragMomentum={false}
-         dragElastic={0.01}
          onDragEnd={()=>handleDragEnd()}
+         dragElastic={0.0001}
          onDrag={(event, info) => 
         {
             const checkX = () => {

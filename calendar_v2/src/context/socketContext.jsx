@@ -17,6 +17,8 @@ function SocketProvider({children})
             return
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
+    // const baseUrl = window.location.origin
+    
     const newSocket = io.connect(baseUrl);
     setSocket(newSocket);
 
