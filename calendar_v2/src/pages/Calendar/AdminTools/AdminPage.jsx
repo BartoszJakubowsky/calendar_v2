@@ -105,7 +105,7 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
     </AnimatedContainer>
     }
     <AnimatedContainer className="fixed inset-0 z-20 overflow-auto" animation={'xSwipeVariant'}>
-      <FloatingPanel className="bg-accentMedium dark:bg-dark-accentMedium p-2 z-20 w-10/12 md:w-[400px] overflow-x-hidden h-full max-w-full right-0 absolute top-0 min-w-[30px]  flex-wrap items-start flex-col">
+      <FloatingPanel className="bg-accentMedium dark:bg-dark-accentMedium p-2 z-50 w-10/12 md:w-[400px] overflow-x-hidden h-full max-w-full right-0 absolute top-0 min-w-[30px]  flex-wrap items-start flex-col">
 
     <div className="md:min-w-[400px] min-w-[300px]">
     <div className="flex">

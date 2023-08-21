@@ -1,13 +1,27 @@
 import { useEffect, useState } from "react"
 import useAuthentication from '@/hooks/useAuthentication'
 import useSocket from '@/hooks/useSocket';
-export default function Record({record, translate, calendarId}) {
+export default function Record({record, translate, calendarId, date, time}) {
 
     const {user} = useAuthentication();
     const {socket, updateRecord} = useSocket();
     const [name, setName] = useState(record.data);
     const id = record.id;
     const [hoverMessage, setHoverMessage] = useState(false);
+    const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    const recordDate = new Date(date);
+    const dayName = daysOfWeek[recordDate.getUTCDay()];
+    
+    const formatDate = () => {
+      const day = recordDate.getUTCDate().toString().padStart(2, '0');
+      const month = (recordDate.getUTCMonth() + 1).toString().padStart(2, '0');
+      const year = recordDate.getUTCFullYear();
+
+      return `${day}-${month}-${year}`;
+    }
+
+
+
     const handleSign = (data) =>
     {
       if (data.recordId === id)
@@ -31,7 +45,7 @@ export default function Record({record, translate, calendarId}) {
 
       const handleClick = () => {
 
-        updateRecord({recordId: id, calendarId, data: name === '' ? user.name : ''});
+        updateRecord({recordId: id, calendarId, data: name === '' ? user.name : '', userId: user._id, date: {fullDate: formatDate(), dayName, time, id: record._id }});
         if (name === '')
         {
             setHoverMessage(false);

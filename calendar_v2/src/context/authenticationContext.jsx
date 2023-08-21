@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 import {axiosInterceptor} from '@/api/interceptors/axiosInterceptor';
 import {getExistingToken} from '@/api/authentication/tokenApi';
 
@@ -20,14 +20,6 @@ const AuthContext = createContext();
        
         const [user, setUser] = useState(getUserFromToken());
         const isAdmin = user?.permissions?.includes('ADMIN');
-
-        //to fix -> main page navigates to login page
-        // useEffect(() => {
-        //     window.addEventListener('storage', handleUser(false));
-        //     return () => {
-        //       window.removeEventListener('storage', handleUser(getExistingToken()));
-        //     };
-        //   }, []);
 
         const handleUser = (token) => 
         {

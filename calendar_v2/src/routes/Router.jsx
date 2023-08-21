@@ -7,6 +7,7 @@ import CreateCalendarPage from '@/pages/CreateCalendar/CreateCalendarPage'
 import { AnimatePresence } from 'framer-motion';
 import AdminPage from '../pages/Admin/AdminPage';
 import NotFoundPage from '../pages/NotFound/NotFoundPage';
+import AccountPage from '../pages/Account/AccountPage'
 
 
 
@@ -27,6 +28,7 @@ export default function Router() {
             <Route path='/kalendarz/*' element={ <CalendarPage/>}/>
             <Route path='/administrator' element={ <AdminPage/>}/>
             <Route key='login' path='/logowanie' element={<LoginPage page={1} replace/>}/>
+            <Route key='account' path='/konto' element={<AccountPage/>}/>
             <Route path='*' element={<NotFoundPage/>} replace/>
 
             {isAdmin? 
@@ -53,7 +55,7 @@ const mainPaths =
 
 const userPaths = [
     {name: 'login', path:  '/logowanie'},
-    // {name: 'account', path: '/konto',}
+    {name: 'account', path: '/konto',}
 ]
 
 const adminPaths = [
