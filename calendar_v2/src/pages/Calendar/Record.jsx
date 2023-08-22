@@ -45,7 +45,7 @@ export default function Record({record, translate, calendarId, date, time}) {
 
       const handleClick = () => {
 
-        updateRecord({recordId: id, calendarId, data: name === '' ? user.name : '', userId: user._id, date: {fullDate: formatDate(), dayName, time, id: record._id }});
+        updateRecord({recordId: id, calendarId, data: name === '' ? user.name : '', userId: user._id, date: {fullDate: formatDate(), dayName, time }});
         if (name === '')
         {
             setHoverMessage(false);

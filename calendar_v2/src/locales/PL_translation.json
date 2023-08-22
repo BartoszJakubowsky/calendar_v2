@@ -294,6 +294,12 @@
         "notFound" : "Nie znaleziono takiej strony!",
         "moveMainPage" : "Zostaniesz przekierowany do strony głównej",
         "ups": "Ups"
+    }, 
+    "AccountPage" : {
+        "dayLabel" : "Dzień",
+        "date" : "Data",
+        "time" : "godzina",
+        "mainHeader" : "Sprawdź gdzie i kiedy jesteś zapisany!"
     }
   
 }

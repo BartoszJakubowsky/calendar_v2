@@ -52,3 +52,13 @@ export const translateNotFoundPage = (text) => {
   const path = "NotFoundPage";
   return translate(path, text);
 };
+
+export const translateAccountPage = (text) => {
+  const path = "AccountPage";
+  return translate(path, text);
+};
+
+export const translateDaysMonths = (text) => {
+  const path = "DaysMonths";
+  return translate(path, text);
+};
