@@ -12,6 +12,7 @@ import Modal from '@/components/ui/Modal';
 import useAuthentication from '@/hooks/useAuthentication';
 import AdminPage from './AdminTools/AdminPage';
 import useSocket from '@/hooks/useSocket';
+import {IoIosSettings as AdminSettingsIcon} from 'react-icons/io'
 export default function CalendarPage() {
 
     const location = useLocation();
@@ -98,7 +99,7 @@ const verifyCalendarExist = useMemo(()=>
         <>
         <AnimatedContainer key='calendarPageContainer' className={'background flex justify-center items-start overflow-hidden'} animation={'opacityVariant'}>
                 <AnimatePresence mode='wait'>
-                    {isAdmin && calendar.conservation ? <AdminPage turnOffConservation={handleClick} calendar={calendar} setCalendar={setCalendar}/> : <button className='absolute right-0 z-[100]' onClick={handleClick}>click</button>}
+                    {isAdmin && calendar.conservation ? <AdminPage turnOffConservation={handleClick} calendar={calendar} setCalendar={setCalendar}/> : <button className='absolute right-0 z-[20]' onClick={handleClick}><AdminSettingsIcon className='text-accentStrong dark:text-dark-accentStrong'/></button>}
                     <Modal  
                      isOpen={calendar.conservation && !isAdmin? true :openModal} 
                      modalText={translateCalendarPage('modalTextConservation')} 
