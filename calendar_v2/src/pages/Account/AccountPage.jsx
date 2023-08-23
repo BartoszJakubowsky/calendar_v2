@@ -28,7 +28,7 @@ useEffect(()=> {
  return (
     <>
     <MenuPage/>
-    <AnimatedContainer className = 'h-screen background flex flex-row flex-wrap items-center justify-center overflow-auto ' animation='opacityVariant'>
+    <AnimatedContainer className = ' background flex flex-row flex-wrap items-center justify-center overflow-auto ' animation='opacityVariant'>
         <AnimatePresence mode='wait'>
         {records &&  records.length != 0 && <h1 className='w-full text-center mt-10 text-lg md:text-2xl p-2 text-accentStrong dark:text-dark-accentStrong h-10'>{translateAccountPage('mainHeader')}</h1>}
         {fetchingData 
