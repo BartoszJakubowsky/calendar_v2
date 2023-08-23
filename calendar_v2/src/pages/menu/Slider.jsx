@@ -1,7 +1,7 @@
 import {mainPaths, adminPaths, userPaths} from '@/routes/Router';
 import useAuthentication from "@/hooks/useAuthentication";
 import SwitchTheme from '@/components/ui/SwitchTheme';
-
+import SwitchLanguage from '../../components/ui/SwitchLanguage';
 import {getAllData} from '@/api/admin/adminApi'
 import {getCalendars} from '@/api/calendars/calendarsApi'
 
@@ -63,14 +63,17 @@ export default function Slider({isOpen, setIsOpen, theme})
         <nav 
             className={`${theme? theme : 'background-gradient'} 
                 top-0 left-0 absolute z-[30]
-                md:w-[40vw] p-10 w-full h-full md:pl-10 
-                overflow-auto no-scrollbar
-                ease-in-out duration-300 transition-all
-                ${isOpen ? "translate-x-0 " : "-translate-x-full"}`}>        
+                lg:w-[20vw] md:w-[40vw] p-10 w-full h-full md:pl-10 
+                overflow-y-auto overflow-x-hidden no-scrollbar
+                ease-in-out duration-300 transition-all 
+                ${isOpen ? "translate-x-0 " : "-translate-x-full"}`}>  
+            <SwitchLanguage className='absolute right-8 top-14 scale-90'/>      
+            <div className='min-w-[15vw]'>
             <SwitchTheme className=' absolute right-8 top-4 scale-90'/>
             <Section header='menu' links={mainLinks}/>
             <Section header='user' links={userLinks}/>
   {isAdmin? <Section header='admin' links={adminLinks}/> : false}
+          </div>
         </nav>
 )
 }

@@ -123,8 +123,8 @@ export default function CreateCalendarPage() {
     return (
         <>
         <MenuPage/>
-        <AnimatedContainer animation={'opacityVariant'} className={`background-gradient h-screen flex justify-center items-center overflow-auto ${isOpenSlots? 'overflow-auto' : 'overflow-auto'}`}>
-            <FormContainer className='relative overflow-hidden h-fit mt-12 '>
+        <AnimatedContainer animation={'opacityVariant'} className={`background-gradient h-screen flex justify-center items-center overflow-auto`}>
+            <FormContainer className='relative overflow-hidden h-fit mt-12'>
                 <FormHeader text={translateCreateCalendarPage('header')}/>
                 <LabelInput 
                     inputContainerClassName={"mb-2 mt-2"}

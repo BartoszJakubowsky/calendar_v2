@@ -48,14 +48,12 @@ export default function AdminPage({ calendar, setCalendar, turnOffConservation }
     updateCalendar(calendar._id, calendar).then(response => {
      
      
-      setTimeout(() => {
         setIsFetching(false);
 
         if (response)
           setOpenModalApiTrue(true);
         else
           setOpenModalApiFalse(true);
-     }, 1000);
       
     })
   }

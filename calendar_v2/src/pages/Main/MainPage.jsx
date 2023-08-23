@@ -15,9 +15,9 @@ const [calendars, setCalendars] = useState(false);
 
 useMemo(()=>
 {
-   getCalendars().then(data => setTimeout(() => {
+   getCalendars().then(data => {
       setCalendars(data);
-   }, 1000));
+   });
 }, [])
 
 
@@ -44,7 +44,7 @@ const calendarCards = useMemo(()=>
 }, [calendars])
  return(
    <>
-   <AnimatedContainer animation={'opacityVariant'} className='flex items-start md:items-center justify-center background overflow-auto'>
+   <AnimatedContainer animation={'opacityVariant'} className=' flex items-start md:items-center justify-center background overflow-auto'>
    <MenuPage/>
       <AnimatePresence mode='wait'>  
          {calendarCards? 

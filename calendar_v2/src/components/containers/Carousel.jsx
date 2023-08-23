@@ -46,8 +46,8 @@ export default function Carousel({ startPosition = 0, pages, swipeToIndex, swipe
                 {
                     return (
                     <m.div 
-                      key={index} 
-                      animate={{ x: `-${pageIndex * 100}%` }} 
+                      key={`carousel_${index}`} 
+                      animate={{ x: `-${pageIndex * 100}%`}} 
                       className={ `${containerClassName? containerClassName : 'w-full h-full'}` }
                       transition={{duration: swipeDuration? swipeDuration : 0.7, ease: swipeEase? swipeEase : [0.32, 0.72, 0, 1] }} 
                       exit={{ opacity:0}}>

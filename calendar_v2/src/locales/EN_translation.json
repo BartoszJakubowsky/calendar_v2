@@ -1,3 +1,300 @@
 {
-    
+    "DaysMonths" : {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December",
+        
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+    },
+    "LoginPage":
+    {
+        "LoginForm":
+        {
+            "header" : "Log in",
+            "mailLabel" : "Enter your email or name and surname",
+            "passwordLabel" : "Enter your password",
+            "button" : "Log in",
+            "navigationTextRegisterHeader" : "Don't have an account yet?",
+            "navigationTextRegister" : "Register",
+            "navigationTextPasswordHeader" : "Forgot your password?",
+            "navigationTextPassword" : "Reset password"
+        },
+        "RegisterForm":
+        {
+            "header" : "Register",
+            "mailLabel" : "Enter your email or name and surname",
+            "passwordLabel" : "Enter your password",
+            "nameLabel" : "Enter your first name",
+            "surnameLabel" : "Enter your last name",
+            "secondPasswordLabel" : "Enter the password again",
+            "button" : "Register",
+            "navigationText" : "or go back to login"
+        },
+        "PasswordForm":
+        {
+            "header" : "Reset Password",
+            "mailLabel" : "Enter your email or name and surname",
+            "passwordLabel" : "Enter your new password",
+            "secondPasswordLabel" : "Enter the new password again",
+            "button" : "Reset password",
+            "navigationText" : "or go back to login"
+        }
+    },
+    "MainPage":
+    {
+        "loading" :"Please wait, we are fetching data for you",
+        "noCalendars" : "No calendars added yet!"
+    },
+    "Authentication":
+    {
+        "userNotFound" : "User not found!",
+        "validData" : "Username or password is incorrect!",
+        "loginSuccess" : "Logged in!",
+        "registerSuccess" : "Registration request has been sent!",
+        "passwordSuccess" : "Password reset request has been sent",
+        "passwordError" : "Password reset request has already been sent",
+        "registerErrorSend" : "Registration request has already been sent",
+        "registerErrorUser" : "User with the given name already exists!",
+        "error" : "An error occurred, please try again later"
+    },
+    "Menu" : 
+    {
+        "menu" : "Menu",
+        "calendar" : "Calendar",
+        "login" : "Log out",
+        "admin" : "Administrator Panel",
+        "account" : "Account",
+        "user" : "Other",
+        "main" : "Main Page",
+        "createCalendar" : "Create Calendar"
+    },
+    "CalendarPage" : 
+    {
+        "nextMonth" : "Next month",
+        "previousMonth" : "Previous month",
+        "loading" : "Please wait, fetching the calendar for you",
+        "time" : "Time",
+        "sign" : "Sign me up",
+        "sign_out" : "Sign me out",
+        "modalTextConservation" : "Oops... it looks like maintenance work is underway 😬. Please try again later",
+        "modalButtonText" : "Okay",
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December",
+
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday",
+        "AdminTools" :
+        {
+            "localSettings" : "Settings for each item separately",
+            "bannedDaysLabel" : "Days not to display in the entire month",
+            "weeksLabel" : "Weeks",
+            "weekLabel" : "Week",
+            "daysLabel" : "Days",
+            "slotLabel" : "Slot with records for the hour",
+            "recordLabel" : "Record",
+            "removeMonth" : "Do you want to delete this month?",
+            "monthMessages" : "Message displayed instead of the month",
+            "monthMessagePlaceholder" : "Enter message",
+            
+            "removeWeek" : "Do you want to delete this week?",
+            "weekMessages" : "Messages displayed instead of days",
+            "weekBannedDays" : "Days not to display in the week",
+            "removeDay" : "Do you want to delete this day?",
+            
+            "columnLabel" : "Columns",
+            "removeColumn" : "Do you want to delete this column?",
+            "columnMessages" : "Message displayed instead of the column",
+            
+            "dayMessages" : "Messages displayed instead of the day (columns)",
+            "slotsLabel" : "Slots",
+            
+            "removeSlot" : "Delete slot",
+            "slotMessage" : "Add a message displayed instead of records",
+            "recordsLabel" : "Records",
+            
+            "recordMessage" : "Message displayed instead of record",
+            "removeRecord" : "Delete record",
+            "userRecord" : "Saved user",
+            
+            "modalLeave" : "Are you sure you want to exit edit mode? Changes will not be saved",
+            "modalButtonLeave" : "Yes, exit",
+            "modalSave" : "Are you sure you want to save changes?",
+            "modalButtonSave" : "Yes, save",
+            
+            "modalApiTrue": "Changes saved",
+            "modalButtonApiTrue" : "Okay",
+            
+            "modalApiFalse" : "An error occurred while saving changes",
+            "modalButtonApiFalse" : "Okay",
+            
+            "buttonSave" : "Save changes",
+            "buttonLeave" : "Close edit mode",
+            
+            "mainSettings" : "Main settings",
+            "nameLabel" : "Calendar name",
+            "descriptionLabel" : "Calendar description",
+            "messagesLabel" : "Calendar notifications",
+            "loadingApi" : "Please wait, saving changes"
+         } 
+    },"CreateCalendarPage" :
+    {
+        "header" : "Create Calendar",
+        "nameLabel" : "Calendar name",
+        "monthsLabel" : "Select a month and year",
+        "bannedDaysLabel" : "Select days not to display",
+        "timeLabel" : "Set time for all months",
+        "timeFrom" : "from",
+        "autoMonthLabel" : "Automatic month extension",
+        "descriptionLabel" : "Add calendar description",
+        "timeTo" : "to",
+        "timeBetween" : "between",
+        "sendButton" : "Save new calendar",
+        "slotsLabel" : "Create slots for the calendar",
+        "addSlotText" : "Add new slot",
+
+        "apiSuccess" : "New calendar created!",
+        "apiError" : "An error occurred, please try again later",
+
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December",
+        
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday",
+
+        "SlotsForm" :
+        {
+            "header-create" : "Create a new slot",
+            "header-edit" : "Edit slot",
+            "back" : "or go back",
+            "nameLabel" : "Slot name",
+            "spaceLabel" : "Number of spaces",
+            "buttonSave" : "Save",
+            "buttonDelete" : "Delete"
+        },
+        "TimeForm" :
+        {
+            "header" : "Set time for selected months",
+            "back" : "or go back"
+        }
+    },
+    "AdminPage":
+    {
+        "findUser" : "Find a user",
+        "userName" : "User name",
+        "userLogin" : "User login",
+        "createdAt" : "Request added: ",
+        "userPermissions" : "User permissions",
+        "USER" : "User",
+        "ADMIN" : "Administrator",
+        "saveUserConfirmed" : "Save changes",
+        "deleteUserConfirmed" : "Delete user",
+        "noConfirmedUsers" : "No users added yet",
+
+        "confirmedEditTrue" : "User updated successfully",
+        "confirmedEditFalse" : "An error occurred while updating the user",
+        "confirmedDeleteTrue" : "User has been deleted",
+        "confirmedDeleteFalse" : "An error occurred while deleting the user",
+
+        "modalDeleteUser" : "Are you sure you want to delete the user?",
+        "modalDeleteUserButton" : "Delete user",
+        "noRegisterUsers" : "No new registration requests yet!",
+        "saveUserRegister" : "Approve registration",
+        "deleteUserRegister" : "Reject registration",
+        "registerAddTrue" : "User added successfully",
+        "registerAddFalse" : "An error occurred while adding the user",
+        "registerDeleteTrue" : "User deleted successfully",
+        "registerDeleteFalse" : "An error occurred while deleting the user",
+        "passwordAddTrue" : "User's password has been reset",
+        "passwordAddFalse" : "An error occurred while resetting the password",
+        "passwordDeleteTrue" : "Password reset request has been rejected",
+        "passwordDeleteFalse" : "An error occurred while rejecting the password reset request",
+        "saveUserPassword" : "Reset password",
+        "deleteUserPassword" : "Delete password reset request",
+        "loading" : "Please wait for a response",
+        "noPasswordUsers" : "No new password reset requests yet!",
+        "calendarDesc" : "Calendar description",
+        "calendarMonths" : "Calendar months",
+        "deleteCalendar" : "Delete calendar",
+        "calendarDeleteTrue" : "Calendar has been deleted",
+        "calendarDeleteFalse" : "An error occurred while deleting the calendar",
+        "noCalendars" : "No calendars added yet!",
+
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December",
+
+        "userLink" : "Users",
+        "registerLink": "Registration",
+        "passwordLink": "Password",
+        "calendarLink" : "Calendars",
+
+        "loadingData" : "Please wait, fetching data for you"
+    },
+    "NotFoundPage" : {
+        "notFound" : "Page not found!",
+        "moveMainPage" : "You will be redirected to the main page",
+        "ups": "Oops"
+    }, 
+    "AccountPage" : {
+        "dayLabel" : "Day",
+        "date" : "Date",
+        "time" : "time",
+        "mainHeader" : "Check where and when you're signed up!",
+        "loadingData" : "Please wait, checking calendars"
+    }
 }
+    

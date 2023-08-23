@@ -81,12 +81,12 @@ function PanelForCalendar ({calendar, transformDate, deleteCalendarFromCalendars
     loadingMessage={translateAdminPage('loading')}
     >
         <div className='p-2'>
-            <h3 className='text-accentStrong dark:text-dark-accentStrong'>{translateAdminPage('calendarDesc')}</h3>
-               <p className='w-full mb-1'>{calendar.description}</p>
-            <h3 className='text-accentStrong dark:text-dark-accentStrong'>{translateAdminPage('calendarMonths')}</h3>
+            <h3 className='text-accentStrong dark:text-baseColor font-semibold'>{translateAdminPage('calendarDesc')}</h3>
+               <p className='w-full mb-1 ml-1'>{calendar.description}</p>
+            <h3 className='text-accentStrong dark:text-baseColor font-semibold'>{translateAdminPage('calendarMonths')}</h3>
                 {calendar.months.map(month => {
                     const [year, monthName] = month.name.split('.');
-                    return <p key={month._id} className='w-full '>{`${translateAdminPage(monthName.toLowerCase())}  ${year}`}</p>
+                    return <p key={month._id} className='w-full ml-1 '>{`${translateAdminPage(monthName.toLowerCase())}  ${year}`}</p>
                 })}
         </div>
     </AccordionContent>
