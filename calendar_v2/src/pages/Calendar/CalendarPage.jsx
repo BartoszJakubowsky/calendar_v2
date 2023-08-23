@@ -13,7 +13,6 @@ import useAuthentication from '@/hooks/useAuthentication';
 import AdminPage from './AdminTools/AdminPage';
 import {IoIosSettings as AdminSettingsIcon} from 'react-icons/io'
 import useSocket from '@/hooks/useSocket';
-import {IoIosSettings as AdminSettingsIcon} from 'react-icons/io'
 export default function CalendarPage() {
 
     const location = useLocation();
