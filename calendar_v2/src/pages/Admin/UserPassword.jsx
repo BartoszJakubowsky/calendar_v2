@@ -94,10 +94,10 @@ function UserPanel ({user, transformDate, deleteUserPassword, updateUserConfirme
     loadingMessage={translateAdminPage('loading')}
     >
         <div className='p-2'>
-            <h3 className='text-accentStrong dark:text-dark-accentStrong'>{translateAdminPage('userLogin')}</h3>
-               <p className='w-full mb-1'>{user.mail}</p>
-            <h3 className='text-accentStrong dark:text-dark-accentStrong'>{translateAdminPage('createdAt')}</h3>
-                <p className='w-full '>{transformDate(user.updatedAt)}</p>
+            <h3 className='text-accentStrong dark:text-baseColor font-semibold'>{translateAdminPage('userLogin')}</h3>
+               <p className='w-full mb-1 ml-1'>{user.mail}</p>
+            <h3 className='text-accentStrong dark:text-baseColor font-semibold'>{translateAdminPage('createdAt')}</h3>
+                <p className='w-full ml-1'>{transformDate(user.updatedAt)}</p>
         </div>
     </AccordionContent>
   )

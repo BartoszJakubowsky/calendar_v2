@@ -1,13 +1,23 @@
 import TableHeader from "./TableHeader";
 import TableData from "./TableData";
 import Message from './Message';
-
 import { translateCalendarPage } from "@/locales/translate";
 
 
 export default function Table({week, calendarId}) {
 
 const {days, bannedDays, time, messages, erase} = week;
+
+
+
+const isPastDate = (dateToCheck) => {
+    const currentDate = new Date();
+    const convertDateToCheck = new Date(dateToCheck)
+    
+    return convertDateToCheck < currentDate
+}
+
+
 
 if (erase)
     return false;
@@ -17,13 +27,14 @@ if (erase)
     <table className="relative">
         {messages.length > 0 && <Message message={messages[0]}/>}
         <tbody>
-            <TableHeader
+        <TableHeader
              rowClassName='flex flex-row'
              cellClassName='bg-accentLight dark:bg-accentLight border-2 border-slate-700'
              days={days}
              bannedData={bannedDays}
              additionalFirstCol={'time'}
              translate={translateCalendarPage}
+             isPastDate={isPastDate}
             />
             
             {time.map((singleTime, index)=>
@@ -40,6 +51,7 @@ if (erase)
                 translate={translateCalendarPage}
                 calendarId = {calendarId}
                 weekMessage={messages.length > 0}
+                isPastDate={isPastDate}
                 />
                 )
             })}

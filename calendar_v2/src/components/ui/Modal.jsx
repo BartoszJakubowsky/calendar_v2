@@ -42,7 +42,7 @@ export default function Modal({modalText, buttonText, onClick, isOpen, setIsOpen
     return (
         <AnimatePresence mode='wait'>
         {isOpen? 
-            <AnimatedContainer onClick={handleGlobalClick} animation={'opacityVariant'} transition={{duration: 0.2}} className='fixed inset-0 bg-opacity-80 duration-200 transition-all bg-gray-900 z-50 flex justify-center items-center'>
+            <AnimatedContainer onClick={handleGlobalClick} animation={'opacityVariant'} transition={{duration: 0.2}} className='!fixed inset-0 bg-opacity-80 duration-200 transition-all bg-gray-900 z-50 flex justify-center items-center'>
             <AnimatedContainer 
              transition={spring} 
             animation={"scaleVariant"} 

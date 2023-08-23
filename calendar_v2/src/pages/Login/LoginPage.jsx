@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import Carousel from "@/components/containers/Carousel";
 import AnimatedContainer from "@/components/containers/AnimatedContainer";
 import LoginForm from "./LoginForm";
-import SwitchTheme from "@/components/ui/SwitchTheme";
 import RegisterForm from "./RegisterForm";
 import PasswordForm from "./PasswordForm";
-
+import SwitchTheme from "@/components/ui/SwitchTheme";
+import SwitchLanguage from "@/components/ui/SwitchLanguage";
 
 export default function LoginPage({page}) 
 {
@@ -115,7 +115,10 @@ export default function LoginPage({page})
 
     return (
       <AnimatedContainer animation={'opacityVariant'} className='flex justify-center items-center background-gradient-reverse '>
-        <SwitchTheme className='absolute right-10 top-10 z-10'/>
+        <div className={`absolute md:right-8 md:top-8 right-2 top-2 z-10 flex flex-wrap flex-col gap-2 items-end ${swipe !== 1 ? 'opacity-0 invisible' : ' opacity-100 visible'} transition-all duration-150`}>
+            <SwitchTheme className='relative'/>
+            <SwitchLanguage/>
+        </div>
         <Carousel 
           className={`w-full h-full bg-transparent`}
           containerClassName={'w-full h-full flex justify-center items-center'}

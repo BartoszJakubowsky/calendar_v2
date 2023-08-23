@@ -22,14 +22,14 @@ const [calendars, setCalendars] = useState(null);
 const [fetchStatus, setFetchStatus] = useState(true);
 
 useEffect(()=>{
-    getAllData().then(res => setTimeout(() => {
+    getAllData().then(res =>  {
         const {userConfirmed, userRegister, userPassword, calendars} = res;    
         setUsersConfirmed(userConfirmed);
         setUsersPassword(userPassword);
         setUsersRegister(userRegister);
         setCalendars(calendars)
         setFetchStatus(false);
-    }, 1000))
+    })
 },[])
 const links = [
     translateAdminPage("userLink"),
@@ -67,7 +67,7 @@ const deleteCalendarFromCalendars = (deleteCalendar) => setCalendars(calendars.f
     <AnimatedContainer key='calendarPageContainer' className={'background md:pt-0 pt-10 overflow-hidden'} animation={'opacityVariant'}>
        <MenuPage/>
     <TableNav usersRegister={usersRegister} usersPassword={usersPassword} currentPage={currentPage} setCurrentPage={setCurrentPage} links={links}/>
-        <section className='flex md:w-2/3 w-11/12 justify-center h-full mx-auto overflow-y-auto no-scrollbar'>
+        <section className='flex lg:w-1/2 md:w-2/3 w-11/12 justify-center h-full mx-auto overflow-y-auto no-scrollbar'>
         <AnimatePresence mode='wait'>
         {fetchStatus
         ? <LoadingMessage message={translateAdminPage('loadingData')} theme={'text-accentStrong dark:text-dark-accentStrong text-center '}/>

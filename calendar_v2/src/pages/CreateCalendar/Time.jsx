@@ -29,7 +29,7 @@ export default function Time({timeFrom, setTimeFrom, timeTo, setTimeTo, timeBetw
     return (
         <div className="mb-2">
         <Label text={translate('timeLabel')}/>
-        <div className=" flex flex-row justify-start gap-4 ">
+        <div className=" flex flex-col md:flex-row justify-start gap-4 ">
         <TimeInput 
             value={timeFrom}
             onChange={handleTimeFromChange}

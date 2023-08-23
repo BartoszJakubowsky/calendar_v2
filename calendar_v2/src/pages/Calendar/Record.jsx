@@ -59,17 +59,19 @@ export default function Record({record, translate, calendarId, date, time}) {
 
     
     return (
+      <>
         <button 
          className={`${name === '' ? 
          'dark:bg-dark-accentLight bg-accentLight ' 
          :
          'bg-accentMedium dark:bg-dark-accentMedium'}
-         hover:bg-accentMedium dark:hover:bg-dark-accentStrongHover w-24 h-14 hover:shadow-lg transition-all active:bg-accentStrong dark:active:bg-dark-accentStrong active:text-baseColor duration-200 grow rounded-sm border-[1px] border-slate-700 m-1 overflow-hidden`}
+         hover:bg-accentMedium dark:hover:bg-dark-accentStrongHover  w-24 h-14 hover:shadow-lg transition-all active:bg-accentStrong dark:active:bg-dark-accentStrong active:text-baseColor duration-200 grow rounded-sm border-[1px] border-slate-700 m-1 overflow-hidden`}
          onMouseEnter={handleMouseEnter}
          onMouseLeave={handleMouseLeave}
          onClick={handleClick}
          >
             {hoverMessage? hoverMessage : name}
             </button>
+      </>
     )
 }

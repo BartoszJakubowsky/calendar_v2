@@ -11,6 +11,7 @@ import FormContainer from './FormContainer';
 import NavigationText from '@/components/forms/NavigationText'
 import { useNavigate } from "react-router-dom";
 
+
 export default function LoginForm({userFormData, setSwipe}) 
 {
     const {handleUser} = useAuthentication();

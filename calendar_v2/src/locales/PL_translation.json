@@ -299,7 +299,8 @@
         "dayLabel" : "Dzień",
         "date" : "Data",
         "time" : "godzina",
-        "mainHeader" : "Sprawdź gdzie i kiedy jesteś zapisany!"
+        "mainHeader" : "Sprawdź gdzie i kiedy jesteś zapisany!",
+        "loadingData" : "Poczekaj, sprawdzamy kalendarze"
     }
   
 }
