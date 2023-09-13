@@ -63,7 +63,7 @@ export default function Slider({isOpen, setIsOpen, theme})
         <nav 
             className={`${theme? theme : 'background-gradient'} 
                 top-0 left-0 absolute z-[30]
-                lg:w-[20vw] md:w-[40vw] p-10 w-full h-screen md:pl-10 
+                xl:w-[30vw] md:w-[40vw] p-10 w-full h-screen md:pl-10 
                 overflow-y-auto overflow-x-hidden no-scrollbar
                 ease-in-out duration-300 transition-all 
                 ${isOpen ? "translate-x-0 " : "-translate-x-full"}`}>  

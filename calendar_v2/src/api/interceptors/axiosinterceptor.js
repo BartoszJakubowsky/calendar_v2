@@ -4,7 +4,11 @@ function axiosInterceptor() {
   axios.defaults.baseURL = window.location.origin;
   (function () {
     // const baseUrl = import.meta.env.VITE_BASE_URL;
+<<<<<<< HEAD
     // const baseUrl = window.location.origin;
+=======
+    const baseUrl = window.location.origin;
+>>>>>>> dev
 
     axios.defaults.baseURL = window.location.origin;
   })();
