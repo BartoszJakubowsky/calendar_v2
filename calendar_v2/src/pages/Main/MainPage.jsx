@@ -8,6 +8,7 @@ import {getCalendars} from '@/api/calendars/calendarsApi';
 
 import { AnimatePresence } from 'framer-motion';
 import { useMemo, useState } from 'react';
+import InfoModal from '@/components/ui/InfoModal';
 
 export default function MainPage() {
 
@@ -28,7 +29,10 @@ const calendarCards = useMemo(()=>
 
    if (calendars.length === 0)
       return <AnimatedContainer className={'relative'} animation={'ySwipeVariant'} transition={{duration:0.5, ease: 'easeOut'}}>
-               <h3 className='text-accentStrong dark:text-dark-accentStrong'>{translateMainPage('noCalendars')}</h3>
+               <InfoModal 
+                headerText={`😯`} 
+                contentText={translateMainPage('noCalendars')}
+               />
             </AnimatedContainer>
    return calendars.map((calendar, index) => 
       {
