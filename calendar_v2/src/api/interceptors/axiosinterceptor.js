@@ -3,8 +3,8 @@ import axios from "axios";
 function axiosInterceptor() {
   axios.defaults.baseURL = window.location.origin;
   (function () {
-    const baseUrl = import.meta.env.VITE_BASE_URL;
-    // const baseUrl = window.location.origin;
+    // const baseUrl = import.meta.env.VITE_BASE_URL;
+    const baseUrl = window.location.origin;
 
     axios.defaults.baseURL = baseUrl ? baseUrl : window.location.origin;
   })();

@@ -10,8 +10,8 @@ import Carousel from '@/components/containers/Carousel';
 import Month from './Month';
 import Modal from '@/components/ui/Modal';
 import useAuthentication from '@/hooks/useAuthentication';
-import {IoIosSettings as AdminSettingsIcon} from 'react-icons/io'
-import useSocket from '@/hooks/useSocket';
+// import {IoIosSettings as AdminSettingsIcon} from 'react-icons/io'
+// import useSocket from '@/hooks/useSocket';
 // import AdminPage from './AdminTools/AdminPage';
 export default function CalendarPage() {
 
@@ -19,7 +19,7 @@ export default function CalendarPage() {
     const navigate = useNavigate();
 
     const {isAdmin} = useAuthentication();
-    const {socket, setConservation, compareSocketId} = useSocket();
+    // const {socket, setConservation, compareSocketId} = useSocket();
     
 
     const searchedCalendarName = location.pathname.split('/').pop()
@@ -78,19 +78,19 @@ const verifyCalendarExist = useMemo(()=>
             }
     },[])
 
-    const handleClick = () => {
+    // const handleClick = () => {
 
-        setConservation(calendar._id, !calendar.conservation);
-        setCalendar({...calendar, conservation: !calendar.conservation})
+    //     setConservation(calendar._id, !calendar.conservation);
+    //     setCalendar({...calendar, conservation: !calendar.conservation})
         
-    }
+    // }
   
-    useEffect(()=>{
-        socket && socket.on('conservation', (message)=> {
-            if (message.calendarId === calendar._id && !compareSocketId(message.senderId))
-                setOpenModal(true)
-            });
-    },[])
+    // useEffect(()=>{
+    //     socket && socket.on('conservation', (message)=> {
+    //         if (message.calendarId === calendar._id && !compareSocketId(message.senderId))
+    //             setOpenModal(true)
+    //         });
+    // },[])
     
     
     return (
@@ -116,7 +116,7 @@ const verifyCalendarExist = useMemo(()=>
                             className={`w-11/12 max-w-fit md:w-3/4 h-5/6 md:h-3/4 md:-mt-28 -mt-4 rounded-sm relative`}
                             containerClassName={'w-full h-full bg-accentMedium dark:bg-dark-accentMedium flex justify-stretch'}
                             startPosition={0}
-                            pages ={calendar.months.map((month, index)=> <Month key={month._id} month={month} calendarId = {calendar._id} swipe={swipe} maxIndex={calendar.months.length-1} setSwipe={setSwipe}/>)}
+                            pages ={calendar.months.map((month)=> <Month key={month._id} month={month} calendarId = {calendar._id} swipe={swipe} maxIndex={calendar.months.length-1} setSwipe={setSwipe}/>)}
                             swipeToIndex={swipe}
                             />
                     </AnimatedContainer>
