@@ -10,8 +10,8 @@ It job is to give ability to sign in record in the calendar on given time, in gi
 
 With admin permission, you can add users from registry list, accept theirs new password requests, edit them, remove them and of course, create the calendar
 <p>
-  <img src="" alt="calendar creator" />
-  <img src="" alt="admin panel"/>
+  <img src="https://github.com/BartoszJakubowsky/calendar_v2/assets/110412160/6b34e99b-caf8-471e-8f88-deec6749ada2" alt="calendar creator" />
+  <img src="https://github.com/BartoszJakubowsky/calendar_v2/assets/110412160/5335b008-5640-4a38-b60a-168c3ca0539a" alt="admin page"/>
 </p>
 
 Check it out by yourself, logging in as :
