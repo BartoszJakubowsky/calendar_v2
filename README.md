@@ -23,7 +23,7 @@ Check it out by yourself, logging in as :
 - **name**: user@mail.com
 - **password**: 01234
 
-## Thech Stack
+## Thech Stack - MERN
 
 The frontend part was build on:
 - React with Vite
@@ -36,7 +36,12 @@ With help of librares such as:
 - axios
 - react-router
 
+Backend build with:
+- Express
+- MongoDB
+
 You will find backend in [this repository 🔗](https://github.com/BartoszJakubowsky/calendar_backend_v2)
+
 
 ### **Please note** that it may take up to 30 seconds to send the page to the client due to Render's policy.
 
