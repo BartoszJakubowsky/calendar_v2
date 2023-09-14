@@ -17,3 +17,19 @@ With admin permission, you can add users from registry list, accept theirs new p
 Check it out by yourself, logging in as :
 - **name**: user@mail.com
 - **password**: 01234
+
+## Thech Stack
+
+The frontend part was build on:
+- React with Vite
+- TailwindCSS
+
+With help of librares such as: 
+- Framer Motion
+- i18next
+- socket.io
+- axios
+- react-router
+
+You will find backend in [this repository 🔗](https://github.com/BartoszJakubowsky/calendar_backend_v2)
+
