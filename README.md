@@ -33,3 +33,5 @@ With help of librares such as:
 
 You will find backend in [this repository 🔗](https://github.com/BartoszJakubowsky/calendar_backend_v2)
 
+### **Please note** that it may take up to 30 seconds to send the page to the client due to Render's policy.
+
