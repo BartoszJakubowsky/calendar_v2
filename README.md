@@ -16,7 +16,7 @@ With admin permission, you can add users from registry list, accept theirs new p
 
 App supports dark theme and 3 languages changing:
 <p>
-  <img src="https://github.com/BartoszJakubowsky/calendar_v2/assets/110412160/339e2528-27ce-4260-92b7-a7f744710b40" alt="login page"/>
+  <img src="https://github.com/BartoszJakubowsky/calendar_v2/assets/110412160/339e2528-27ce-4260-92b7-a7f744710b40" alt="login page" width=200/>
 </p>
 
 Check it out by yourself, logging in as :
