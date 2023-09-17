@@ -19,10 +19,6 @@ App supports dark theme and 3 languages: English, Polish and Russian
   <img src="https://github.com/BartoszJakubowsky/calendar_v2/assets/110412160/339e2528-27ce-4260-92b7-a7f744710b40" alt="login page" width=200/>
 </p>
 
-Check it out by yourself, logging in as :
-- **name**: user@mail.com
-- **password**: 01234
-
 ## Thech Stack - MERN
 
 The frontend part was build on:
